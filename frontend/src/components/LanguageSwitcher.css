@@ -1,0 +1,22 @@
+.language-switcher {
+  margin: 0 15px;
+}
+
+.language-select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+}
+
+.language-select:hover {
+  border-color: #666;
+}
+
+.language-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+} 
