@@ -6,6 +6,7 @@ import footerImg from '../images/footer.jpg';
 import heroImg from '../images/hero.jpeg';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
+import image from '../images/hero.jpeg';
 
 const heroImages = [
   { src: heroImg, alt: 'Hero Image 1' },
@@ -79,6 +80,7 @@ const Home: React.FC = () => {
           <h1 style={{ 
             fontSize: '3.5rem', 
             marginBottom: '1rem',
+            color: '#8B4513',
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
           }}>
             Welcome to Nagilvari
@@ -86,6 +88,9 @@ const Home: React.FC = () => {
           <p style={{ 
             fontSize: '1.5rem',
             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
+            ,
+            color: '#8B4513',
+
           }}>
             Discover and share amazing products
           </p>

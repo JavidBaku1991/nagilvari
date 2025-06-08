@@ -50,14 +50,20 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Box className="contacts-page" sx={{ padding: '2rem' }}>
+    <Box className="contacts-page" sx={{ 
+      padding: '2rem',
+      backgroundColor: 'white',
+      minHeight: 'calc(100vh - 64px)',
+      color: '#333',
+      paddingTop: '100px'
+    }}>
       <Grid container spacing={4}>
         {/* @ts-ignore */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h4" component="h1" gutterBottom>
+          <Typography variant="h4" component="h1" gutterBottom sx={{ color: '#333' }}>
             {t('contacts.title')}
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph sx={{ color: '#666' }}>
             {t('contacts.description')}
           </Typography>
           <Box component="form" onSubmit={sendEmail} sx={{ mt: 3 }}>
@@ -69,6 +75,25 @@ const Contact: React.FC = () => {
               onChange={handleChange}
               margin="normal"
               required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: '#ddd',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: '#666',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#8B4513',
+                },
+              }}
             />
             <TextField
               fullWidth
@@ -79,6 +104,25 @@ const Contact: React.FC = () => {
               onChange={handleChange}
               margin="normal"
               required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: '#ddd',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: '#666',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#8B4513',
+                },
+              }}
             />
             <TextField
               fullWidth
@@ -90,12 +134,37 @@ const Contact: React.FC = () => {
               onChange={handleChange}
               margin="normal"
               required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  '& fieldset': {
+                    borderColor: '#ddd',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#8B4513',
+                  },
+                },
+                '& .MuiInputLabel-root': {
+                  color: '#666',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#8B4513',
+                },
+              }}
             />
             <Button
               type="submit"
               variant="contained"
-              color="primary"
-              sx={{ mt: 2 }}
+              sx={{ 
+                mt: 2,
+                backgroundColor: '#8B4513',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#6B3410',
+                }
+              }}
             >
               {t('contacts.send')}
             </Button>

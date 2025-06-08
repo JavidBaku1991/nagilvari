@@ -14,6 +14,7 @@ import {
   Paper
 } from '@mui/material';
 import ProductCard from '../components/ProductCard';
+import image from '../images/hero.jpeg';
 
 const mockProducts = [
   {
@@ -21,7 +22,7 @@ const mockProducts = [
     name: 'Product 1',
     description: 'This is a description for product 1.',
     price: 99.99,
-    image: 'https://via.placeholder.com/300',
+    image: image,
     rating: 4.5,
     category: 'Electronics'
   },

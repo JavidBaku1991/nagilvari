@@ -1,35 +1,48 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  SelectChangeEvent,
-  InputLabel
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import LanguageIcon from '@mui/icons-material/Language';
 
 const LanguageSwitcher: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    i18n.changeLanguage(event.target.value);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
-    <FormControl size="small" sx={{ minWidth: 120 }}>
-      <InputLabel id="language-select-label">{t('language')}</InputLabel>
-      <Select
-        labelId="language-select-label"
-        id="language-select"
-        value={i18n.language}
-        label={t('language')}
-        onChange={handleChange}
+    <Box>
+      <IconButton
+        onClick={handleClick}
+        sx={{
+          color: 'inherit',
+          border: '1px solid #8B4513',
+          '&:hover': {
+            backgroundColor: 'rgba(139, 69, 19, 0.1)'
+          }
+        }}
       >
-        <MenuItem value="en">{t('english')}</MenuItem>
-        <MenuItem value="ru">{t('russian')}</MenuItem>
-        <MenuItem value="az">{t('azerbaijani')}</MenuItem>
-      </Select>
-    </FormControl>
+        <LanguageIcon />
+      </IconButton>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        sx={{
+          '& .MuiPaper-root': {
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            color: 'white',
+            marginTop: '8px'
+          }
+        }}
+      >
+        <MenuItem onClick={handleClose}>English</MenuItem>
+        <MenuItem onClick={handleClose}>Georgian</MenuItem>
+      </Menu>
+    </Box>
   );
 };
 

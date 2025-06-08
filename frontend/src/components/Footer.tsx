@@ -6,11 +6,10 @@ const Footer: React.FC = () => (
   <Box
     component="footer"
     sx={{
-      background: '#1a2a43',
+      background: '#8B4513',
       color: 'white',
       py: { xs: 6, md: 8 },
-      px: { xs: 2, md: 8 },
-      mt: 8
+      px: { xs: 2, md: 8 }
     }}
   >
     <Grid container spacing={4} justifyContent="space-between" alignItems="flex-start">
@@ -25,8 +24,8 @@ const Footer: React.FC = () => (
         <Button
           variant="contained"
           sx={{
-            background: '#22c55e',
-            color: 'white',
+            background: 'white',
+            color: '#8B4513',
             fontWeight: 700,
             fontSize: '1.25rem',
             borderRadius: 2,
@@ -34,7 +33,10 @@ const Footer: React.FC = () => (
             py: 1.5,
             boxShadow: 'none',
             textTransform: 'none',
-            '&:hover': { background: '#16a34a' }
+            '&:hover': { 
+              background: 'rgba(255, 255, 255, 0.9)',
+              color: '#8B4513'
+            }
           }}
         >
           Tell us about your project
@@ -44,19 +46,19 @@ const Footer: React.FC = () => (
       <Grid item xs={12} md={5}>
         <Box mb={3}>
           <Typography fontWeight={700} component="span" mr={1}>Email</Typography>
-          <MuiLink href="mailto:hello@buuuk.com" sx={{ color: '#3ba3ff', fontWeight: 400 }} underline="none">
+          <MuiLink sx={{ color: 'white', fontWeight: 400, opacity: 0.8, '&:hover': { opacity: 1 } }} underline="none">
             hello@buuuk.com
           </MuiLink>
         </Box>
         <Box mb={3}>
           <Typography fontWeight={700} component="span" mr={1}>Phone</Typography>
-          <MuiLink href="tel:+6598735984" sx={{ color: '#3ba3ff', fontWeight: 400 }} underline="none">
+          <MuiLink sx={{ color: 'white', fontWeight: 400, opacity: 0.8, '&:hover': { opacity: 1 } }} underline="none">
             (+65) 98735984
           </MuiLink>
         </Box>
         <Box mb={3}>
           <Typography fontWeight={700} component="span" mr={1}>Address</Typography>
-          <MuiLink href="https://goo.gl/maps/xyz" target="_blank" rel="noopener" sx={{ color: '#3ba3ff', fontWeight: 400 }} underline="none">
+          <MuiLink target="_blank" rel="noopener" sx={{ color: 'white', fontWeight: 400, opacity: 0.8, '&:hover': { opacity: 1 } }} underline="none">
             1 Paya Lebar Link<br />#04-01, Paya Lebar Quarter<br />Singapore, 408533
           </MuiLink>
         </Box>

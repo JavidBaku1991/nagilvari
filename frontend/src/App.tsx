@@ -10,6 +10,11 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import AdminLogin from './pages/AdminLogin';
 import FAQ from './pages/FAQ';
+import Paintings from './pages/products/Paintings';
+import Sculptures from './pages/products/Sculptures';
+import DigitalArt from './pages/products/DigitalArt';
+import Photography from './pages/products/Photography';
+import Ceramics from './pages/products/Ceramics';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RequireAdmin from './components/RequireAdmin';
 import Navbar from './components/Navbar';
@@ -25,6 +30,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/paintings" element={<Paintings />} />
+          <Route path="/products/sculptures" element={<Sculptures />} />
+          <Route path="/products/digital-art" element={<DigitalArt />} />
+          <Route path="/products/photography" element={<Photography />} />
+          <Route path="/products/ceramics" element={<Ceramics />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />

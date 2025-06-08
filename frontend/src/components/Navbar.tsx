@@ -80,8 +80,9 @@ const Navbar: React.FC = () => {
       <AppBar 
         position="fixed" 
         sx={{ 
-          backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
+          backgroundColor: isScrolled ?'#8B4513' : 'transparent',
           boxShadow: isScrolled ? 1 : 'none',
+          color: isScrolled ?'white' : '#8B4513',
           transition: 'all 0.3s ease-in-out',
           paddingTop: '10px',
           width: '100%',
@@ -112,6 +113,7 @@ const Navbar: React.FC = () => {
                   sx={{
                     display: { xs: 'none', md: 'block' },
                     height: '36px',
+                    color: isScrolled ? 'white' : '#8B4513',
                     '&:hover': {
                       backgroundColor: 'rgba(255, 255, 255, 0.1)'
                     }
@@ -127,6 +129,7 @@ const Navbar: React.FC = () => {
                 sx={{
                   display: { xs: 'none', md: 'block' },
                   height: '36px',
+                  color: isScrolled ? 'white' : '#8B4513',
                   '&:hover': {
                     backgroundColor: 'rgba(255, 255, 255, 0.1)'
                   }
@@ -143,8 +146,7 @@ const Navbar: React.FC = () => {
                     backgroundColor: 'rgba(0, 0, 0, 0.9)',
                     color: 'white',
                     marginTop: '8px',
-                    minWidth: '200px',
-                    position: 'relative'
+                    minWidth: '200px'
                   }
                 }}
                 anchorOrigin={{
@@ -158,7 +160,7 @@ const Navbar: React.FC = () => {
                 slotProps={{
                   paper: {
                     sx: {
-                      position: 'relative',
+                      overflow: 'visible',
                       mt: 1.5,
                       '&:before': {
                         content: '""',

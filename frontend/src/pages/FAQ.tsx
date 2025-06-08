@@ -34,27 +34,60 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
-      <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
-        Frequently Asked Questions
-      </Typography>
-      <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-        {faqItems.map((item, index) => (
-          <Accordion key={index} sx={{ mb: 2 }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`panel${index}-content`}
-              id={`panel${index}-header`}
+    <Box sx={{ 
+      backgroundColor: 'white',
+      minHeight: 'calc(100vh - 64px)',
+      color: '#333',
+      paddingTop: '100px',
+      paddingBottom: '40px'
+    }}>
+      <Container maxWidth="md">
+        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
+          mb: 4,
+          color: '#333'
+        }}>
+          Frequently Asked Questions
+        </Typography>
+        <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+          {faqItems.map((item, index) => (
+            <Accordion 
+              key={index} 
+              sx={{ 
+                mb: 2,
+                backgroundColor: 'white',
+                color: '#333',
+                '&:before': {
+                  display: 'none'
+                },
+                '& .MuiAccordionSummary-root': {
+                  color: '#333',
+                  '&:hover': {
+                    backgroundColor: 'rgba(139, 69, 19, 0.05)'
+                  }
+                },
+                '& .MuiAccordionDetails-root': {
+                  color: '#666'
+                },
+                '& .MuiSvgIcon-root': {
+                  color: '#8B4513'
+                }
+              }}
             >
-              <Typography variant="h6">{item.question}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{item.answer}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
-      </Box>
-    </Container>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index}-content`}
+                id={`panel${index}-header`}
+              >
+                <Typography variant="h6">{item.question}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>{item.answer}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          ))}
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
