@@ -83,11 +83,13 @@ const Navbar: React.FC = () => {
           backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
           boxShadow: isScrolled ? 1 : 'none',
           transition: 'all 0.3s ease-in-out',
-          paddingTop: '20px'
+          paddingTop: '10px',
+          width: '100%',
+          overflow: 'hidden'
         }}
       >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ minHeight: '64px' }}>
+        <Container maxWidth="lg" sx={{ overflow: 'visible' }}>
+          <Toolbar disableGutters sx={{ minHeight: '48px' }}>
             {isMobile && (
               <IconButton
                 color="inherit"
@@ -109,6 +111,7 @@ const Navbar: React.FC = () => {
                   color="inherit"
                   sx={{
                     display: { xs: 'none', md: 'block' },
+                    height: '36px',
                     '&:hover': {
                       backgroundColor: 'rgba(255, 255, 255, 0.1)'
                     }
@@ -123,6 +126,7 @@ const Navbar: React.FC = () => {
                 endIcon={<KeyboardArrowDownIcon />}
                 sx={{
                   display: { xs: 'none', md: 'block' },
+                  height: '36px',
                   '&:hover': {
                     backgroundColor: 'rgba(255, 255, 255, 0.1)'
                   }
@@ -137,8 +141,39 @@ const Navbar: React.FC = () => {
                 sx={{
                   '& .MuiPaper-root': {
                     backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                    color: 'white'
+                    color: 'white',
+                    marginTop: '8px',
+                    minWidth: '200px',
+                    position: 'relative'
                   }
+                }}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                slotProps={{
+                  paper: {
+                    sx: {
+                      position: 'relative',
+                      mt: 1.5,
+                      '&:before': {
+                        content: '""',
+                        display: 'block',
+                        position: 'absolute',
+                        top: 0,
+                        left: '50%',
+                        width: 10,
+                        height: 10,
+                        bgcolor: 'rgba(0, 0, 0, 0.9)',
+                        transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
+                        zIndex: 0,
+                      },
+                    },
+                  },
                 }}
               >
                 {productCategories.map((category) => (
