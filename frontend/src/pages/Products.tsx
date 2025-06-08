@@ -88,10 +88,6 @@ const Products: React.FC = () => {
       });
   }, [searchQuery, selectedCategory, priceRange, sortBy]);
 
-  const handleAddToCart = (id: string) => {
-    console.log(`Adding product ${id} to cart`);
-  };
-
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Box sx={{ mb: 4 }}>

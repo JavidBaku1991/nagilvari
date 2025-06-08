@@ -5,12 +5,9 @@ import {
   CardMedia,
   Typography,
   CardActionArea,
-  CardActions,
-  Button,
   Box,
   Rating
 } from '@mui/material';
-import { ShoppingCart as ShoppingCartIcon } from '@mui/icons-material';
 
 interface ProductCardProps {
   id: string;
@@ -19,7 +16,6 @@ interface ProductCardProps {
   price: number;
   image: string;
   rating?: number;
-
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({

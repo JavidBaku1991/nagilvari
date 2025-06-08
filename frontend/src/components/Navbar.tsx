@@ -10,8 +10,9 @@ import {
   useTheme,
   useMediaQuery,
   InputBase,
-  Badge,
-  alpha
+  alpha,
+  Menu,
+  MenuItem
 } from '@mui/material';
 import {
   Facebook as FacebookIcon,
@@ -19,7 +20,7 @@ import {
   Instagram as InstagramIcon,
   Menu as MenuIcon,
   Search as SearchIcon,
-  ShoppingCart as ShoppingCartIcon
+  KeyboardArrowDown as KeyboardArrowDownIcon
 } from '@mui/icons-material';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileDrawer from './MobileDrawer';
@@ -30,6 +31,15 @@ const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const productCategories = [
+    { label: 'Paintings', path: '/products/paintings' },
+    { label: 'Sculptures', path: '/products/sculptures' },
+    { label: 'Digital Art', path: '/products/digital-art' },
+    { label: 'Photography', path: '/products/photography' },
+    { label: 'Ceramics', path: '/products/ceramics' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,13 +57,19 @@ const Navbar: React.FC = () => {
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
-    // Implement search functionality
     console.log('Searching for:', searchQuery);
+  };
+
+  const handleProductsMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleProductsMenuClose = () => {
+    setAnchorEl(null);
   };
 
   const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Products', path: '/products' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
     { label: 'FAQ', path: '/faq' }
@@ -64,16 +80,17 @@ const Navbar: React.FC = () => {
       <AppBar 
         position="fixed" 
         sx={{ 
-          backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
+          backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.9)' : 'transparent',
           boxShadow: isScrolled ? 1 : 'none',
-          transition: 'all 0.3s ease-in-out'
+          transition: 'all 0.3s ease-in-out',
+          paddingTop: '20px'
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar disableGutters>
+          <Toolbar disableGutters sx={{ minHeight: '64px' }}>
             {isMobile && (
               <IconButton
-                color={isScrolled ? "inherit" : "primary"}
+                color="inherit"
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
@@ -89,17 +106,57 @@ const Navbar: React.FC = () => {
                   key={item.path}
                   component={Link}
                   to={item.path}
-                  color={isScrolled ? "inherit" : "primary"}
+                  color="inherit"
                   sx={{
                     display: { xs: 'none', md: 'block' },
                     '&:hover': {
-                      backgroundColor: isScrolled ? 'rgba(0, 0, 0, 0.04)' : 'rgba(255, 255, 255, 0.1)'
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
                     }
                   }}
                 >
                   {item.label}
                 </Button>
               ))}
+              <Button
+                color="inherit"
+                onClick={handleProductsMenuOpen}
+                endIcon={<KeyboardArrowDownIcon />}
+                sx={{
+                  display: { xs: 'none', md: 'block' },
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                  }
+                }}
+              >
+                Products
+              </Button>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleProductsMenuClose}
+                sx={{
+                  '& .MuiPaper-root': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                    color: 'white'
+                  }
+                }}
+              >
+                {productCategories.map((category) => (
+                  <MenuItem
+                    key={category.path}
+                    component={Link}
+                    to={category.path}
+                    onClick={handleProductsMenuClose}
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                      }
+                    }}
+                  >
+                    {category.label}
+                  </MenuItem>
+                ))}
+              </Menu>
             </Box>
 
             <Box
@@ -109,9 +166,9 @@ const Navbar: React.FC = () => {
                 display: { xs: 'none', sm: 'flex' },
                 position: 'relative',
                 borderRadius: 1,
-                backgroundColor: isScrolled ? alpha(theme.palette.common.black, 0.05) : alpha(theme.palette.common.white, 0.15),
+                backgroundColor: alpha(theme.palette.common.white, 0.15),
                 '&:hover': {
-                  backgroundColor: isScrolled ? alpha(theme.palette.common.black, 0.08) : alpha(theme.palette.common.white, 0.25),
+                  backgroundColor: alpha(theme.palette.common.white, 0.25),
                 },
                 mr: 2,
                 width: { sm: 'auto', md: 300 }
@@ -121,7 +178,7 @@ const Navbar: React.FC = () => {
                 type="submit"
                 sx={{
                   padding: '10px',
-                  color: isScrolled ? 'inherit' : 'white'
+                  color: 'white'
                 }}
               >
                 <SearchIcon />
@@ -131,7 +188,7 @@ const Navbar: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 sx={{
-                  color: isScrolled ? 'inherit' : 'white',
+                  color: 'white',
                   width: '100%',
                   '& .MuiInputBase-input': {
                     padding: '8px 8px 8px 0',
@@ -149,7 +206,7 @@ const Navbar: React.FC = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  color={isScrolled ? "inherit" : "primary"}
+                  color="inherit"
                   size="small"
                 >
                   <FacebookIcon />
@@ -159,7 +216,7 @@ const Navbar: React.FC = () => {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  color={isScrolled ? "inherit" : "primary"}
+                  color="inherit"
                   size="small"
                 >
                   <TwitterIcon />
@@ -169,7 +226,7 @@ const Navbar: React.FC = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  color={isScrolled ? "inherit" : "primary"}
+                  color="inherit"
                   size="small"
                 >
                   <InstagramIcon />
