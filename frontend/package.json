@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://JavidBaku1991.github.io/nagilvari",
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -20,7 +19,6 @@
     "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.3",
     "emailjs-com": "^3.2.0",
-    "gh-pages": "^6.1.1",
     "i18next": "^23.8.2",
     "i18next-browser-languagedetector": "^7.2.0",
     "ra-data-simple-rest": "^4.16.10",
@@ -35,11 +33,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build --no-history"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
