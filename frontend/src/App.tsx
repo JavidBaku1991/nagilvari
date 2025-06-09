@@ -24,6 +24,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RequireAdmin from './components/RequireAdmin';
 import Navbar from './components/Navbar';
 import './i18n';
+import Search from './pages/Search';
+import Cart from './pages/Cart';
 
 const dataProvider = simpleRestProvider('http://localhost:4000'); // Placeholder, backend to be implemented
 
@@ -51,6 +53,8 @@ function App() {
               </Admin>
             </RequireAdmin>
           } />
+          <Route path="/search" element={<Search />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </div>
