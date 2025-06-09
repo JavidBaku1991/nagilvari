@@ -10,17 +10,14 @@ import {
   useTheme,
   useMediaQuery,
   InputBase,
-  alpha,
-  Menu,
-  MenuItem
+  alpha
 } from '@mui/material';
 import {
   Facebook as FacebookIcon,
   Twitter as TwitterIcon,
   Instagram as InstagramIcon,
   Menu as MenuIcon,
-  Search as SearchIcon,
-  KeyboardArrowDown as KeyboardArrowDownIcon
+  Search as SearchIcon
 } from '@mui/icons-material';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileDrawer from './MobileDrawer';
@@ -31,15 +28,6 @@ const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const productCategories = [
-    { label: 'Paintings', path: '/products/paintings' },
-    { label: 'Sculptures', path: '/products/sculptures' },
-    { label: 'Digital Art', path: '/products/digital-art' },
-    { label: 'Photography', path: '/products/photography' },
-    { label: 'Ceramics', path: '/products/ceramics' }
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,16 +48,9 @@ const Navbar: React.FC = () => {
     console.log('Searching for:', searchQuery);
   };
 
-  const handleProductsMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleProductsMenuClose = () => {
-    setAnchorEl(null);
-  };
-
   const navItems = [
     { label: 'Home', path: '/' },
+    { label: 'Products', path: '/products' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
     { label: 'FAQ', path: '/faq' }
@@ -122,78 +103,6 @@ const Navbar: React.FC = () => {
                   {item.label}
                 </Button>
               ))}
-              <Button
-                color="inherit"
-                onClick={handleProductsMenuOpen}
-                endIcon={<KeyboardArrowDownIcon />}
-                sx={{
-                  display: { xs: 'none', md: 'block' },
-                  height: '36px',
-                  color: isScrolled ? 'white' : '#8B4513',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                  }
-                }}
-              >
-                Products
-              </Button>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleProductsMenuClose}
-                sx={{
-                  '& .MuiPaper-root': {
-                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                    color: 'white',
-                    marginTop: '8px',
-                    minWidth: '200px'
-                  }
-                }}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                slotProps={{
-                  paper: {
-                    sx: {
-                      overflow: 'visible',
-                      mt: 1.5,
-                      '&:before': {
-                        content: '""',
-                        display: 'block',
-                        position: 'absolute',
-                        top: 0,
-                        left: '50%',
-                        width: 10,
-                        height: 10,
-                        bgcolor: 'rgba(0, 0, 0, 0.9)',
-                        transform: 'translateX(-50%) translateY(-50%) rotate(45deg)',
-                        zIndex: 0,
-                      },
-                    },
-                  },
-                }}
-              >
-                {productCategories.map((category) => (
-                  <MenuItem
-                    key={category.path}
-                    component={Link}
-                    to={category.path}
-                    onClick={handleProductsMenuClose}
-                    sx={{
-                      '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)'
-                      }
-                    }}
-                  >
-                    {category.label}
-                  </MenuItem>
-                ))}
-              </Menu>
             </Box>
 
             <Box
