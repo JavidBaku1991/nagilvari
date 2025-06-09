@@ -4,9 +4,9 @@ import { Box, Container, Typography, Grid } from '@mui/material';
 const Sculptures: React.FC = () => {
   return (
     <Box sx={{ 
-      backgroundColor: '#8B4513',
+      backgroundColor: 'white',
       minHeight: 'calc(100vh - 64px)',
-      color: 'white',
+      color: '#8B4513',
       paddingTop: '100px',
       paddingBottom: '40px'
     }}>
@@ -18,7 +18,7 @@ const Sculptures: React.FC = () => {
           {/* Add your sculptures content here */}
           <Grid item xs={12}>
             <Typography variant="body1" align="center">
-              Discover our curated collection of contemporary and classical sculptures.
+              Discover our collection of unique sculptures from talented artists.
             </Typography>
           </Grid>
         </Grid>

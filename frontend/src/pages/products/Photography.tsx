@@ -4,9 +4,9 @@ import { Box, Container, Typography, Grid } from '@mui/material';
 const Photography: React.FC = () => {
   return (
     <Box sx={{ 
-      backgroundColor: '#8B4513',
+      backgroundColor: 'white',
       minHeight: 'calc(100vh - 64px)',
-      color: 'white',
+      color: '#8B4513',
       paddingTop: '100px',
       paddingBottom: '40px'
     }}>

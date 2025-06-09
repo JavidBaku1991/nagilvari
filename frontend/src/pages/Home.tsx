@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '@splidejs/react-splide/css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ProductCard from '../components/ProductCard';
@@ -20,12 +20,14 @@ const dummyProducts = Array.from({ length: 10 }, (_, i) => ({
   name: `Product ${i + 1}`,
   price: (i + 1) * 10,
   description: `This is the description for product ${i + 1}.`,
-  image: 'https://via.placeholder.com/300',
+  image: image,
   rating: Math.random() * 5
 }));
 
 const Home: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const featuredRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,7 +36,28 @@ const Home: React.FC = () => {
       );
     }, 5000); // Change image every 5 seconds
 
-    return () => clearInterval(interval);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    if (featuredRef.current) {
+      observer.observe(featuredRef.current);
+    }
+
+    return () => {
+      clearInterval(interval);
+      if (featuredRef.current) {
+        observer.unobserve(featuredRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -96,7 +119,16 @@ const Home: React.FC = () => {
           </p>
         </div>
       </section>
-      <div className="home-products-slider mt-5" style={{ padding: '2rem' }}>
+      <div 
+        ref={featuredRef}
+        className="home-products-slider mt-5" 
+        style={{ 
+          padding: '2rem',
+          transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+          opacity: isVisible ? 1 : 0,
+          transition: 'transform 0.5s ease-out, opacity 0.5s ease-out'
+        }}
+      >
         <h3 className="mb-4 text-center">Featured Products</h3>
         <Splide
           options={{
@@ -121,9 +153,15 @@ const Home: React.FC = () => {
           }}
           aria-label="Featured Products"
         >
-          {dummyProducts.map(product => (
+          {dummyProducts.map((product, index) => (
             <SplideSlide key={product.id}>
-              <ProductCard {...product} />
+              <div style={{
+                transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+                opacity: isVisible ? 1 : 0,
+                transition: `transform 0.5s ease-out ${index * 0.3}s, opacity 0.5s ease-out ${index * 0.3}s`
+              }}>
+                <ProductCard {...product} />
+              </div>
             </SplideSlide>
           ))}
         </Splide>
