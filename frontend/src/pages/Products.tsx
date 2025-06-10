@@ -11,31 +11,56 @@ const categories = [
   {
     title: 'Paintings',
     description: 'Explore our collection of unique paintings from talented artists around the world.',
-    image: paintingsImg,
+    images: [
+      { src: paintingsImg, alt: 'Painting 1' },
+      { src: sculpturesImg, alt: 'Painting 2' },
+      { src: digitalArtImg, alt: 'Painting 3' },
+      { src: photographyImg, alt: 'Painting 4' }
+    ],
     path: '/products/paintings'
   },
   {
     title: 'Sculptures',
     description: 'Discover our collection of unique sculptures from talented artists.',
-    image: sculpturesImg,
+    images: [
+      { src: sculpturesImg, alt: 'Sculpture 1' },
+      { src: digitalArtImg, alt: 'Sculpture 2' },
+      { src: photographyImg, alt: 'Sculpture 3' },
+      { src: paintingsImg, alt: 'Sculpture 4' }
+    ],
     path: '/products/sculptures'
   },
   {
     title: 'Digital Art',
     description: 'Explore the world of digital creativity with our collection of digital artworks.',
-    image: digitalArtImg,
+    images: [
+      { src: digitalArtImg, alt: 'Digital Art 1' },
+      { src: photographyImg, alt: 'Digital Art 2' },
+      { src: paintingsImg, alt: 'Digital Art 3' },
+      { src: sculpturesImg, alt: 'Digital Art 4' }
+    ],
     path: '/products/digital-art'
   },
   {
     title: 'Photography',
     description: 'Browse through our collection of stunning photographs from professional photographers.',
-    image: photographyImg,
+    images: [
+      { src: photographyImg, alt: 'Photography 1' },
+      { src: paintingsImg, alt: 'Photography 2' },
+      { src: sculpturesImg, alt: 'Photography 3' },
+      { src: digitalArtImg, alt: 'Photography 4' }
+    ],
     path: '/products/photography'
   },
   {
     title: 'Ceramics',
     description: 'Explore our collection of handcrafted ceramic pieces from skilled artisans.',
-    image: ceramicsImg,
+    images: [
+      { src: ceramicsImg, alt: 'Ceramics 1' },
+      { src: sculpturesImg, alt: 'Ceramics 2' },
+      { src: digitalArtImg, alt: 'Ceramics 3' },
+      { src: photographyImg, alt: 'Ceramics 4' }
+    ],
     path: '/products/ceramics'
   }
 ];
@@ -65,7 +90,7 @@ const Products: React.FC = () => {
               <CategoryCard
                 title={category.title}
                 description={category.description}
-                image={category.image}
+                images={category.images}
                 path={category.path}
                 variant="products"
               />

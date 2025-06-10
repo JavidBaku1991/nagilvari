@@ -20,31 +20,56 @@ const categories = [
   {
     title: 'Paintings',
     description: 'Explore our collection of unique paintings from talented artists around the world.',
-    image: heroImg,
+    images: [
+      { src: heroImg, alt: 'Painting 1' },
+      { src: hero1Img, alt: 'Painting 2' },
+      { src: hero2Img, alt: 'Painting 3' },
+      { src: footerImg, alt: 'Painting 4' }
+    ],
     path: '/products/paintings'
   },
   {
     title: 'Sculptures',
     description: 'Discover our collection of unique sculptures from talented artists.',
-    image: hero1Img,
+    images: [
+      { src: hero1Img, alt: 'Sculpture 1' },
+      { src: hero2Img, alt: 'Sculpture 2' },
+      { src: footerImg, alt: 'Sculpture 3' },
+      { src: heroImg, alt: 'Sculpture 4' }
+    ],
     path: '/products/sculptures'
   },
   {
     title: 'Digital Art',
     description: 'Explore the world of digital creativity with our collection of digital artworks.',
-    image: hero2Img,
+    images: [
+      { src: hero2Img, alt: 'Digital Art 1' },
+      { src: footerImg, alt: 'Digital Art 2' },
+      { src: heroImg, alt: 'Digital Art 3' },
+      { src: hero1Img, alt: 'Digital Art 4' }
+    ],
     path: '/products/digital-art'
   },
   {
     title: 'Photography',
     description: 'Browse through our collection of stunning photographs from professional photographers.',
-    image: footerImg,
+    images: [
+      { src: footerImg, alt: 'Photography 1' },
+      { src: heroImg, alt: 'Photography 2' },
+      { src: hero1Img, alt: 'Photography 3' },
+      { src: hero2Img, alt: 'Photography 4' }
+    ],
     path: '/products/photography'
   },
   {
     title: 'Ceramics',
     description: 'Explore our collection of handcrafted ceramic pieces from skilled artisans.',
-    image: heroImg,
+    images: [
+      { src: heroImg, alt: 'Ceramics 1' },
+      { src: hero1Img, alt: 'Ceramics 2' },
+      { src: hero2Img, alt: 'Ceramics 3' },
+      { src: footerImg, alt: 'Ceramics 4' }
+    ],
     path: '/products/ceramics'
   }
 ];
@@ -206,7 +231,7 @@ const Home: React.FC = () => {
                 <CategoryCard
                   title={category.title}
                   description={category.description}
-                  image={category.image}
+                  images={category.images}
                   path={category.path}
                   variant="products"
                 />

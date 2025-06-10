@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
+import { Card, CardContent, Typography, Box } from '@mui/material';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+
+interface Image {
+  src: string;
+  alt: string;
+}
 
 interface CategoryCardProps {
   title: string;
   description: string;
-  image: string;
+  images: Image[];
   path: string;
   variant?: 'home' | 'products';
 }
@@ -13,7 +20,7 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({
   title,
   description,
-  image,
+  images,
   path,
   variant = 'products'
 }) => {
@@ -36,23 +43,39 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         '&:hover': {
           transform: isHomeVariant ? 'scale(1.02)' : 'translateY(-8px)',
           boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-          '& .MuiCardMedia-root': {
+          '& .splide__slide img': {
             transform: 'scale(1.05)'
           }
         }
       }}
     >
       <Box sx={{ position: 'relative', height: isHomeVariant ? '200px' : '300px' }}>
-        <CardMedia
-          component="img"
-          image={image}
-          alt={title}
-          sx={{
-            height: '100%',
-            objectFit: 'cover',
-            transition: 'transform 0.5s ease-in-out'
+        <Splide
+          options={{
+            type: 'loop',
+            autoplay: true,
+            interval: 3000,
+            pauseOnHover: true,
+            arrows: false,
+            pagination: false,
+            height: '100%'
           }}
-        />
+        >
+          {images.map((image, index) => (
+            <SplideSlide key={index}>
+              <img
+                src={image.src}
+                alt={image.alt}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.5s ease-in-out'
+                }}
+              />
+            </SplideSlide>
+          ))}
+        </Splide>
         <Box
           sx={{
             position: 'absolute',
