@@ -10,13 +10,15 @@ import {
   Container,
   useTheme,
   useMediaQuery,
-  InputBase,
-  Badge
+  InputBase
 } from '@mui/material';
-import { 
-  ShoppingCart as ShoppingCartIcon, 
+import {
+  ShoppingCart as ShoppingCartIcon,
   Search as SearchIcon,
-  Menu as MenuIcon 
+  Menu as MenuIcon,
+  Facebook as FacebookIcon,
+  Instagram as InstagramIcon,
+  Twitter as TwitterIcon
 } from '@mui/icons-material';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileDrawer from './MobileDrawer';
@@ -30,7 +32,6 @@ const Navbar: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const navItems = [
-    { label: 'Products', path: '/products' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
     { label: 'FAQ', path: '/faq' }
@@ -58,12 +59,24 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <AppBar 
-      position="fixed" 
-      sx={{ 
-        backgroundColor: 'white',
+    <AppBar
+      position="fixed"
+      sx={{
+        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
         boxShadow: isScrolled ? 2 : 0,
-        transition: 'box-shadow 0.3s ease-in-out'
+        transition: 'all 0.3s ease-in-out',
+        color: '#8B4513',
+        backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: -1,
+          height: '100%'
+        }
       }}
     >
       <Container maxWidth="lg">
@@ -74,11 +87,12 @@ const Navbar: React.FC = () => {
             to="/"
             sx={{
               flexGrow: 1,
-              color: '#8B4513',
+              color:   '#8B4513' ,
               textDecoration: 'none',
               fontWeight: 'bold',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              transition: 'color 0.3s ease-in-out'
             }}
           >
             Nagilvari
@@ -86,23 +100,30 @@ const Navbar: React.FC = () => {
 
           {!isMobile && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center' }}>
+              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', width: '250px'}}>
                 <InputBase
                   placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   sx={{
-                    backgroundColor: '#f5f5f5',
+                    backgroundColor: isScrolled ? '#f5f5f5' : 'rgba(255, 255, 255, 0.2)',
                     padding: '0.5rem 1rem',
                     borderRadius: '20px',
-                    width: '300px'
+                    width: '300px',
+                    color: isScrolled ? '#8B4513' : '#fff',
+                    transition: 'all 0.3s ease-in-out',
+                    '&::placeholder': {
+                      color: isScrolled ? '#666' : 'rgba(255, 255, 255, 0.7)',
+                      transition: 'color 0.3s ease-in-out'
+                    }
                   }}
                 />
-                <IconButton 
-                  type="submit" 
-                  sx={{ 
+                <IconButton
+                  type="submit"
+                  sx={{
                     color: '#8B4513',
-                    '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' }
+                    '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' },
+                    transition: 'color 0.3s ease-in-out'
                   }}
                 >
                   <SearchIcon />
@@ -114,9 +135,10 @@ const Navbar: React.FC = () => {
                   key={item.path}
                   component={Link}
                   to={item.path}
-                  sx={{ 
+                  sx={{
                     color: '#8B4513',
-                    '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' }
+                    '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' },
+                    transition: 'color 0.3s ease-in-out'
                   }}
                 >
                   {item.label}
@@ -124,16 +146,40 @@ const Navbar: React.FC = () => {
               ))}
 
               <IconButton
-                component={Link}
-                to="/cart"
+                component="a"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 sx={{ 
                   color: '#8B4513',
-                  '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' }
+                  transition: 'color 0.3s ease-in-out'
                 }}
               >
-                <Badge badgeContent={2} color="error">
-                  <ShoppingCartIcon />
-                </Badge>
+                <FacebookIcon />
+              </IconButton>
+              <IconButton
+                component="a"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ 
+                  color: '#8B4513',
+                  transition: 'color 0.3s ease-in-out'
+                }}
+              >
+                <InstagramIcon />
+              </IconButton>
+              <IconButton
+                component="a"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ 
+                  color: '#8B4513',
+                  transition: 'color 0.3s ease-in-out'
+                }}
+              >
+                <TwitterIcon />
               </IconButton>
 
               <LanguageSwitcher />
@@ -143,20 +189,8 @@ const Navbar: React.FC = () => {
           {isMobile && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <IconButton
-                component={Link}
-                to="/cart"
-                sx={{ 
-                  color: '#8B4513',
-                  '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' }
-                }}
-              >
-                <Badge badgeContent={2} color="error">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
                 onClick={handleDrawerToggle}
-                sx={{ 
+                sx={{
                   color: '#8B4513',
                   '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' }
                 }}
@@ -172,4 +206,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

@@ -18,7 +18,7 @@ const LanguageSwitcher: React.FC = () => {
       <IconButton
         onClick={handleClick}
         sx={{
-          color: 'inherit',
+          color: ' #8B4513',
           border: '1px solid #8B4513',
           '&:hover': {
             backgroundColor: 'rgba(139, 69, 19, 0.1)'

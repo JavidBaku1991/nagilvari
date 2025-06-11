@@ -25,13 +25,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   variant = 'products'
 }) => {
   const isHomeVariant = variant === 'home';
+  const cardHeight = isHomeVariant ? '200px' : '400px';
 
   return (
     <Card
       component={Link}
       to={path}
       sx={{
-        height: isHomeVariant ? '300px' : '400px',
+        height: cardHeight,
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
@@ -40,8 +41,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         transition: 'all 0.3s ease-in-out',
         textDecoration: 'none',
+        backgroundColor: 'white',
         '&:hover': {
-          transform: isHomeVariant ? 'scale(1.02)' : 'translateY(-8px)',
+          transform: 'translateY(-8px)',
           boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
           '& .splide__slide img': {
             transform: 'scale(1.05)'
@@ -49,7 +51,27 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         }
       }}
     >
-      <Box sx={{ position: 'relative', height: isHomeVariant ? '200px' : '300px' }}>
+      <Box 
+        sx={{ 
+          position: 'relative',
+          height: '60%',
+          overflow: 'hidden',
+          '& .splide': {
+            height: '100%'
+          },
+          '& .splide__track': {
+            height: '100%'
+          },
+          '& .splide__list': {
+            height: '100%'
+          },
+          '& .splide__slide': {
+            height: '100%',
+            padding: 0,
+            margin: 0
+          }
+        }}
+      >
         <Splide
           options={{
             type: 'loop',
@@ -58,7 +80,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             pauseOnHover: true,
             arrows: false,
             pagination: false,
-            height: '100%'
+            height: '100%',
+            padding: 0,
+            gap: 0
           }}
         >
           {images.map((image, index) => (
@@ -70,7 +94,10 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  transition: 'transform 0.5s ease-in-out'
+                  transition: 'transform 0.5s ease-in-out',
+                  display: 'block',
+                  padding: 0,
+                  margin: 0
                 }}
               />
             </SplideSlide>
@@ -83,7 +110,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7))'
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4))'
           }}
         />
       </Box>
@@ -94,21 +121,17 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '1.5rem',
-          backgroundColor: isHomeVariant ? 'transparent' : 'white',
-          position: isHomeVariant ? 'absolute' : 'relative',
-          bottom: 0,
-          left: 0,
-          right: 0
+          backgroundColor: 'white'
         }}
       >
         <Typography
           variant="h5"
           component="h3"
           sx={{
-            color: isHomeVariant ? 'white' : '#8B4513',
+            color: '#8B4513',
             fontWeight: 600,
             marginBottom: '0.5rem',
-            textShadow: isHomeVariant ? '2px 2px 4px rgba(0,0,0,0.5)' : 'none'
+            fontSize: '1.25rem'
           }}
         >
           {title}
@@ -116,9 +139,14 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         <Typography
           variant="body2"
           sx={{
-            color: isHomeVariant ? 'rgba(255,255,255,0.9)' : '#666',
-            textShadow: isHomeVariant ? '1px 1px 2px rgba(0,0,0,0.5)' : 'none',
-            lineHeight: 1.5
+            color: '#666',
+            lineHeight: 1.5,
+            fontSize: '0.875rem',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}
         >
           {description}
