@@ -8,6 +8,7 @@ import heroImg from '../images/hero5.jpg';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import image from '../images/hero.jpeg';
+import bghero from '../images/hero12.jpg';
 
 const heroImages = [
   { src: heroImg, alt: 'Hero Image 1' },
@@ -20,56 +21,31 @@ const categories = [
   {
     title: 'Paintings',
     description: 'Explore our collection of unique paintings from talented artists around the world.',
-    images: [
-      { src: heroImg, alt: 'Painting 1' },
-      { src: hero1Img, alt: 'Painting 2' },
-      { src: hero2Img, alt: 'Painting 3' },
-      { src: footerImg, alt: 'Painting 4' }
-    ],
+    images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Painting ${i + 1}` })),
     path: '/products/paintings'
   },
   {
     title: 'Sculptures',
     description: 'Discover our collection of unique sculptures from talented artists.',
-    images: [
-      { src: hero1Img, alt: 'Sculpture 1' },
-      { src: hero2Img, alt: 'Sculpture 2' },
-      { src: footerImg, alt: 'Sculpture 3' },
-      { src: heroImg, alt: 'Sculpture 4' }
-    ],
+    images: [hero1Img, hero2Img, footerImg, heroImg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
     path: '/products/sculptures'
   },
   {
     title: 'Digital Art',
     description: 'Explore the world of digital creativity with our collection of digital artworks.',
-    images: [
-      { src: hero2Img, alt: 'Digital Art 1' },
-      { src: footerImg, alt: 'Digital Art 2' },
-      { src: heroImg, alt: 'Digital Art 3' },
-      { src: hero1Img, alt: 'Digital Art 4' }
-    ],
+    images: [hero2Img, footerImg, heroImg, hero1Img].map((src, i) => ({ src, alt: `Digital Art ${i + 1}` })),
     path: '/products/digital-art'
   },
   {
     title: 'Photography',
     description: 'Browse through our collection of stunning photographs from professional photographers.',
-    images: [
-      { src: footerImg, alt: 'Photography 1' },
-      { src: heroImg, alt: 'Photography 2' },
-      { src: hero1Img, alt: 'Photography 3' },
-      { src: hero2Img, alt: 'Photography 4' }
-    ],
+    images: [footerImg, heroImg, hero1Img, hero2Img].map((src, i) => ({ src, alt: `Photography ${i + 1}` })),
     path: '/products/photography'
   },
   {
     title: 'Ceramics',
     description: 'Explore our collection of handcrafted ceramic pieces from skilled artisans.',
-    images: [
-      { src: heroImg, alt: 'Ceramics 1' },
-      { src: hero1Img, alt: 'Ceramics 2' },
-      { src: hero2Img, alt: 'Ceramics 3' },
-      { src: footerImg, alt: 'Ceramics 4' }
-    ],
+    images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Ceramics ${i + 1}` })),
     path: '/products/ceramics'
   }
 ];
@@ -86,10 +62,15 @@ const dummyProducts = Array.from({ length: 10 }, (_, i) => ({
 const Home: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const featuredRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setTimeout(() => {
+      setHeroLoaded(true);
+    }, 100); // Trigger animation slightly after mount
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -97,9 +78,7 @@ const Home: React.FC = () => {
           observer.unobserve(entry.target);
         }
       },
-      {
-        threshold: 0.1
-      }
+      { threshold: 0.1 }
     );
 
     const categoriesObserver = new IntersectionObserver(
@@ -109,109 +88,114 @@ const Home: React.FC = () => {
           categoriesObserver.unobserve(entry.target);
         }
       },
-      {
-        threshold: 0.1
-      }
+      { threshold: 0.1 }
     );
 
-    if (featuredRef.current) {
-      observer.observe(featuredRef.current);
-    }
-
-    if (categoriesRef.current) {
-      categoriesObserver.observe(categoriesRef.current);
-    }
+    if (featuredRef.current) observer.observe(featuredRef.current);
+    if (categoriesRef.current) categoriesObserver.observe(categoriesRef.current);
 
     return () => {
-      if (featuredRef.current) {
-        observer.unobserve(featuredRef.current);
-      }
-      if (categoriesRef.current) {
-        categoriesObserver.unobserve(categoriesRef.current);
-      }
+      if (featuredRef.current) observer.unobserve(featuredRef.current);
+      if (categoriesRef.current) categoriesObserver.unobserve(categoriesRef.current);
     };
   }, []);
 
   return (
     <div>
-      <section style={{
-        height: '100vh',
-        backgroundImage: '#B36B35',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative'
-      }}>
-        <div className='hero-image ' style={{
-          position: 'absolute',
-          width: '50%',
-          height: '35%',
-          bottom: '35%',
-          left: '63%',
-          transform: 'translate(-50%, -50%)',
-        }}>
-          <img src={heroImg} alt="Hero Image" />
-        </div>
-        <div style={{
-  position: 'relative',
-  zIndex: 2,
-  height: '60%',
-  right: '20%',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '2rem',
-  background: 'rgba(255, 255, 255, 0.25)',
-  boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-  backdropFilter: 'blur(8.5px)',
-  WebkitBackdropFilter: 'blur(8.5px)',
-  borderRadius: '10px',
-  border: '1px solid rgba(255, 255, 255, 0.18)'
-}}>
-
-          <h1 style={{ 
-            fontSize: '3.5rem', 
+      {/* HERO SECTION */}
+      <section
+        style={{
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          backgroundImage: `url(${bghero})`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div
+          className="hero-text"
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            padding: '2rem',
+            background: 'rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+            backdropFilter: 'blur(8.5px)',
+            WebkitBackdropFilter: 'blur(8.5px)',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.18)',
+            transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
+            transition: 'transform 2s ease-out',
+            right: '20%',
+            height: '40%',
+            width: '50%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'center'
+          }}
+        >
+          <h1 style={{
+            fontSize: '3.5rem',
             marginBottom: '1rem',
             color: '#8B4513',
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
           }}>
             Welcome to Nagilvari
           </h1>
-          <p style={{ 
+          <p style={{
             fontSize: '1.5rem',
-            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
             color: '#8B4513',
+            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
           }}>
             Discover and share amazing products
           </p>
         </div>
+
+        <div
+          className="hero-image"
+          style={{
+            position: 'absolute',
+            width: '70%',
+            height: '75%',
+            bottom: '10%',
+            left: '23%',
+            transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform 2s ease-out',
+            background: 'rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+            backdropFilter: 'blur(9.5px)',
+            WebkitBackdropFilter: 'blur(8.5px)',
+            borderRadius: '10px'
+          }}
+        >
+          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
       </section>
-      <div 
+
+      {/* CATEGORIES */}
+      <div
         ref={categoriesRef}
-        style={{ 
+        style={{
           padding: '4rem 2rem',
           opacity: isCategoriesVisible ? 1 : 0,
           transition: 'opacity 0.5s ease-out',
-          backgroundColor: 'white',
-          position: 'relative'
+          backgroundColor: 'white'
         }}
       >
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          position: 'relative'
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '3rem',
-            position: 'relative'
-          }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h3 style={{
               fontSize: '2.5rem',
               color: '#8B4513',
               marginBottom: '1rem',
-              fontWeight: '600',
+              fontWeight: 600,
               position: 'relative',
               display: 'inline-block'
             }}>
@@ -241,8 +225,7 @@ const Home: React.FC = () => {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem',
-            padding: '0 1rem'
+            gap: '2rem'
           }}>
             {categories.map((category, index) => (
               <div
@@ -250,7 +233,7 @@ const Home: React.FC = () => {
                 style={{
                   transform: isCategoriesVisible ? 'translateY(0)' : 'translateY(40px)',
                   opacity: isCategoriesVisible ? 1 : 0,
-                  transition: `transform 0.5s ease-out ${index * 0.3}s, opacity 0.5s ease-out ${index * 0.3}s`
+                  transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`
                 }}
               >
                 <CategoryCard
@@ -265,32 +248,24 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      <div 
+
+      {/* FEATURED PRODUCTS */}
+      <div
         ref={featuredRef}
-        className="home-products-slider" 
-        style={{ 
+        style={{
           padding: '4rem 2rem',
           opacity: isVisible ? 1 : 0,
           transition: 'opacity 0.5s ease-out',
-          background: 'linear-gradient(to bottom, #fff5eb, #fff)',
-          position: 'relative'
+          background: 'linear-gradient(to bottom, #fff5eb, #fff)'
         }}
       >
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          position: 'relative'
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '3rem',
-            position: 'relative'
-          }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h3 style={{
               fontSize: '2.5rem',
               color: '#8B4513',
               marginBottom: '1rem',
-              fontWeight: '600',
+              fontWeight: 600,
               position: 'relative',
               display: 'inline-block'
             }}>
@@ -326,19 +301,10 @@ const Home: React.FC = () => {
               arrows: true,
               pagination: false,
               breakpoints: {
-                1200: {
-                  perPage: 3,
-                  gap: '1.5rem'
-                },
-                768: {
-                  perPage: 2,
-                  gap: '1rem'
-                },
-                640: {
-                  perPage: 1,
-                  gap: '1rem'
-                },
-              },
+                1200: { perPage: 3 },
+                768: { perPage: 2 },
+                640: { perPage: 1 }
+              }
             }}
             aria-label="Featured Products"
           >
@@ -347,8 +313,7 @@ const Home: React.FC = () => {
                 <div style={{
                   transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
                   opacity: isVisible ? 1 : 0,
-                  transition: `transform 0.5s ease-out ${index * 0.3}s, opacity 0.5s ease-out ${index * 0.3}s`,
-                  height: '100%',
+                  transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`,
                   display: 'flex',
                   justifyContent: 'center'
                 }}>
@@ -363,4 +328,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home; 
+export default Home;
