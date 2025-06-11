@@ -4,7 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ProductCard from '../components/ProductCard';
 import CategoryCard from '../components/CategoryCard';
 import footerImg from '../images/footer.jpg';
-import heroImg from '../images/hero.jpeg';
+import heroImg from '../images/hero5.jpg';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import image from '../images/hero.jpeg';
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
     <div>
       <section style={{
         height: '100vh',
-        backgroundImage: `url(${heroImg})`,
+        backgroundImage: '#B36B35',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
@@ -144,7 +144,32 @@ const Home: React.FC = () => {
         justifyContent: 'center',
         position: 'relative'
       }}>
-        <div style={{ position: 'relative', zIndex: 2 }}>
+        <div className='hero-image ' style={{
+          position: 'absolute',
+          width: '50%',
+          height: '35%',
+          bottom: '35%',
+          left: '63%',
+          transform: 'translate(-50%, -50%)',
+        }}>
+          <img src={heroImg} alt="Hero Image" />
+        </div>
+        <div style={{
+  position: 'relative',
+  zIndex: 2,
+  height: '60%',
+  right: '20%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '2rem',
+  background: 'rgba(255, 255, 255, 0.25)',
+  boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+  backdropFilter: 'blur(8.5px)',
+  WebkitBackdropFilter: 'blur(8.5px)',
+  borderRadius: '10px',
+  border: '1px solid rgba(255, 255, 255, 0.18)'
+}}>
+
           <h1 style={{ 
             fontSize: '3.5rem', 
             marginBottom: '1rem',
