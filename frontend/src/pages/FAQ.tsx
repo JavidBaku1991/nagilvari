@@ -8,6 +8,7 @@ import {
   Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import faq from '../images/faq.jpg';
 
 const FAQ: React.FC = () => {
   const faqItems = [
@@ -39,7 +40,11 @@ const FAQ: React.FC = () => {
       minHeight: 'calc(100vh - 64px)',
       color: '#333',
       paddingTop: '100px',
-      paddingBottom: '40px'
+      paddingBottom: '40px',
+       backgroundImage: `url(${faq})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
     }}>
       <Container maxWidth="md">
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
@@ -54,8 +59,13 @@ const FAQ: React.FC = () => {
               key={index} 
               sx={{ 
                 mb: 2,
-                backgroundColor: 'white',
                 color: '#333',
+                background: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: '16px',
+    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+    backdropFilter: 'blur(5px)',
+    WebkitBackdropFilter: 'blur(5px)',
+    border: '1px solid rgba(255, 255, 255, 0.3)',
                 '&:before': {
                   display: 'none'
                 },

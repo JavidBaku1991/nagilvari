@@ -4,11 +4,11 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ProductCard from '../components/ProductCard';
 import CategoryCard from '../components/CategoryCard';
 import footerImg from '../images/footer.jpg';
-import heroImg from '../images/hero5.jpg';
+import heroImg from '../images/hero14.png';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import image from '../images/hero.jpeg';
-import bghero from '../images/hero12.jpg';
+import bghero from '../images/hero13.png';
 
 const heroImages = [
   { src: heroImg, alt: 'Hero Image 1' },
@@ -120,17 +120,17 @@ const Home: React.FC = () => {
         <div
           className="hero-text"
           style={{
-            position: 'relative',
-            zIndex: 2,
+            position: 'absolute',
+            top: '20%',
+            left: '10%',
             padding: '2rem',
-            background: 'rgba(255, 255, 255, 0.25)',
+            backgroundColor: 'rgba(255, 255, 255, 0.25)',
             boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-            backdropFilter: 'blur(8.5px)',
+            backdropFilter: 'blur(9.5px)',
             WebkitBackdropFilter: 'blur(8.5px)',
-            borderRadius: '10px',
             border: '1px solid rgba(255, 255, 255, 0.18)',
             transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 2s ease-out',
+            transition: 'transform 2s ease-in-out',
             right: '20%',
             height: '40%',
             width: '50%',
@@ -138,22 +138,35 @@ const Home: React.FC = () => {
             justifyContent: 'center',
             display: 'flex',
             flexDirection: 'column',
-            textAlign: 'center'
+            textAlign: 'center',
+            zIndex: 1000
           }}
         >
-          <h1 style={{
-            fontSize: '3.5rem',
-            marginBottom: '1rem',
-            color: '#8B4513',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
-          }}>
+          <h1
+            style={{
+              fontSize: '3.5rem',
+              marginBottom: '1rem',
+              color: '#8B4513',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
+              transition: 'transform 2s ease-in-out',
+              transitionDelay: '1s',
+              opacity: heroLoaded ? 1 : 0
+            }}
+          >
             Welcome to Nagilvari
           </h1>
-          <p style={{
-            fontSize: '1.5rem',
-            color: '#8B4513',
-            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
-          }}>
+          <p
+            style={{
+              fontSize: '1.5rem',
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+              color: '#8B4513',
+              transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
+              transition: 'transform 2s ease-in-out',
+              transitionDelay: '1.5s',
+              opacity: heroLoaded ? 1 : 0
+            }}
+          >
             Discover and share amazing products
           </p>
         </div>
@@ -169,13 +182,13 @@ const Home: React.FC = () => {
             transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
             transition: 'transform 2s ease-out',
             background: 'rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+            boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
             backdropFilter: 'blur(9.5px)',
             WebkitBackdropFilter: 'blur(8.5px)',
-            borderRadius: '10px'
+            borderRadius: '30px',
           }}
         >
-          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' , borderRadius: '30px'}} />
         </div>
       </section>
 
