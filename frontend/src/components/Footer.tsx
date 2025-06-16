@@ -1,209 +1,105 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
-import { Box, Button, Grid, Typography, Link as MuiLink, TextField } from '@mui/material';
-import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import emailjs from 'emailjs-com';
-
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import React, { useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import './Footer.css';
 
 const Footer: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const footerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
+  const handleNavigation = (path: string) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    const footerSections = document.querySelectorAll('.footer-section');
+    footerSections.forEach((section) => {
+      observer.observe(section);
     });
-  };
 
-  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    emailjs
-      .sendForm('service_ursknit', 'template_64qmekz', e.target as HTMLFormElement, 'RV22WzPhD0vnOR09L')
-      .then((res) => {
-        console.log('Email sent successfully:', res);
-        setFormData({ name: '', email: '', message: '' });
-      })
-      .catch((err) => {
-        console.error('Error sending email:', err);
+    return () => {
+      footerSections.forEach((section) => {
+        observer.unobserve(section);
       });
-  };
+    };
+  }, []);
 
   return (
-    <Box
-      component="footer"
-      sx={{
-        background: '#8B4513',
-        color: 'white',
-        py: { xs: 6, md: 8 },
-        px: { xs: 2, md: 8 }
-      }}
-    >
-      <Grid container spacing={4} justifyContent="space-between" alignItems="flex-start">
-        {/* Left column */}
-        <Grid item xs={12} md={6}>
-          <Typography variant="h3" fontWeight={700} mb={2}>
-            Contact Us
-          </Typography>
-        
-          
-          <Box component="form" onSubmit={sendEmail} sx={{ mt: 2, mb: 3 }}>
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="Your Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              margin="dense"
-              required
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  '& fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.3)',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'white',
-                  },
-                },
-                '& .MuiInputBase-input': {
-                  color: 'white',
-                  '&::placeholder': {
-                    color: 'rgba(255, 255, 255, 0.7)',
-                  },
-                },
-              }}
-            />
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="Your Email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              margin="dense"
-              required
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  '& fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.3)',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'white',
-                  },
-                },
-                '& .MuiInputBase-input': {
-                  color: 'white',
-                  '&::placeholder': {
-                    color: 'rgba(255, 255, 255, 0.7)',
-                  },
-                },
-              }}
-            />
-            <TextField
-              fullWidth
-              size="small"
-              placeholder="Your Message"
-              name="message"
-              multiline
-              rows={2}
-              value={formData.message}
-              onChange={handleChange}
-              margin="dense"
-              required
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  '& fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.3)',
-                  },
-                  '&:hover fieldset': {
-                    borderColor: 'rgba(255, 255, 255, 0.5)',
-                  },
-                  '&.Mui-focused fieldset': {
-                    borderColor: 'white',
-                  },
-                },
-                '& .MuiInputBase-input': {
-                  color: 'white',
-                  '&::placeholder': {
-                    color: 'rgba(255, 255, 255, 0.7)',
-                  },
-                },
-              }}
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                mt: 1,
-                background: 'white',
-                color: '#8B4513',
-                fontWeight: 600,
-                fontSize: '0.9rem',
-                borderRadius: 1,
-                px: 2,
-                py: 1,
-                boxShadow: 'none',
-                textTransform: 'none',
-                '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  color: '#8B4513'
-                }
-              }}
-            >
-              Send Message
-            </Button>
-          </Box>
+    <footer className="footer" ref={footerRef}>
+      <div className="footer-content">
+        <div className="footer-section">
+          <h3 className="footer-title">Nagilvari</h3>
+          <p className="footer-description">
+            Discover and share amazing art pieces from talented artists around the world.
+            Join our community of art enthusiasts and creators.
+          </p>
+        </div>
 
-       
-        </Grid>
-        {/* Right column */}
-        <Grid item xs={12} md={5}>
-          <Box mb={3}>
-            <Typography fontWeight={700} component="span" mr={1}>Email</Typography>
-            <MuiLink sx={{ color: 'white', fontWeight: 400, opacity: 0.8, '&:hover': { opacity: 1 } }} underline="none">
-              hello@buuuk.com
-            </MuiLink>
-          </Box>
-          <Box mb={3}>
-            <Typography fontWeight={700} component="span" mr={1}>Phone</Typography>
-            <MuiLink sx={{ color: 'white', fontWeight: 400, opacity: 0.8, '&:hover': { opacity: 1 } }} underline="none">
-              (+65) 98735984
-            </MuiLink>
-          </Box>
-        
-          <Box mt={4} mb={5} display="flex" gap={2}>
-            <MuiLink href="#" color="inherit" sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}><Twitter fontSize="large" /></MuiLink>
-            <MuiLink href="#" color="inherit" sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}><Facebook fontSize="large" /></MuiLink>
-            <MuiLink href="#" color="inherit" sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}><Instagram fontSize="large" /></MuiLink>
-            <MuiLink href="#" color="inherit" sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}><LinkedIn fontSize="large" /></MuiLink>
-          </Box>
-      
-        </Grid>
-        
-      </Grid>
+        <div className="footer-section">
+          <h4 className="footer-subtitle">Quick Links</h4>
+          <ul className="footer-links">
+            <li><Link to="/about" onClick={() => handleNavigation('/about')}>About Us</Link></li>
+            <li><Link to="/products" onClick={() => handleNavigation('/products')}>Gallery</Link></li>
+            <li><Link to="/contact" onClick={() => handleNavigation('/contact')}>Contact</Link></li>
+            <li><Link to="/faq" onClick={() => handleNavigation('/faq')}>FAQ</Link></li>
+          </ul>
+        </div>
 
-    </Box>
+        <div className="footer-section">
+          <h4 className="footer-subtitle">Categories</h4>
+          <ul className="footer-links">
+            <li><Link to="/products/paintings" onClick={() => handleNavigation('/products/paintings')}>Paintings</Link></li>
+            <li><Link to="/products/sculptures" onClick={() => handleNavigation('/products/sculptures')}>Sculptures</Link></li>
+            <li><Link to="/products/digital-art" onClick={() => handleNavigation('/products/digital-art')}>Digital Art</Link></li>
+            <li><Link to="/products/photography" onClick={() => handleNavigation('/products/photography')}>Photography</Link></li>
+            <li><Link to="/products/ceramics" onClick={() => handleNavigation('/products/ceramics')}>Ceramics</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-section">
+          <h4 className="footer-subtitle">Connect With Us</h4>
+          <div className="social-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="social-link">
+              <i className="fab fa-pinterest"></i>
+            </a>
+          </div>
+        </div>
+
+        {/* Add the contact form here */}
+        
+      </div>
+
+      <div className="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} Nagilvari. All rights reserved.</p>
+        <div className="footer-bottom-links">
+          <Link to="/privacy" onClick={() => handleNavigation('/privacy')}>Privacy Policy</Link>
+          <Link to="/terms" onClick={() => handleNavigation('/terms')}>Terms of Service</Link>
+        </div>
+      </div>
+    </footer>
   );
 };
 
-export default Footer; 
+export default Footer;

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { ShoppingCart, Favorite } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import heroImg from '../images/hero.jpeg';
 
 interface ProductCardProps {
   id: string;
@@ -29,6 +30,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   image,
   category
 }) => {
+  // Function to handle image loading errors
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = heroImg; // Fallback image
+  };
+
   return (
     <Card 
       sx={{ 
@@ -42,7 +48,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
         },
         borderRadius: '12px',
         overflow: 'hidden',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '100%',
+        maxWidth: '300px'
       }}
     >
       <Link to={`/product/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -51,12 +59,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
           height="200"
           image={image}
           alt={name}
+          onError={handleImageError}
           sx={{
             objectFit: 'cover',
             transition: 'transform 0.3s ease-in-out',
             '&:hover': {
               transform: 'scale(1.05)',
             },
+            width: '100%',
+            height: '200px'
           }}
         />
         <CardContent sx={{ flexGrow: 1, p: 2 }}>

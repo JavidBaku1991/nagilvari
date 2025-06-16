@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
+        backgroundColor: isScrolled ? 'var(--secondary-main)' : 'transparent',
         boxShadow: isScrolled ? 2 : 0,
         transition: 'all 0.3s ease-in-out',
         color: '#8B4513',
@@ -106,11 +106,11 @@ const Navbar: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   sx={{
-                    backgroundColor: isScrolled ? '#f5f5f5' : 'rgba(255, 255, 255, 0.2)',
+                    backgroundColor: isScrolled ? '#f5f5f5' : 'rgba(255, 255, 255, 0.5)',
                     padding: '0.5rem 1rem',
                     borderRadius: '20px',
                     width: '300px',
-                    color: isScrolled ? '#8B4513' : '#fff',
+                    color: '#8B4513',
                     transition: 'all 0.3s ease-in-out',
                     '&::placeholder': {
                       color: isScrolled ? '#666' : 'rgba(255, 255, 255, 0.7)',

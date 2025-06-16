@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+:root {
+  --main: #8B4513;
+  --secondary-main: #c26523;
+}
+
 
 .bg-left-contact-glass {
   position: absolute;

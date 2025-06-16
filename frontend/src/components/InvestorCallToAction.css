@@ -1,0 +1,86 @@
+.investor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, var(--main), var(--secondary-main));
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.investor-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.investor-image-container {
+  flex: 1;
+  text-align: center;
+}
+
+.investor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.investor-text-container {
+  flex: 1;
+  text-align: left;
+}
+
+.investor-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.investor-description {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.investor-button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.investor-button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.investor-button.primary {
+  background-color: #ffffff;
+  color: var(--main);
+}
+
+.investor-button.primary:hover {
+  background-color: var(--secondary-main);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.investor-button.secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.investor-button.secondary:hover {
+  background-color: #ffffff;
+  color: var(--main);
+  transform: scale(1.05);
+}

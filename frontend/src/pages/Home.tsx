@@ -3,11 +3,13 @@ import '@splidejs/react-splide/css';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import ProductCard from '../components/ProductCard';
 import CategoryCard from '../components/CategoryCard';
+import InvestorCallToAction from '../components/InvestorCallToAction';
+import FeaturedProducts from '../components/FeaturedProducts';
 import footerImg from '../images/footer.jpg';
 import heroImg from '../images/hero14.png';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
-import image from '../images/hero.jpeg';
+import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
 
 const heroImages = [
@@ -114,8 +116,9 @@ const Home: React.FC = () => {
           backgroundImage: `url(${bghero})`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center',
         }}
+        className='hero-section'
       >
         <div
           className="hero-text"
@@ -192,6 +195,14 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* INVESTOR CALL TO ACTION */}
+      <InvestorCallToAction />
+
+      {/* FEATURED PRODUCTS */}
+      <div ref={featuredRef}>
+        <FeaturedProducts />
+      </div>
+
       {/* CATEGORIES */}
       <div
         ref={categoriesRef}
@@ -259,82 +270,6 @@ const Home: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* FEATURED PRODUCTS */}
-      <div
-        ref={featuredRef}
-        style={{
-          padding: '4rem 2rem',
-          opacity: isVisible ? 1 : 0,
-          transition: 'opacity 0.5s ease-out',
-          background: 'linear-gradient(to bottom, #fff5eb, #fff)'
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h3 style={{
-              fontSize: '2.5rem',
-              color: '#8B4513',
-              marginBottom: '1rem',
-              fontWeight: 600,
-              position: 'relative',
-              display: 'inline-block'
-            }}>
-              Featured Products
-              <div style={{
-                position: 'absolute',
-                bottom: '-10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '60px',
-                height: '3px',
-                backgroundColor: '#8B4513',
-                borderRadius: '2px'
-              }} />
-            </h3>
-            <p style={{
-              color: '#666',
-              fontSize: '1.1rem',
-              maxWidth: '600px',
-              margin: '1rem auto 0',
-              lineHeight: '1.6'
-            }}>
-              Explore our carefully curated collection of unique and exceptional products
-            </p>
-          </div>
-          <Splide
-            options={{
-              type: 'loop',
-              perPage: 4,
-              gap: '2rem',
-              autoplay: true,
-              pauseOnHover: true,
-              arrows: true,
-              pagination: false,
-              breakpoints: {
-                1200: { perPage: 3 },
-                768: { perPage: 2 },
-                640: { perPage: 1 }
-              }
-            }}
-            aria-label="Featured Products"
-          >
-            {dummyProducts.map((product, index) => (
-              <SplideSlide key={product.id}>
-                <div style={{
-                  transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                  opacity: isVisible ? 1 : 0,
-                  transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`,
-                  display: 'flex',
-                  justifyContent: 'center'
-                }}>
-                  <ProductCard {...product} />
-                </div>
-              </SplideSlide>
-            ))}
-          </Splide>
         </div>
       </div>
     </div>
