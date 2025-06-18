@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './InvestorCallToAction.css';
 import investor from '../images/hero12.jpg';
 
 const InvestorCallToAction: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleWriteUs = () => {
     navigate('/contact');
@@ -20,23 +22,21 @@ const InvestorCallToAction: React.FC = () => {
         <div className="investor-image-container">
           <img
             src={investor}
-            alt="Investor Call to Action"
+            alt={t('investor.title')}
             className="investor-image"
           />
         </div>
         <div className="investor-text-container">
-          <h2 className="investor-title">Join Our Growing Marketplace</h2>
+          <h2 className="investor-title">{t('investor.title')}</h2>
           <p className="investor-description">
-            Are you a project owner looking to showcase your products? Or an investor seeking new opportunities?
-            Our platform connects innovative projects with potential investors and customers. Bring your products
-            to our marketplace and reach a wider audience while growing your business.
+            {t('investor.subtitle')}
           </p>
           <div className="investor-button-container">
             <button className="investor-button primary" onClick={handleLearnMore}>
-              Learn More
+              {t('investor.learnMoreButton')}
             </button>
             <button className="investor-button secondary" onClick={handleWriteUs}>
-              Write to Us
+              {t('investor.contactButton')}
             </button>
           </div>
         </div>

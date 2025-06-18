@@ -54,7 +54,6 @@ const Contact: React.FC = () => {
         position: 'relative',
         px: 8,
         py: 10,
-        
         background: 'linear-gradient(to right, #fdfcfb, #e2d1c3)',
         minHeight: '100vh',
         display: 'flex',
@@ -62,106 +61,105 @@ const Contact: React.FC = () => {
         alignItems: 'center',
         overflow: 'hidden',
         backgroundImage: `url(${contactBg})`,
-
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}
     >
-      <Grid container spacing={0} sx={{ position: 'relative', width: '100%' ,marginTop:'70px'}}>
-        {/* IMAGE - Smaller and centered */}
-       <Fade in timeout={1600}>   
-        <Grid
-          item
-          xs={12}
-          md={7}
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'relative'
-          }}
-        > 
-      
-          <Box
+      <Grid container spacing={0} sx={{ position: 'relative', width: '100%', marginTop: '70px' }}>
+        <Fade in timeout={1600}>   
+          <Grid
+            item
+            xs={12}
+            md={7}
             sx={{
-              width: '50%',
-              height: '60vh',
-              objectFit: 'cover',
-              borderRadius: '16px',
-              boxShadow: '0 12px 32px rgba(0,0,0,0.2)'
-            }}
-          />
-                 
-
-          <Box
-            sx={{
-              width: '60%',
-              height: '60vh',
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              backgroundColor: 'rgba(0, 0, 0, 0.7)',
-              padding: '15px 25px',
-              borderRadius: '12px',
               display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              alignItems: 'center',
               justifyContent: 'center',
-              textShadow: '0 0 10px rgba(120, 112, 112, 0.5)'
+              alignItems: 'center',
+              position: 'relative'
             }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
-              <PhoneIcon />
-              <Typography variant="h4">+1 (555) 123-4567</Typography>
+          > 
+            <Box
+              sx={{
+                width: '50%',
+                height: '60vh',
+                objectFit: 'cover',
+                borderRadius: '16px',
+                boxShadow: '0 12px 32px rgba(0,0,0,0.2)'
+              }}
+            />
+            <Box
+              sx={{
+                width: '60%',
+                height: '60vh',
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                padding: '15px 25px',
+                borderRadius: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textShadow: '0 0 10px rgba(120, 112, 112, 0.5)'
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
+                <PhoneIcon />
+                <Typography variant="h4">{t('contacts.phone')}</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
+                <EmailIcon />
+                <Typography variant="h4">{t('contacts.emailAddress')}</Typography>
+              </Box>
+              <Typography variant="h6" sx={{ color: 'var(--main)', mt: 2 }}>
+                {t('contacts.social.title')}
+              </Typography>
+              <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
+                <IconButton 
+                  href="https://facebook.com" 
+                  target="_blank" 
+                  sx={{ color: 'var(--main)', '&:hover': { color: '#1877F2' } }}
+                  aria-label={t('contacts.social.facebook')}
+                >
+                  <FacebookIcon />
+                </IconButton>
+                <IconButton 
+                  href="https://instagram.com" 
+                  target="_blank" 
+                  sx={{ color: 'var(--main)', '&:hover': { color: '#E4405F' } }}
+                  aria-label={t('contacts.social.instagram')}
+                >
+                  <InstagramIcon />
+                </IconButton>
+                <IconButton 
+                  href="https://twitter.com" 
+                  target="_blank" 
+                  sx={{ color: 'var(--main)', '&:hover': { color: '#1DA1F2' } }}
+                  aria-label={t('contacts.social.twitter')}
+                >
+                  <TwitterIcon />
+                </IconButton>
+                <IconButton 
+                  href="https://linkedin.com" 
+                  target="_blank" 
+                  sx={{ color: 'var(--main)', '&:hover': { color: '#0A66C2' } }}
+                  aria-label={t('contacts.social.linkedin')}
+                >
+                  <LinkedInIcon />
+                </IconButton>
+              </Box>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
-              <EmailIcon />
-              <Typography variant="h4">contact@example.com</Typography>
-            </Box>
-            <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
-              <IconButton 
-                href="https://facebook.com" 
-                target="_blank" 
-                sx={{ color: 'var(--main)', '&:hover': { color: '#1877F2' } }}
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton 
-                href="https://instagram.com" 
-                target="_blank" 
-                sx={{ color: 'var(--main)', '&:hover': { color: '#E4405F' } }}
-              >
-                <InstagramIcon />
-              </IconButton>
-              <IconButton 
-                href="https://twitter.com" 
-                target="_blank" 
-                sx={{ color: 'var(--main)', '&:hover': { color: '#1DA1F2' } }}
-              >
-                <TwitterIcon />
-              </IconButton>
-              <IconButton 
-                href="https://linkedin.com" 
-                target="_blank" 
-                sx={{ color: 'var(--main)', '&:hover': { color: '#0A66C2' } }}
-              >
-                <LinkedInIcon />
-              </IconButton>
-            </Box>
-          </Box>
-       
-        </Grid>
-   </Fade>
-        {/* FORM - Smaller and overlaps image */}
+          </Grid>
+        </Fade>
         <Grid
           item
           xs={12}
           md={5}
           sx={{
             position: 'absolute',
-            
             right: { xs: '5%', md: '12%' },
             top: '50%',
             transform: 'translateY(-50%)',

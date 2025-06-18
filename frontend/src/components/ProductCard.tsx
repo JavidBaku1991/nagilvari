@@ -12,24 +12,15 @@ import {
 import { ShoppingCart, Favorite } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import heroImg from '../images/hero.jpeg';
+import { Product } from '../types/product';
 
 interface ProductCardProps {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
+  product: Product;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
-  id,
-  name,
-  description,
-  price,
-  image,
-  category
-}) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { id, title, description, price, imageUrl, category } = product;
+
   // Function to handle image loading errors
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = heroImg; // Fallback image
@@ -57,8 +48,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <CardMedia
           component="img"
           height="200"
-          image={image}
-          alt={name}
+          image={imageUrl}
+          alt={title}
           onError={handleImageError}
           sx={{
             objectFit: 'cover',
@@ -95,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               lineHeight: 1.4
             }}
           >
-            {name}
+            {title}
           </Typography>
           <Typography 
             variant="body2" 

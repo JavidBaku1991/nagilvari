@@ -8,29 +8,32 @@ import {
   Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useTranslation } from 'react-i18next';
 import faq from '../images/faq.jpg';
 
 const FAQ: React.FC = () => {
+  const { t } = useTranslation();
+
   const faqItems = [
     {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers.'
+      question: t('faq.questions.shipping.question'),
+      answer: t('faq.questions.shipping.answer')
     },
     {
-      question: 'How long does shipping take?',
-      answer: 'Standard shipping typically takes 3-5 business days within the country. International shipping may take 7-14 business days depending on the destination.'
+      question: t('faq.questions.returns.question'),
+      answer: t('faq.questions.returns.answer')
     },
     {
-      question: 'What is your return policy?',
-      answer: 'We offer a 30-day return policy for all products. Items must be in their original condition with all packaging and tags intact.'
+      question: t('faq.questions.payment.question'),
+      answer: t('faq.questions.payment.answer')
     },
     {
-      question: 'Do you ship internationally?',
-      answer: 'Yes, we ship to most countries worldwide. Shipping costs and delivery times vary by location.'
+      question: t('faq.questions.authenticity.question'),
+      answer: t('faq.questions.authenticity.answer')
     },
     {
-      question: 'How can I track my order?',
-      answer: 'Once your order ships, you will receive a tracking number via email. You can use this number to track your package on our website or the carrier\'s website.'
+      question: t('faq.questions.customization.question'),
+      answer: t('faq.questions.customization.answer')
     }
   ];
 
@@ -41,17 +44,20 @@ const FAQ: React.FC = () => {
       color: '#333',
       paddingTop: '100px',
       paddingBottom: '40px',
-       backgroundImage: `url(${faq})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+      backgroundImage: `url(${faq})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }}>
       <Container maxWidth="md">
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
           mb: 4,
           color: '#333'
         }}>
-          Frequently Asked Questions
+          {t('faq.title')}
+        </Typography>
+        <Typography variant="subtitle1" align="center" sx={{ mb: 6, color: '#666' }}>
+          {t('faq.description')}
         </Typography>
         <Box sx={{ maxWidth: 800, mx: 'auto' }}>
           {faqItems.map((item, index) => (
@@ -61,11 +67,11 @@ const FAQ: React.FC = () => {
                 mb: 2,
                 color: '#333',
                 background: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: '16px',
-    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(5px)',
-    WebkitBackdropFilter: 'blur(5px)',
-    border: '1px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '16px',
+                boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
                 '&:before': {
                   display: 'none'
                 },

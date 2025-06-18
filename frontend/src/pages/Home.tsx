@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '@splidejs/react-splide/css';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import ProductCard from '../components/ProductCard';
+import { useTranslation } from 'react-i18next';
 import CategoryCard from '../components/CategoryCard';
 import InvestorCallToAction from '../components/InvestorCallToAction';
 import FeaturedProducts from '../components/FeaturedProducts';
@@ -12,66 +11,60 @@ import hero2Img from '../images/hero2.png';
 import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
 
-const heroImages = [
-  { src: heroImg, alt: 'Hero Image 1' },
-  { src: hero1Img, alt: 'Hero Image 2' },
-  { src: hero2Img, alt: 'Hero Image 3' },
-  { src: footerImg, alt: 'Hero Image 4' }
-];
-
-const categories = [
-  {
-    title: 'Paintings',
-    description: 'Explore our collection of unique paintings from talented artists around the world.',
-    images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Painting ${i + 1}` })),
-    path: '/products/paintings'
-  },
-  {
-    title: 'Sculptures',
-    description: 'Discover our collection of unique sculptures from talented artists.',
-    images: [hero1Img, hero2Img, footerImg, heroImg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
-    path: '/products/sculptures'
-  },
-  {
-    title: 'Digital Art',
-    description: 'Explore the world of digital creativity with our collection of digital artworks.',
-    images: [hero2Img, footerImg, heroImg, hero1Img].map((src, i) => ({ src, alt: `Digital Art ${i + 1}` })),
-    path: '/products/digital-art'
-  },
-  {
-    title: 'Photography',
-    description: 'Browse through our collection of stunning photographs from professional photographers.',
-    images: [footerImg, heroImg, hero1Img, hero2Img].map((src, i) => ({ src, alt: `Photography ${i + 1}` })),
-    path: '/products/photography'
-  },
-  {
-    title: 'Ceramics',
-    description: 'Explore our collection of handcrafted ceramic pieces from skilled artisans.',
-    images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Ceramics ${i + 1}` })),
-    path: '/products/ceramics'
-  }
-];
-
-const dummyProducts = Array.from({ length: 10 }, (_, i) => ({
-  id: (i + 1).toString(),
-  name: `Product ${i + 1}`,
-  price: (i + 1) * 10,
-  description: `This is the description for product ${i + 1}.`,
-  image: image,
-  category: categories[i % categories.length].title
-}));
-
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [isCategoriesVisible, setIsCategoriesVisible] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
   const featuredRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLDivElement>(null);
 
+  const categories = [
+    {
+      title: t('categories.paintings.title'),
+      description: t('categories.paintings.description'),
+      images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Painting ${i + 1}` })),
+      path: '/products/paintings'
+    },
+    {
+      title: t('categories.sculptures.title'),
+      description: t('categories.sculptures.description'),
+      images: [hero1Img, hero2Img, footerImg, heroImg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
+      path: '/products/sculptures'
+    },
+    {
+      title: t('categories.digitalArt.title'),
+      description: t('categories.digitalArt.description'),
+      images: [hero2Img, footerImg, heroImg, hero1Img].map((src, i) => ({ src, alt: `Digital Art ${i + 1}` })),
+      path: '/products/digital-art'
+    },
+    {
+      title: t('categories.photography.title'),
+      description: t('categories.photography.description'),
+      images: [footerImg, heroImg, hero1Img, hero2Img].map((src, i) => ({ src, alt: `Photography ${i + 1}` })),
+      path: '/products/photography'
+    },
+    {
+      title: t('categories.ceramics.title'),
+      description: t('categories.ceramics.description'),
+      images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Ceramics ${i + 1}` })),
+      path: '/products/ceramics'
+    }
+  ];
+
+  const dummyProducts = Array.from({ length: 10 }, (_, i) => ({
+    id: (i + 1).toString(),
+    name: `${t('common.product')} ${i + 1}`,
+    price: (i + 1) * 10,
+    description: `${t('common.productDescription')} ${i + 1}.`,
+    image: image,
+    category: categories[i % categories.length].title
+  }));
+
   useEffect(() => {
     setTimeout(() => {
       setHeroLoaded(true);
-    }, 100); // Trigger animation slightly after mount
+    }, 100);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -157,7 +150,7 @@ const Home: React.FC = () => {
               opacity: heroLoaded ? 1 : 0
             }}
           >
-            Welcome to Nagilvari
+            {t('home.welcome')}
           </h1>
           <p
             style={{
@@ -170,7 +163,7 @@ const Home: React.FC = () => {
               opacity: heroLoaded ? 1 : 0
             }}
           >
-            Discover and share amazing products
+            {t('home.discover')}
           </p>
         </div>
 
@@ -191,7 +184,7 @@ const Home: React.FC = () => {
             borderRadius: '30px',
           }}
         >
-          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover' , borderRadius: '30px'}} />
+          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '30px' }} />
         </div>
       </section>
 
@@ -223,7 +216,7 @@ const Home: React.FC = () => {
               position: 'relative',
               display: 'inline-block'
             }}>
-              Browse Categories
+              {t('home.browseCategories')}
               <div style={{
                 position: 'absolute',
                 bottom: '-10px',
@@ -242,7 +235,7 @@ const Home: React.FC = () => {
               margin: '1rem auto 0',
               lineHeight: '1.6'
             }}>
-              Explore our diverse collection of art and crafts across different categories
+              {t('home.categoriesDescription')}
             </p>
           </div>
 

@@ -14,6 +14,7 @@ import {
   Paper
 } from '@mui/material';
 import ProductCard from '../components/ProductCard';
+import { Product } from '../types/product';
 import image from '../images/hero.jpeg';
 
 interface CategoryPageProps {
@@ -21,41 +22,46 @@ interface CategoryPageProps {
   categoryDescription: string;
 }
 
-const mockProducts = [
+const mockProducts: Product[] = [
   {
     id: '1',
-    name: 'Product 1',
+    title: 'Product 1',
     description: 'This is a description for product 1.',
     price: 99.99,
-    image: image,
-    rating: 4.5,
-    category: 'Paintings'
+    imageUrl: image,
+    category: 'paintings',
+    featured: true,
+    artist: 'Artist 1',
+    year: 2023
   },
   {
     id: '2',
-    name: 'Product 2',
+    title: 'Product 2',
     description: 'This is a description for product 2.',
     price: 149.99,
-    image: image,
-    rating: 4.0,
-    category: 'Paintings'
+    imageUrl: image,
+    category: 'paintings',
+    featured: false,
+    artist: 'Artist 2',
+    year: 2023
   },
   {
     id: '3',
-    name: 'Product 3',
+    title: 'Product 3',
     description: 'This is a description for product 3.',
     price: 199.99,
-    image: image,
-    rating: 4.8,
-    category: 'Paintings'
+    imageUrl: image,
+    category: 'paintings',
+    featured: true,
+    artist: 'Artist 3',
+    year: 2023
   }
 ];
 
 const sortOptions = [
   { value: 'name', label: 'Name' },
   { value: 'price-asc', label: 'Price: Low to High' },
-  { value: 'price-desc', label: 'Price: High to Low' },
-  { value: 'rating', label: 'Rating' }
+  { value: 'price-desc', label: 'Price: High to Low' }
 ];
 
 const CategoryPage: React.FC<CategoryPageProps> = ({ categoryName, categoryDescription }) => {
@@ -74,7 +80,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryName, categoryDescr
   const filteredAndSortedProducts = useMemo(() => {
     return mockProducts
       .filter(product => {
-        const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                             product.description.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
         return matchesSearch && matchesPrice;
@@ -85,10 +91,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryName, categoryDescr
             return a.price - b.price;
           case 'price-desc':
             return b.price - a.price;
-          case 'rating':
-            return b.rating - a.rating;
           default:
-            return a.name.localeCompare(b.name);
+            return a.title.localeCompare(b.title);
         }
       });
   }, [searchQuery, priceRange, sortBy]);
@@ -168,7 +172,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryName, categoryDescr
             <Grid container spacing={3}>
               {filteredAndSortedProducts.map((product) => (
                 <Grid item xs={12} sm={6} md={4} key={product.id}>
-                  <ProductCard {...product} />
+                  <ProductCard product={product} />
                 </Grid>
               ))}
             </Grid>

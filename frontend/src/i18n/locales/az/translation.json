@@ -1,0 +1,223 @@
+{
+  "nav": {
+    "home": "Ana Səhifə",
+    "products": "Məhsullar",
+    "about": "Haqqımızda",
+    "contact": "Əlaqə",
+    "faq": "FAQ",
+    "admin": "Admin",
+    "search": "Axtar",
+    "cart": "Səbət"
+  },
+  "home": {
+    "welcome": "Nagilvari-yə xoş gəlmisiniz",
+    "discover": "Heyranedici məhsulları kəşf edin",
+    "browseCategories": "Kateqoriyalara baxın",
+    "categoriesDescription": "Müxtəlif kateqoriyalar üzrə sənət və sənətkarlıq əsərlərimizin müxtəlif kolleksiyasını araşdırın",
+    "featuredProducts": "Seçilmiş məhsullar"
+  },
+  "categories": {
+    "all": "Bütün Kateqoriyalar",
+    "paintings": {
+      "title": "Rəsm əsərləri",
+      "description": "Unikal rəsm əsərlərimizin kolleksiyasını kəşf edin"
+    },
+    "sculptures": {
+      "title": "Heykəltəraşlıq",
+      "description": "Əl işi heykəltəraşlıq əsərlərimizi kəşf edin"
+    },
+    "digitalArt": {
+      "title": "Rəqəmsal Sənət",
+      "description": "Rəqəmsal sənət kolleksiyamıza baxın"
+    },
+    "photography": {
+      "title": "Fotoqrafiya",
+      "description": "Seçilmiş fotoqrafiya əsərlərimizə baxın"
+    },
+    "ceramics": {
+      "title": "Keramika",
+      "description": "Keramika sənət əsərlərimizi kəşf edin"
+    }
+  },
+  "products": {
+    "title": "Məhsullarımız",
+    "filters": {
+      "category": "Kateqoriya",
+      "sort": "Sırala",
+      "sortByName": "Ada görə",
+      "sortByPriceAsc": "Qiymət: Aşağıdan yuxarı",
+      "sortByPriceDesc": "Qiymət: Yuxarıdan aşağı",
+      "priceRange": "Qiymət Aralığı",
+      "search": "Axtar",
+      "searchPlaceholder": "Məhsulları axtar..."
+    },
+    "noProducts": "Axtarış kriteriyalarınıza uyğun məhsul tapılmadı",
+    "featuredDescription": "Seçilmiş istisna sənət əsərlərimizin kolleksiyasını kəşf edin",
+    "items": {
+      "1": {
+        "name": "Abstrakt Harmoniya",
+        "description": "Cəsarətli rənglər və dinamik formaları birləşdirən, hərəkət və enerji hissi yaradan parlaq abstrakt rəsm."
+      },
+      "2": {
+        "name": "Mərmər Zəriflik",
+        "description": "İnsan formasının gözəlliyini mürəkkəb detallar və axıcı əyrilərlə əks etdirən gözəl mərmər heykəl."
+      },
+      "3": {
+        "name": "Rəqəmsal Arzular",
+        "description": "İnnovativ texnikalar vasitəsilə reallıq və fantaziyanı qarışdıran sehrli rəqəmsal sənət əsəri."
+      },
+      "4": {
+        "name": "Təbiətin Anı",
+        "description": "Daim dəyişən təbiət mənzərəsində mükəmməl anı əks etdirən çoxhissəli fotoşəkil."
+      },
+      "5": {
+        "name": "Keramika Pıçıltıları",
+        "description": "Unikal faktura və forması vasitəsilə hekayə danışan zərif keramika məhsulu."
+      },
+      "6": {
+        "name": "Rənglər Simfoniyası",
+        "description": "Rəngləri mükəmməl harmoniya ilə orkestrləşdirən, vizual şedevr yaradan yağlı boya rəsm."
+      },
+      "7": {
+        "name": "Tunc İrs",
+        "description": "Kompozisiyasında güc və zərifliyi əks etdirən zamansız tuncdan hazırlanmış heykəl."
+      },
+      "8": {
+        "name": "Virtual Reallıq",
+        "description": "Ənənəvi sənət formalarının sərhədlərini genişləndirən innovativ rəqəmsal yaradıcılıq."
+      },
+      "9": {
+        "name": "Şəhər Hekayələri",
+        "description": "Şəhər həyatının mahiyyətini sənədləşdirən maraqlı foto seriyası."
+      },
+      "10": {
+        "name": "Gil Ənənələri",
+        "description": "Müasir estetika ilə ənənəvi texnikaları qeyd edən əl işi keramika məhsulu."
+      }
+    },
+    "notFound": "Məhsul tapılmadı",
+    "additionalInfo": "Əlavə Məlumat",
+    "condition": "Vəziyyət",
+    "new": "Yeni",
+    "shipping": "Çatdırılma",
+    "worldwide": "Dünya üzrə çatdırılma",
+    "categories": {
+      "paintings": "Rəsm əsərləri",
+      "paintingsDescription": "Dünyanın hər yerindən istedadlı rəssamların unikal rəsm əsərlərinin kolleksiyasını kəşf edin.",
+      "sculptures": "Heykəllər",
+      "sculpturesDescription": "İstedadlı sənətkarların unikal heykəllərinin kolleksiyasını kəşf edin.",
+      "digitalArt": "Rəqəmsal Sənət",
+      "digitalArtDescription": "Rəqəmsal sənət əsərlərimizin kolleksiyası ilə rəqəmsal yaradıcılıq dünyasını kəşf edin.",
+      "photography": "Fotoqrafiya",
+      "photographyDescription": "Professional fotoqrafların gözəl fotoşəkillərinin kolleksiyasını baxın.",
+      "ceramics": "Keramika",
+      "ceramicsDescription": "Bacarıqlı sənətkarların əl işi keramika məhsullarının kolleksiyasını kəşf edin."
+    }
+  },
+  "investor": {
+    "title": "Böyüyən Ticarət Mərkəzimizə Qoşulun",
+    "subtitle": "Məhsullarınızı nümayiş etdirmək istəyən layihə sahibisiniz? Yoxsa yeni imkanlar axtaran investor? Platformamız innovativ layihələri potensial investorlar və müştərilərlə birləşdirir. Məhsullarınızı ticarət mərkəzimizə gətirin və biznesinizi inkişaf etdirərək daha geniş auditoriyaya çatın.",
+    "contactButton": "Bizə Yazın",
+    "learnMoreButton": "Ətraflı Məlumat"
+  },
+  "faq": {
+    "title": "Tez-tez soruşulan suallar",
+    "description": "Məhsullarımız, çatdırılması və xidmətlərimiz haqqında ümumi sualların cavablarını tapın.",
+    "questions": {
+      "shipping": {
+        "question": "Çatdırılma seçimləriniz nələrdir?",
+        "answer": "Biz standart və ekspres çatdırılma seçimləri təklif edirik. Standart çatdırılma adətən 5-7 iş günü, ekspres çatdırılma isə 2-3 iş günü çəkir. Beynəlxalq çatdırılma da müxtəlif çatdırılma müddətləri ilə mövcuddur."
+      },
+      "returns": {
+        "question": "Qaytarma siyasətiniz nədir?",
+        "answer": "Biz çatdırılmanın 30 günü ərzində qaytarmaları qəbul edirik. Məhsullar bütün qablaşdırma və sənədlərlə birlikdə orijinal vəziyyətdə olmalıdır. Qaytarma başlatmaq üçün müştəri xidmətlərimizlə əlaqə saxlayın."
+      },
+      "payment": {
+        "question": "Hansı ödəniş üsullarını qəbul edirsiniz?",
+        "answer": "Biz bütün əsas kredit kartlarını (Visa, MasterCard, American Express), PayPal və bank köçürmələrini qəbul edirik. Bütün əməliyyatlar təhlükəsiz və şifrələnmişdir."
+      },
+      "authenticity": {
+        "question": "Məhsullarınızın həqiqiliyini necə təmin edirsiniz?",
+        "answer": "Bütün məhsullarımız həqiqilik sertifikatları ilə təmin edilir. Kolleksiyamızdakı hər bir məhsulun həqiqiliyini təmin etmək üçün birbaşa rəssamlarla və təsdiqlənmiş təchizatçılarla işləyirik."
+      },
+      "customization": {
+        "question": "Fərdiləşdirmə seçimləri təklif edirsiniz?",
+        "answer": "Bəli, bir çox məhsullarımız üçün fərdiləşdirmə seçimləri təklif edirik. Xahiş edirik, spesifik tələblərinizi müzakirə etmək üçün müştəri xidmətlərimizlə əlaqə saxlayın və sizə kömək etməkdən məmnuniyyət duyarıq."
+      }
+    }
+  },
+  "common": {
+    "loading": "Yüklənir...",
+    "error": "Xəta",
+    "success": "Uğurlu",
+    "save": "Yadda saxla",
+    "cancel": "Ləğv et",
+    "delete": "Sil",
+    "edit": "Redaktə et",
+    "view": "Bax",
+    "browse": "Bax",
+    "search": "Axtar",
+    "filter": "Filter",
+    "sort": "Sırala",
+    "price": "Qiymət",
+    "quantity": "Miqdar",
+    "total": "Cəmi",
+    "addToCart": "Səbətə əlavə et",
+    "removeFromCart": "Səbətdən sil",
+    "checkout": "Sifarişi tamamla",
+    "continueShopping": "Alış-verişə davam et",
+    "product": "Məhsul",
+    "productDescription": "Bu məhsul üçün təsvirdir",
+    "viewDetails": "Ətraflı",
+    "error": "Xəta baş verdi. Zəhmət olmasa daha sonra yenidən cəhd edin.",
+    "backToProducts": "Məhsullara qayıt",
+    "contactSeller": "Satıcı ilə əlaqə"
+  },
+  "footer": {
+    "company": {
+      "title": "Şirkət",
+      "description": "Dünyanın hər yerindən istedadlı rəssamların möhtəşəm sənət əsərlərini kəşf edin və paylaşın. Sənət həvəskarları və yaradıcılar icmasımıza qoşulun."
+    },
+    "quickLinks": {
+      "title": "Sürətli Keçidlər",
+      "about": "Haqqımızda",
+      "gallery": "Qalereya",
+      "contact": "Əlaqə",
+      "faq": "FAQ"
+    },
+    "categories": {
+      "title": "Kateqoriyalar"
+    },
+    "connect": {
+      "title": "Bizimlə Əlaqə"
+    },
+    "copyright": "© {{year}} Nagilvari. Bütün hüquqlar qorunur.",
+    "privacy": "Məxfilik Siyasəti",
+    "terms": "İstifadə Şərtləri"
+  },
+  "contacts": {
+    "title": "Bizimlə Əlaqə",
+    "description": "Sualınız var və ya daha çox məlumat almaq istəyirsiniz? Sizdən eşitməyə sevinəcəyik. Bizə mesaj göndərin və mümkün qədər tez cavab verəcəyik.",
+    "name": "Adınız",
+    "email": "E-poçt ünvanınız",
+    "message": "Mesajınız",
+    "send": "Mesaj Göndər",
+    "phone": "+1 (555) 123-4567",
+    "emailAddress": "contact@example.com",
+    "social": {
+      "title": "Bizimlə Əlaqə",
+      "facebook": "Facebook-da bizi izləyin",
+      "instagram": "Instagram-da bizi izləyin",
+      "twitter": "Twitter-də bizi izləyin",
+      "linkedin": "LinkedIn-də bizimlə əlaqə yaradın"
+    }
+  },
+  "about": {
+    "title": "Nagilvari Haqqında",
+    "description": {
+      "part1": "Nagilvari — sənətkarlarla sənətsevərləri bir araya gətirən unikal bir platformadır. Əl işi zinət əşyalarından tutmuş rəsm əsərlərinə, xalçalardan kiçik heykəltəraşlıq nümunələrinə qədər bir çox sənət növünü bu məkanda təqdim edirik. Məqsədimiz həm sənətkarlara geniş auditoriyaya çıxış imkanı yaratmaq, həm də vətəndaşlara orijinal və dəyərli sənət əsərləri təqdim etməkdir.",
+      "part2": "Hər bir əl işi bir hekayə daşıyır və biz bu hekayələrin itmədən gələcək nəsillərə ötürülməsi üçün körpü rolunu oynayırıq. Nağılvari, həm yaradıcı fərdləri, həm də sənətə marağı olan alıcıları eyni dəyər ətrafında birləşdirir.",
+      "part3": "İnnovativ texnologiya və ənənəvi sənət birləşməsindən doğan bu layihə ilə biz mədəniyyətimizin qorunması və yayılması üçün yeni bir yol açırıq. İnanırıq ki, sənət yalnız sərgilərdə deyil, gündəlik həyatımızda da öz yerini tapmalıdır. Nağılvari — hər evə sənət, hər sənətkara dəstək!"
+    }
+  }
+} 

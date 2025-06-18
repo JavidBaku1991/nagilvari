@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './Footer.css';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const footerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -43,45 +45,44 @@ const Footer: React.FC = () => {
         <div className="footer-section">
           <h3 className="footer-title">Nagilvari</h3>
           <p className="footer-description">
-            Discover and share amazing art pieces from talented artists around the world.
-            Join our community of art enthusiasts and creators.
+            {t('footer.company.description')}
           </p>
         </div>
 
         <div className="footer-section">
-          <h4 className="footer-subtitle">Quick Links</h4>
+          <h4 className="footer-subtitle">{t('footer.quickLinks.title')}</h4>
           <ul className="footer-links">
-            <li><Link to="/about" onClick={() => handleNavigation('/about')}>About Us</Link></li>
-            <li><Link to="/products" onClick={() => handleNavigation('/products')}>Gallery</Link></li>
-            <li><Link to="/contact" onClick={() => handleNavigation('/contact')}>Contact</Link></li>
-            <li><Link to="/faq" onClick={() => handleNavigation('/faq')}>FAQ</Link></li>
+            <li><Link to="/about" onClick={() => handleNavigation('/about')}>{t('footer.quickLinks.about')}</Link></li>
+            <li><Link to="/products" onClick={() => handleNavigation('/products')}>{t('footer.quickLinks.gallery')}</Link></li>
+            <li><Link to="/contact" onClick={() => handleNavigation('/contact')}>{t('footer.quickLinks.contact')}</Link></li>
+            <li><Link to="/faq" onClick={() => handleNavigation('/faq')}>{t('footer.quickLinks.faq')}</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
-          <h4 className="footer-subtitle">Categories</h4>
+          <h4 className="footer-subtitle">{t('footer.categories.title')}</h4>
           <ul className="footer-links">
-            <li><Link to="/products/paintings" onClick={() => handleNavigation('/products/paintings')}>Paintings</Link></li>
-            <li><Link to="/products/sculptures" onClick={() => handleNavigation('/products/sculptures')}>Sculptures</Link></li>
-            <li><Link to="/products/digital-art" onClick={() => handleNavigation('/products/digital-art')}>Digital Art</Link></li>
-            <li><Link to="/products/photography" onClick={() => handleNavigation('/products/photography')}>Photography</Link></li>
-            <li><Link to="/products/ceramics" onClick={() => handleNavigation('/products/ceramics')}>Ceramics</Link></li>
+            <li><Link to="/products/paintings" onClick={() => handleNavigation('/products/paintings')}>{t('categories.paintings.title')}</Link></li>
+            <li><Link to="/products/sculptures" onClick={() => handleNavigation('/products/sculptures')}>{t('categories.sculptures.title')}</Link></li>
+            <li><Link to="/products/digital-art" onClick={() => handleNavigation('/products/digital-art')}>{t('categories.digitalArt.title')}</Link></li>
+            <li><Link to="/products/photography" onClick={() => handleNavigation('/products/photography')}>{t('categories.photography.title')}</Link></li>
+            <li><Link to="/products/ceramics" onClick={() => handleNavigation('/products/ceramics')}>{t('categories.ceramics.title')}</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
-          <h4 className="footer-subtitle">Connect With Us</h4>
+          <h4 className="footer-subtitle">{t('footer.connect.title')}</h4>
           <div className="social-links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
               <i className="fab fa-facebook"></i>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="social-link">
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Pinterest">
               <i className="fab fa-pinterest"></i>
             </a>
           </div>

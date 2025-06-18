@@ -3,9 +3,11 @@ import { getFeaturedProducts, Product } from '../data/products';
 import ProductCard from './ProductCard';
 import LoadingSpinner from './LoadingSpinner';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { useTranslation } from 'react-i18next';
 import '@splidejs/react-splide/css';
 
 const FeaturedProducts: React.FC = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
@@ -71,7 +73,7 @@ const FeaturedProducts: React.FC = () => {
             position: 'relative',
             display: 'inline-block'
           }}>
-            Featured Products
+            {t('home.featuredProducts')}
             <div style={{
               position: 'absolute',
               bottom: '-10px',
@@ -90,7 +92,7 @@ const FeaturedProducts: React.FC = () => {
             margin: '1rem auto 0',
             lineHeight: '1.6'
           }}>
-            Discover our handpicked selection of exceptional artworks
+            {t('products.featuredDescription')}
           </p>
         </div>
 
@@ -112,7 +114,7 @@ const FeaturedProducts: React.FC = () => {
                 640: { perPage: 1 }
               }
             }}
-            aria-label="Featured Products"
+            aria-label={t('home.featuredProducts')}
           >
             {featuredProducts.map((product, index) => (
               <SplideSlide key={product.id}>
@@ -123,14 +125,7 @@ const FeaturedProducts: React.FC = () => {
                   display: 'flex',
                   justifyContent: 'center'
                 }}>
-                  <ProductCard
-                    id={product.id}
-                    name={product.title}
-                    price={product.price}
-                    description={product.description}
-                    image={product.imageUrl}
-                    category={product.category}
-                  />
+                  <ProductCard product={product} />
                 </div>
               </SplideSlide>
             ))}

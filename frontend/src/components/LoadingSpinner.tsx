@@ -1,6 +1,7 @@
 import React from 'react';
 import { ClipLoader } from 'react-spinners';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface LoadingSpinnerProps {
   loading?: boolean;
@@ -13,6 +14,8 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 50,
   color = '#8B4513'
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -27,7 +30,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         color={color}
         loading={loading}
         size={size}
-        aria-label="Loading Spinner"
+        aria-label={t('common.loading')}
         cssOverride={{
           borderWidth: '3px'
         }}
@@ -40,7 +43,7 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
           fontWeight: 500
         }}
       >
-        Loading...
+        {t('common.loading')}
       </Box>
     </Box>
   );

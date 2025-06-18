@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
-import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import {
+  Button,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+function useCssVariable(varName: string, fallback: string) {
+  if (typeof window !== 'undefined') {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(varName);
+    return value ? value.trim() : fallback;
+  }
+  return fallback;
+}
 
 const LanguageSwitcher: React.FC = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { i18n } = useTranslation();
+  const mainColor = useCssVariable('--main', '#8B4513');
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -13,37 +31,57 @@ const LanguageSwitcher: React.FC = () => {
     setAnchorEl(null);
   };
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    handleClose();
+  };
+
+  const languages = [
+    { code: 'en', label: 'English' },
+    { code: 'ru', label: 'Русский' },
+    { code: 'az', label: 'Azərbaycan' },
+  ];
+
   return (
-    <Box>
-      <IconButton
+    <>
+      <Button
         onClick={handleClick}
+        startIcon={<LanguageIcon />}
+        endIcon={<ArrowDropDownIcon />}
+        variant="outlined"
+        size="small"
         sx={{
-          color: ' #8B4513',
-          border: '1px solid #8B4513',
-          '&:hover': {
-            backgroundColor: 'rgba(139, 69, 19, 0.1)'
-          }
+          color: mainColor,
+          borderColor: mainColor,
+          fontWeight: 600,
+          fontSize: '0.75rem',
+          borderRadius: '6px',
+          textTransform: 'none',
+          px: 1.5,
         }}
       >
-        <LanguageIcon />
-      </IconButton>
+        {i18n.language.toUpperCase()}
+      </Button>
+
       <Menu
         anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
-        sx={{
-          '& .MuiPaper-root': {
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            color: 'white',
-            marginTop: '8px'
-          }
-        }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'left' }}
       >
-        <MenuItem onClick={handleClose}>English</MenuItem>
-        <MenuItem onClick={handleClose}>Georgian</MenuItem>
+        {languages.map(({ code, label }) => (
+          <MenuItem
+            key={code}
+            selected={i18n.language === code}
+            onClick={() => changeLanguage(code)}
+          >
+            {label}
+          </MenuItem>
+        ))}
       </Menu>
-    </Box>
+    </>
   );
 };
 
-export default LanguageSwitcher; 
+export default LanguageSwitcher;

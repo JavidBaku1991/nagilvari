@@ -1,0 +1,236 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "admin": "Admin",
+    "search": "Search",
+    "cart": "Cart"
+  },
+  "home": {
+    "welcome": "Welcome to Nagilvari",
+    "discover": "Discover amazing products",
+    "browseCategories": "Browse Categories",
+    "categoriesDescription": "Explore our diverse collection of art and craft works across different categories",
+    "featuredProducts": "Featured Products"
+  },
+  "categories": {
+    "all": "All Categories",
+    "paintings": {
+      "title": "Paintings",
+      "description": "Explore our collection of unique paintings"
+    },
+    "sculptures": {
+      "title": "Sculptures",
+      "description": "Discover our handcrafted sculptures"
+    },
+    "digitalArt": {
+      "title": "Digital Art",
+      "description": "Browse our digital art collection"
+    },
+    "photography": {
+      "title": "Photography",
+      "description": "View our curated photography works"
+    },
+    "ceramics": {
+      "title": "Ceramics",
+      "description": "Explore our ceramic art pieces"
+    }
+  },
+  "products": {
+    "title": "Our Products",
+    "featuredDescription": "Discover our handpicked selection of exceptional artworks",
+    "filters": {
+      "title": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search products...",
+      "category": "Category",
+      "allCategories": "All Categories",
+      "sort": "Sort By",
+      "sortByName": "Name",
+      "sortByPriceAsc": "Price: Low to High",
+      "sortByPriceDesc": "Price: High to Low",
+      "priceRange": "Price Range"
+    },
+    "categories": {
+      "paintings": "Paintings",
+      "paintingsDescription": "Discover our collection of unique paintings from talented artists around the world.",
+      "sculptures": "Sculptures",
+      "sculpturesDescription": "Explore our collection of unique sculptures from talented artists.",
+      "digitalArt": "Digital Art",
+      "digitalArtDescription": "Explore the world of digital creativity with our collection of digital artworks.",
+      "photography": "Photography",
+      "photographyDescription": "Browse through our collection of stunning photographs from professional photographers.",
+      "ceramics": "Ceramics",
+      "ceramicsDescription": "Explore our collection of handcrafted ceramic pieces from skilled artisans."
+    },
+    "noProducts": "No products found matching your criteria",
+    "clearFilters": "Clear all filters",
+    "items": {
+      "1": {
+        "name": "Abstract Harmony",
+        "description": "A vibrant abstract painting that combines bold colors and dynamic shapes to create a sense of movement and energy."
+      },
+      "2": {
+        "name": "Marble Elegance",
+        "description": "A stunning marble sculpture that captures the beauty of human form with intricate details and smooth curves."
+      },
+      "3": {
+        "name": "Digital Dreams",
+        "description": "A mesmerizing digital artwork that blends reality and fantasy through innovative techniques."
+      },
+      "4": {
+        "name": "Nature's Moment",
+        "description": "A breathtaking photograph that captures the perfect moment in nature's ever-changing landscape."
+      },
+      "5": {
+        "name": "Ceramic Whispers",
+        "description": "A delicate ceramic piece that tells a story through its unique texture and form."
+      },
+      "6": {
+        "name": "Color Symphony",
+        "description": "An oil painting that orchestrates colors in perfect harmony, creating a visual masterpiece."
+      },
+      "7": {
+        "name": "Bronze Legacy",
+        "description": "A timeless bronze sculpture that embodies strength and grace in its composition."
+      },
+      "8": {
+        "name": "Virtual Reality",
+        "description": "An innovative digital creation that pushes the boundaries of traditional art forms."
+      },
+      "9": {
+        "name": "Urban Stories",
+        "description": "A compelling photographic series that documents the essence of city life."
+      },
+      "10": {
+        "name": "Clay Traditions",
+        "description": "A handcrafted ceramic piece that celebrates traditional techniques with modern aesthetics."
+      }
+    },
+    "notFound": "Product not found",
+    "additionalInfo": "Additional Information",
+    "condition": "Condition",
+    "new": "New",
+    "shipping": "Shipping",
+    "worldwide": "Worldwide Shipping Available"
+  },
+  "investor": {
+    "title": "Join Our Growing Marketplace",
+    "subtitle": "Are you a project owner looking to showcase your products? Or an investor seeking new opportunities? Our platform connects innovative projects with potential investors and customers. Bring your products to our marketplace and reach a wider audience while growing your business.",
+    "contactButton": "Write to Us",
+    "learnMoreButton": "Learn More"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to common questions about our products, shipping, and services.",
+    "questions": {
+      "shipping": {
+        "question": "What are your shipping options?",
+        "answer": "We offer standard and express shipping options. Standard shipping typically takes 5-7 business days, while express shipping takes 2-3 business days. International shipping is also available with various shipping times."
+      },
+      "returns": {
+        "question": "What is your return policy?",
+        "answer": "We accept returns within 30 days of delivery. Items must be in their original condition with all packaging and documentation. Please contact our customer service to initiate a return."
+      },
+      "payment": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. All transactions are secure and encrypted."
+      },
+      "authenticity": {
+        "question": "How do you ensure the authenticity of your products?",
+        "answer": "All our products come with authenticity certificates. We work directly with artists and verified suppliers to ensure the authenticity of every item in our collection."
+      },
+      "customization": {
+        "question": "Do you offer customization options?",
+        "answer": "Yes, we offer customization options for many of our products. Please contact our customer service to discuss your specific requirements, and we'll be happy to help."
+      }
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again later.",
+    "success": "Success",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "browse": "Browse",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "addToCart": "Add to Cart",
+    "removeFromCart": "Remove from Cart",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "product": "Product",
+    "productDescription": "This is a description for the product",
+    "viewDetails": "View Details",
+    "backToProducts": "Back to Products",
+    "contactSeller": "Contact Seller",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of"
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "description": "Discover and share amazing art pieces from talented artists around the world. Join our community of art enthusiasts and creators."
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "about": "About Us",
+      "gallery": "Gallery",
+      "contact": "Contact",
+      "faq": "FAQ"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "connect": {
+      "title": "Connect With Us"
+    },
+    "copyright": "© {{year}} Nagilvari. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "contacts": {
+    "title": "Get in Touch",
+    "description": "Have questions or want to learn more? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    "name": "Your Name",
+    "email": "Your Email",
+    "message": "Your Message",
+    "send": "Send Message",
+    "phone": "+1 (555) 123-4567",
+    "emailAddress": "contact@example.com",
+    "social": {
+      "title": "Connect With Us",
+      "facebook": "Follow us on Facebook",
+      "instagram": "Follow us on Instagram",
+      "twitter": "Follow us on Twitter",
+      "linkedin": "Connect with us on LinkedIn"
+    }
+  },
+  "about": {
+    "title": "About Nagilvari",
+    "description": {
+      "part1": "Nagilvari is a unique platform that brings together artisans and art enthusiasts. From handmade jewelry to paintings, from carpets to small sculptures, we present many types of art in this space. Our goal is to both provide artisans with access to a wide audience and present citizens with original and valuable works of art.",
+      "part2": "Each handmade piece carries a story, and we play the role of a bridge to ensure these stories are passed on to future generations without being lost. Nagilvari unites both creative individuals and buyers interested in art around the same value.",
+      "part3": "With this project born from the combination of innovative technology and traditional art, we open a new path for the preservation and spread of our culture. We believe that art should find its place not only in exhibitions but also in our daily lives. Nagilvari — art for every home, support for every artist!"
+    }
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "showing": "Showing",
+    "of": "of",
+    "items": "items"
+  }
+} 
