@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import paint from '../images/paint2.jpg'
+
 import {
   Container,
   Grid,
@@ -23,7 +25,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getProducts } from '../services/productService';
+import { products as allProducts } from '../data/products';
 import { Product } from '../types/product';
 import styles from './Products.module.css';
 
@@ -34,9 +36,9 @@ const CategoryProducts: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // Filter products by category from static list
+  const products = allProducts.filter(product => product.category.toLowerCase() === category?.toLowerCase());
+
   const [sortBy, setSortBy] = useState('title');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,26 +46,6 @@ const CategoryProducts: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
 
   const productsPerPage = 12;
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const data = await getProducts();
-        const filteredProducts = data.filter(product => 
-          product.category.toLowerCase() === category?.toLowerCase()
-        );
-        setProducts(filteredProducts);
-        setError(null);
-      } catch (err) {
-        setError(t('products.error'));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, [category, t]);
 
   const handleSortChange = (event: any) => {
     setSortBy(event.target.value);
@@ -117,8 +99,13 @@ const CategoryProducts: React.FC = () => {
   );
 
   const FilterContent = () => (
-    <Box sx={{ p: 2 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+    <Box sx={{ p: 2 ,        backgroundColor: 'white',
+      borderRadius: '10px',
+      padding: '10px',
+      boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)'}}>
+      <Box sx={{       display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 ,
+
+      }}>
         <Typography variant="h6">{t('products.filters.title')}</Typography>
         <IconButton onClick={() => setFilterOpen(false)}>
           <CloseIcon />
@@ -167,24 +154,17 @@ const CategoryProducts: React.FC = () => {
     </Box>
   );
 
-  if (loading) {
+  if (filteredProducts.length === 0) {
     return <LoadingSpinner />;
-  }
-
-  if (error) {
-    return (
-      <Container>
-        <Typography color="error" align="center">
-          {error}
-        </Typography>
-      </Container>
-    );
   }
 
   return (
     <Box sx={{ 
-      backgroundColor: 'white',
-      minHeight: 'calc(100vh - 64px)',
+      backgroundImage: `url(${paint})`, 
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    minHeight: 'calc(100vh - 64px)',
       color: '#8B4513',
       paddingTop: '100px',
       paddingBottom: '40px'

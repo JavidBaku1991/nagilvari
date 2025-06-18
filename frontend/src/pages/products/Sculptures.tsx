@@ -1,7 +1,10 @@
 import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
+import { products } from '../../data/products';
+import ProductCard from '../../components/ProductCard';
 
 const Sculptures: React.FC = () => {
+  const sculptures = products.filter(product => product.category === 'sculptures');
   return (
     <Box sx={{ 
       backgroundColor: 'white',
@@ -15,12 +18,11 @@ const Sculptures: React.FC = () => {
           Sculptures
         </Typography>
         <Grid container spacing={4}>
-          {/* Add your sculptures content here */}
-          <Grid item xs={12}>
-            <Typography variant="body1" align="center">
-              Discover our collection of unique sculptures from talented artists.
-            </Typography>
-          </Grid>
+          {sculptures.map(product => (
+            <Grid item xs={12} sm={6} md={4} key={product.id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </Box>

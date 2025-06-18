@@ -1,7 +1,10 @@
 import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
+import { products } from '../../data/products';
+import ProductCard from '../../components/ProductCard';
 
 const Photography: React.FC = () => {
+  const photography = products.filter(product => product.category === 'photography');
   return (
     <Box sx={{ 
       backgroundColor: 'white',
@@ -15,12 +18,11 @@ const Photography: React.FC = () => {
           Photography
         </Typography>
         <Grid container spacing={4}>
-          {/* Add your photography content here */}
-          <Grid item xs={12}>
-            <Typography variant="body1" align="center">
-              Browse through our collection of stunning photographs from professional photographers.
-            </Typography>
-          </Grid>
+          {photography.map(product => (
+            <Grid item xs={12} sm={6} md={4} key={product.id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </Box>

@@ -10,6 +10,13 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import FAQ from './pages/FAQ';
 import './i18n/config';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import WorkIcon from '@mui/icons-material/Work';
+import { Box } from '@mui/material';
 
 const App: React.FC = () => {
   return (
@@ -28,6 +35,44 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer />
+        {/* Global SpeedDial */}
+        <Box sx={{ position: 'fixed', bottom: 32, right: 32, zIndex: 1300 }}>
+          <SpeedDial
+            icon={<WorkIcon sx={{ color: 'var(--main)' , backgroundColor: 'transparent'}} />}
+            sx={{backgroundColor: 'transparent'}}
+            ariaLabel="Share on social media"
+            FabProps={{
+              sx: {
+                backgroundColor: 'white',
+                boxShadow: 'none',
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                },
+              },
+            }}
+          >
+            <SpeedDialAction
+              icon={<FacebookIcon sx={{ color: '#1877F3' }} />}
+              tooltipTitle="Facebook"
+              onClick={() => window.open('https://facebook.com', '_blank')}
+            />
+            <SpeedDialAction
+              icon={<TwitterIcon sx={{ color: '#1DA1F2' }} />}
+              tooltipTitle="Twitter"
+              onClick={() => window.open('https://twitter.com', '_blank')}
+            />
+            <SpeedDialAction
+              icon={<InstagramIcon sx={{ color: '#E4405F' }} />}
+              tooltipTitle="Instagram"
+              onClick={() => window.open('https://instagram.com', '_blank')}
+            />
+            <SpeedDialAction
+              icon={<WorkIcon sx={{ color: '#2164F3' }} />}
+              tooltipTitle="Indeed"
+              onClick={() => window.open('https://indeed.com', '_blank')}
+            />
+          </SpeedDial>
+        </Box>
       </div>
     </Router>
   );

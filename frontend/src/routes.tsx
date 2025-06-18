@@ -14,11 +14,6 @@ import Sculptures from './pages/products/Sculptures';
 import DigitalArt from './pages/products/DigitalArt';
 import Photography from './pages/products/Photography';
 import Ceramics from './pages/products/Ceramics';
-import PaintingsPage from './pages/PaintingsPage';
-import SculpturesPage from './pages/SculpturesPage';
-import DigitalArtPage from './pages/DigitalArtPage';
-import PhotographyPage from './pages/PhotographyPage';
-import CeramicsPage from './pages/CeramicsPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RequireAdmin from './components/RequireAdmin';
 import Navbar from './components/Navbar';
@@ -38,11 +33,11 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/paintings" element={<PaintingsPage />} />
-        <Route path="/products/sculptures" element={<SculpturesPage />} />
-        <Route path="/products/digital-art" element={<DigitalArtPage />} />
-        <Route path="/products/photography" element={<PhotographyPage />} />
-        <Route path="/products/ceramics" element={<CeramicsPage />} />
+        <Route path="/products/paintings" element={<Paintings />} />
+        <Route path="/products/sculptures" element={<Sculptures />} />
+        <Route path="/products/digital-art" element={<DigitalArt />} />
+        <Route path="/products/photography" element={<Photography />} />
+        <Route path="/products/ceramics" element={<Ceramics />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />

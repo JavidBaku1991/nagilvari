@@ -1,7 +1,10 @@
 import React from 'react';
 import { Box, Container, Typography, Grid } from '@mui/material';
+import { products } from '../../data/products';
+import ProductCard from '../../components/ProductCard';
 
 const DigitalArt: React.FC = () => {
+  const digitalArt = products.filter(product => product.category === 'digital-art');
   return (
     <Box sx={{ 
       backgroundColor: 'white',
@@ -15,12 +18,11 @@ const DigitalArt: React.FC = () => {
           Digital Art
         </Typography>
         <Grid container spacing={4}>
-          {/* Add your digital art content here */}
-          <Grid item xs={12}>
-            <Typography variant="body1" align="center">
-              Explore the world of digital creativity with our collection of digital artworks.
-            </Typography>
-          </Grid>
+          {digitalArt.map(product => (
+            <Grid item xs={12} sm={6} md={4} key={product.id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </Box>

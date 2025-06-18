@@ -32,6 +32,7 @@ const Navbar: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const navItems = [
+    { label: 'Products', path: '/products' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
     { label: 'FAQ', path: '/faq' }
