@@ -37,7 +37,11 @@ const CategoryProducts: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   // Filter products by category from static list
-  const products = allProducts.filter(product => product.category.toLowerCase() === category?.toLowerCase());
+  const products = allProducts.filter(product => {
+    const productCategory = product.category.toLowerCase();
+    const urlCategory = category?.toLowerCase();
+    return productCategory === urlCategory;
+  });
 
   const [sortBy, setSortBy] = useState('title');
   const [searchQuery, setSearchQuery] = useState('');
@@ -154,8 +158,40 @@ const CategoryProducts: React.FC = () => {
     </Box>
   );
 
-  if (filteredProducts.length === 0) {
-    return <LoadingSpinner />;
+  if (products.length === 0) {
+    return (
+      <Box sx={{ 
+        backgroundImage: `url(${paint})`, 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: 'calc(100vh - 64px)',
+        color: '#8B4513',
+        paddingTop: '100px',
+        paddingBottom: '40px'
+      }}>
+        <Container maxWidth="lg">
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              {category === 'digital-art' 
+                ? t('products.categories.digitalArt')
+                : t(`products.categories.${category}`)
+              }
+            </Typography>
+            <Typography variant="h6" color="text.secondary" sx={{ mt: 2 }}>
+              {t('products.noProducts')}
+            </Typography>
+            <Button 
+              variant="contained" 
+              onClick={() => navigate('/products')}
+              sx={{ mt: 3 }}
+            >
+              {t('common.backToProducts')}
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+    );
   }
 
   return (
@@ -172,10 +208,16 @@ const CategoryProducts: React.FC = () => {
       <Container maxWidth="lg">
         <Box sx={{ mb: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
-            {t(`products.categories.${category}`)}
+            {category === 'digital-art' 
+              ? t('products.categories.digitalArt')
+              : t(`products.categories.${category}`)
+            }
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            {t(`products.categories.${category}Description`)}
+            {category === 'digital-art' 
+              ? t('products.categories.digitalArtDescription')
+              : t(`products.categories.${category}Description`)
+            }
           </Typography>
         </Box>
 
@@ -222,6 +264,22 @@ const CategoryProducts: React.FC = () => {
                       onChange={handlePageChange}
                       color="primary"
                       size="large"
+                      sx={{
+                        '& .MuiPaginationItem-root': {
+                          backgroundColor: 'var(--secondary-main)',
+                          color: '#8B4513',
+                          '&:hover': {
+                            backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                          },
+                          '&.Mui-selected': {
+                            backgroundColor: '#8B4513',
+                            color: 'white',
+                            '&:hover': {
+                              backgroundColor: '#8B4513',
+                            },
+                          },
+                        },
+                      }}
                     />
                   </Box>
                 )}

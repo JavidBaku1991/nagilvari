@@ -10,6 +10,7 @@ import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
+import { Box, Container } from '@mui/material';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -96,176 +97,195 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      {/* HERO SECTION */}
-      <section
-        style={{
-          height: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundImage: `url(${bghero})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-        className='hero-section'
-      >
-        <div
-          className="hero-text"
+    <Box sx={{ 
+      position: 'relative',
+      minHeight: '100vh',
+      backgroundImage: `url(${heroImg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(43, 35, 35, 0.85)',
+        zIndex: 0,
+      }
+    }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        {/* HERO SECTION */}
+        <section
           style={{
-            position: 'absolute',
-            top: '20%',
-            left: '10%',
-            padding: '2rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-            backdropFilter: 'blur(9.5px)',
-            WebkitBackdropFilter: 'blur(8.5px)',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-            transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 2s ease-in-out',
-            right: '20%',
-            height: '40%',
-            width: '50%',
+            height: '100vh',
+            display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            textAlign: 'center',
-            zIndex: 1000
+            position: 'relative',
+            overflow: 'hidden',
+            backgroundImage: `url(${bghero})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
+          className='hero-section'
         >
-          <h1
+          <div
+            className="hero-text"
             style={{
-              fontSize: '3.5rem',
-              marginBottom: '1rem',
-              color: '#8B4513',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              position: 'absolute',
+              top: '20%',
+              left: '10%',
+              padding: '2rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.25)',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+              backdropFilter: 'blur(9.5px)',
+              WebkitBackdropFilter: 'blur(8.5px)',
+              border: '1px solid rgba(255, 255, 255, 0.18)',
               transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
               transition: 'transform 2s ease-in-out',
-              transitionDelay: '1s',
-              opacity: heroLoaded ? 1 : 0
+              right: '20%',
+              height: '40%',
+              width: '50%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: 'center',
+              zIndex: 1000
             }}
           >
-            {t('home.welcome')}
-          </h1>
-          <p
-            style={{
-              fontSize: '1.5rem',
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
-              color: '#8B4513',
-              transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
-              transition: 'transform 2s ease-in-out',
-              transitionDelay: '1.5s',
-              opacity: heroLoaded ? 1 : 0
-            }}
-          >
-            {t('home.discover')}
-          </p>
-        </div>
-
-        <div
-          className="hero-image"
-          style={{
-            position: 'absolute',
-            width: '70%',
-            height: '75%',
-            bottom: '10%',
-            left: '23%',
-            transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
-            transition: 'transform 2s ease-out',
-            background: 'rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
-            backdropFilter: 'blur(9.5px)',
-            WebkitBackdropFilter: 'blur(8.5px)',
-            borderRadius: '30px',
-          }}
-        >
-          <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '30px' }} />
-        </div>
-      </section>
-
-      {/* INVESTOR CALL TO ACTION */}
-      <InvestorCallToAction />
-
-      {/* FEATURED PRODUCTS */}
-      <div ref={featuredRef}>
-        <FeaturedProducts />
-      </div>
-
-      {/* CATEGORIES */}
-      <div
-        ref={categoriesRef}
-        style={{
-          padding: '4rem 2rem',
-          opacity: isCategoriesVisible ? 1 : 0,
-          transition: 'opacity 0.5s ease-out',
-          backgroundColor: 'white'
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h3 style={{
-              fontSize: '2.5rem',
-              color: '#8B4513',
-              marginBottom: '1rem',
-              fontWeight: 600,
-              position: 'relative',
-              display: 'inline-block'
-            }}>
-              {t('home.browseCategories')}
-              <div style={{
-                position: 'absolute',
-                bottom: '-10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '60px',
-                height: '3px',
-                backgroundColor: '#8B4513',
-                borderRadius: '2px'
-              }} />
-            </h3>
-            <p style={{
-              color: '#666',
-              fontSize: '1.1rem',
-              maxWidth: '600px',
-              margin: '1rem auto 0',
-              lineHeight: '1.6'
-            }}>
-              {t('home.categoriesDescription')}
+            <h1
+              style={{
+                fontSize: '3.5rem',
+                marginBottom: '1rem',
+                color: '#8B4513',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
+                transition: 'transform 2s ease-in-out',
+                transitionDelay: '1s',
+                opacity: heroLoaded ? 1 : 0
+              }}
+            >
+              {t('home.welcome')}
+            </h1>
+            <p
+              style={{
+                fontSize: '1.5rem',
+                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+                color: '#8B4513',
+                transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
+                transition: 'transform 2s ease-in-out',
+                transitionDelay: '1.5s',
+                opacity: heroLoaded ? 1 : 0
+              }}
+            >
+              {t('home.discover')}
             </p>
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '2rem'
-          }}>
-            {categories.map((category, index) => (
-              <div
-                key={category.path}
-                style={{
-                  transform: isCategoriesVisible ? 'translateY(0)' : 'translateY(40px)',
-                  opacity: isCategoriesVisible ? 1 : 0,
-                  transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`
-                }}
-              >
-                <CategoryCard
-                  title={category.title}
-                  description={category.description}
-                  images={category.images}
-                  path={category.path}
-                  variant="products"
-                />
-              </div>
-            ))}
+          <div
+            className="hero-image"
+            style={{
+              position: 'absolute',
+              width: '70%',
+              height: '75%',
+              bottom: '10%',
+              left: '23%',
+              transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
+              transition: 'transform 2s ease-out',
+              background: 'rgba(255, 255, 255, 0.25)',
+              boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
+              backdropFilter: 'blur(9.5px)',
+              WebkitBackdropFilter: 'blur(8.5px)',
+              borderRadius: '30px',
+            }}
+          >
+            <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '30px' }} />
+          </div>
+        </section>
+
+        {/* INVESTOR CALL TO ACTION */}
+        <InvestorCallToAction />
+
+        {/* FEATURED PRODUCTS */}
+        <div ref={featuredRef}>
+          <FeaturedProducts />
+        </div>
+
+        {/* CATEGORIES */}
+        <div
+          ref={categoriesRef}
+          style={{
+            padding: '4rem 2rem',
+            opacity: isCategoriesVisible ? 1 : 0,
+            transition: 'opacity 0.5s ease-out',
+            backgroundColor: 'white'
+          }}
+        >
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h3 style={{
+                fontSize: '2.5rem',
+                color: '#8B4513',
+                marginBottom: '1rem',
+                fontWeight: 600,
+                position: 'relative',
+                display: 'inline-block'
+              }}>
+                {t('home.browseCategories')}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-10px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '60px',
+                  height: '3px',
+                  backgroundColor: '#8B4513',
+                  borderRadius: '2px'
+                }} />
+              </h3>
+              <p style={{
+                color: '#666',
+                fontSize: '1.1rem',
+                maxWidth: '600px',
+                margin: '1rem auto 0',
+                lineHeight: '1.6'
+              }}>
+                {t('home.categoriesDescription')}
+              </p>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '2rem'
+            }}>
+              {categories.map((category, index) => (
+                <div
+                  key={category.path}
+                  style={{
+                    transform: isCategoriesVisible ? 'translateY(0)' : 'translateY(40px)',
+                    opacity: isCategoriesVisible ? 1 : 0,
+                    transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`
+                  }}
+                >
+                  <CategoryCard
+                    title={category.title}
+                    description={category.description}
+                    images={category.images}
+                    path={category.path}
+                    variant="products"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
 };
 

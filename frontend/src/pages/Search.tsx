@@ -1,75 +1,257 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { 
+  Box, 
+  Container, 
+  Typography, 
+  Grid, 
+  Pagination,
+  useMediaQuery,
+  useTheme
+} from '@mui/material';
+import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import image from '../images/hero.jpeg';
+import ProductFilters from '../components/ProductFilters';
+import { useTranslation } from 'react-i18next';
+
+import search from '../images/search.jpg'
 
 const Search: React.FC = () => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('q') || '';
-  const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  useEffect(() => {
-    // Simulate API call with dummy data
-    const dummyProducts = Array.from({ length: 20 }, (_, i) => ({
-      id: (i + 1).toString(),
-      name: `Product ${i + 1}`,
-      price: (i + 1) * 10,
-      description: `This is the description for product ${i + 1}.`,
-      image: image,
-      category: ['Paintings', 'Sculptures', 'Digital Art', 'Photography', 'Ceramics'][i % 5]
-    }));
+  // Filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('title');
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 6000]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filterOpen, setFilterOpen] = useState(false);
 
-    // Filter products based on search query
-    const results = dummyProducts.filter(product => 
-      product.name.toLowerCase().includes(query.toLowerCase()) ||
-      product.description.toLowerCase().includes(query.toLowerCase()) ||
-      product.category.toLowerCase().includes(query.toLowerCase())
+  const productsPerPage = 12;
+
+  // Calculate max price for the slider
+  const maxPrice = Math.max(...products.map(p => p.price));
+
+  // Search and filter products
+  const searchResults = useMemo(() => {
+    if (!query.trim()) return [];
+
+    const searchTerm = query.toLowerCase();
+    
+    return products.filter(product => 
+      product.title.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm) ||
+      product.artist.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm) ||
+      (product.dimensions && product.dimensions.toLowerCase().includes(searchTerm))
     );
+  }, [query]);
 
-    setSearchResults(results);
-    setIsLoading(false);
+  // Apply additional filters to search results
+  const filteredProducts = useMemo(() => {
+    return searchResults
+      .filter(product => 
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+        product.price >= priceRange[0] &&
+        product.price <= priceRange[1]
+      )
+      .sort((a, b) => {
+        switch (sortBy) {
+          case 'title':
+            return a.title.localeCompare(b.title);
+          case 'priceAsc':
+            return a.price - b.price;
+          case 'priceDesc':
+            return b.price - a.price;
+          default:
+            return 0;
+        }
+      });
+  }, [searchResults, searchQuery, sortBy, priceRange]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
+
+  // Event handlers
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (event: any) => {
+    setSortBy(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const handlePriceChange = (event: any, newValue: number | number[]) => {
+    setPriceRange(newValue as [number, number]);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const resetFilters = () => {
+    setSearchQuery('');
+    setSortBy('title');
+    setPriceRange([0, maxPrice]);
+    setCurrentPage(1);
+  };
+
+  // Reset page when query changes
+  useEffect(() => {
+    setCurrentPage(1);
   }, [query]);
 
   return (
-    <div style={{ padding: '2rem', backgroundColor: 'white', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ marginBottom: '2rem' }}>
-          <h1 style={{ 
-            fontSize: '2rem', 
-            color: '#8B4513',
-            marginBottom: '1rem'
-          }}>
-            Search Results for "{query}"
-          </h1>
-          <p style={{ color: '#666' }}>
-            Found {searchResults.length} results
-          </p>
-        </div>
-
-        {isLoading ? (
-          <div style={{ textAlign: 'center', padding: '2rem' }}>
-            Loading...
-          </div>
-        ) : searchResults.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '2rem' }}>
-            <h2 style={{ color: '#666', marginBottom: '1rem' }}>No results found</h2>
-            <p style={{ color: '#666' }}>Try different keywords or browse our categories</p>
-          </div>
-        ) : (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-            gap: '2rem',
-            padding: '1rem 0'
-          }}>
-            {searchResults.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
-          </div>
+    <Box sx={{ 
+      backgroundColor: 'white',
+      minHeight: 'calc(100vh - 64px)',
+      color: '#8B4513',
+      paddingTop: '100px',
+      paddingBottom: '40px',
+      backgroundImage: `url(${search})`,
+      backgroundSize: 'cover'
+     
+      
+    }}>
+      <Container maxWidth="lg">
+        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 2 }}>
+          {t('common.search')}
+        </Typography>
+        
+        {query && (
+          <Typography variant="h4" component="h2" align="center" sx={{ mb: 1, color: '#666' }}>
+            Results for "{query}"
+          </Typography>
         )}
-      </div>
-    </div>
+
+        <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: '#666' }}>
+          {searchResults.length > 0 
+            ? `Found ${searchResults.length} product${searchResults.length !== 1 ? 's' : ''}`
+            : 'No products found'
+          }
+        </Typography>
+
+        {searchResults.length > 0 && (
+          <Grid container spacing={3}>
+            {!isMobile && (
+              <Grid item xs={12} md={3}>
+                <Box sx={{ position: 'sticky', top: '100px' }}>
+                  <ProductFilters
+                    searchQuery={searchQuery}
+                    onSearchChange={handleSearchChange}
+                    sortBy={sortBy}
+                    onSortChange={handleSortChange}
+                    priceRange={priceRange}
+                    onPriceChange={handlePriceChange}
+                    onResetFilters={resetFilters}
+                    filterOpen={filterOpen}
+                    onFilterOpenChange={setFilterOpen}
+                    maxPrice={maxPrice}
+                  />
+                </Box>
+              </Grid>
+            )}
+
+            <Grid item xs={12} md={isMobile ? 12 : 9}>
+              {isMobile && (
+                <ProductFilters
+                  searchQuery={searchQuery}
+                  onSearchChange={handleSearchChange}
+                  sortBy={sortBy}
+                  onSortChange={handleSortChange}
+                  priceRange={priceRange}
+                  onPriceChange={handlePriceChange}
+                  onResetFilters={resetFilters}
+                  filterOpen={filterOpen}
+                  onFilterOpenChange={setFilterOpen}
+                  maxPrice={maxPrice}
+                />
+              )}
+
+              {filteredProducts.length === 0 ? (
+                <Typography align="center" color="text.secondary" sx={{ py: 8 }}>
+                  {t('products.noProducts')}
+                </Typography>
+              ) : (
+                <>
+                  <Grid container spacing={4}>
+                    {paginatedProducts.map(product => (
+                      <Grid item xs={12} sm={6} md={4} key={product.id}>
+                        <ProductCard product={product} />
+                      </Grid>
+                    ))}
+                  </Grid>
+
+                  {totalPages > 1 && (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                      <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        color="primary"
+                        size="large"
+                        sx={{
+                          '& .MuiPaginationItem-root': {
+                            backgroundColor: 'var(--secondary-main)',
+                            color: '#8B4513',
+                            '&:hover': {
+                              backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                            },
+                            '&.Mui-selected': {
+                              backgroundColor: '#8B4513',
+                              color: 'white',
+                              '&:hover': {
+                                backgroundColor: '#8B4513',
+                              },
+                            },
+                          },
+                        }}
+                      />
+                    </Box>
+                  )}
+                </>
+              )}
+            </Grid>
+          </Grid>
+        )}
+
+        {searchResults.length === 0 && query && (
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
+              No products found for "{query}"
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+              Try searching with different keywords or browse our categories
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Search tips: Try searching by product name, artist, category, or description
+            </Typography>
+          </Box>
+        )}
+
+        {!query && (
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <Typography variant="h5" color="text.secondary" sx={{ mb: 2 }}>
+              Enter a search term to find products
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Search for products by name, artist, category, or description
+            </Typography>
+          </Box>
+        )}
+      </Container>
+    </Box>
   );
 };
 

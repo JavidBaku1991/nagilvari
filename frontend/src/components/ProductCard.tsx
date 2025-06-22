@@ -10,7 +10,7 @@ import {
   Chip
 } from '@mui/material';
 import { ShoppingCart, Favorite } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import heroImg from '../images/hero.jpeg';
 import { Product } from '../types/product';
 
@@ -20,10 +20,22 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { id, title, description, price, imageUrl, category } = product;
+  const navigate = useNavigate();
 
   // Function to handle image loading errors
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.src = heroImg; // Fallback image
+  };
+
+  const handleProductClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Navigate to product detail and scroll to top
+    navigate(`/product/${id}`);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   };
 
   return (
@@ -39,12 +51,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         },
         borderRadius: '12px',
         overflow: 'hidden',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--secondary-main)',
         width: '100%',
         maxWidth: '300px'
       }}
     >
-      <Link to={`/product/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Link to={`/product/${id}`} style={{ textDecoration: 'none', color: 'inherit' }} onClick={handleProductClick}>
         <CardMedia
           component="img"
           height="200"

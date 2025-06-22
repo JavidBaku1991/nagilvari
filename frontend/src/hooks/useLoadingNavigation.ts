@@ -10,16 +10,16 @@ export const useLoadingNavigation = () => {
     console.log('Location changed, starting loading...');
     startLoading();
     
-    // Force stop loading after 1 second
+    // Reduce timeout to prevent navigation blocking
     const timer = setTimeout(() => {
       console.log('Stopping loading...');
       stopLoading();
-    }, 1000);
+    }, 500); // Reduced from 1000ms to 500ms
 
     return () => {
       console.log('Cleaning up loading...');
       clearTimeout(timer);
       stopLoading();
     };
-  }, [location.pathname]);
+  }, [location.pathname, startLoading, stopLoading]);
 }; 

@@ -9,7 +9,12 @@ const Footer: React.FC = () => {
   const navigate = useNavigate();
 
   const handleNavigation = (path: string) => {
-    window.scrollTo(0, 0);
+    // Scroll to top with smooth behavior
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     navigate(path);
   };
 

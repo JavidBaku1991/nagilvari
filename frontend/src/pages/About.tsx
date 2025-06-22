@@ -3,20 +3,32 @@ import { useTranslation } from 'react-i18next';
 import '../css/About.css';
 import hero1Img from '../images/hero.jpeg';
 import about from '../images/pottery.png';
+import { Box, Container } from '@mui/material';
 
 const About: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="about-page page" style={{
-      minHeight: 'calc(100vh - 64px)', // Subtract navbar height
-      padding: '80px 20px',
-      background: 'white',
-      marginBottom: 0,
+    <Box sx={{ 
+      position: 'relative',
+      minHeight: 'calc(100vh - 64px)',
+      paddingTop: '100px',
+      paddingBottom: '40px',
       backgroundImage: `url(${about})`,
-      backgroundSize: 'cover'
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(21, 17, 17, 0.85)',
+        zIndex: 0,
+      }
     }}>
-      <div className="container">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <h2 className="about-title text-center mb-5" style={{ color: '#8B4513' }}>
           {t('about.title')}
         </h2>
@@ -49,8 +61,8 @@ const About: React.FC = () => {
             {t('about.description.part3')}
           </p>
         </div>
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
 };
 

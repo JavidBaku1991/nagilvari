@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
@@ -26,11 +26,24 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   variant = 'categories'
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const isHomeVariant = variant === 'home';
   const cardHeight = isHomeVariant ? '200px' : '400px';
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Navigate programmatically to ensure scroll to top
+    navigate(path);
+    // Scroll to top immediately
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <Link to={path} style={{ textDecoration: 'none' }}>
+    <Link to={path} style={{ textDecoration: 'none' }} onClick={handleClick}>
       <Card
         sx={{
           height: cardHeight,
@@ -41,6 +54,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           overflow: 'hidden',
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           transition: 'transform 0.3s ease-in-out',
+          backgroundColor: 'var(--secondary-main)',
           '&:hover': {
             transform: 'translateY(-5px)',
             boxShadow: '0 8px 16px rgba(0,0,0,0.2)'
@@ -57,7 +71,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             borderBottom: '1px solid rgba(0,0,0,0.1)'
           }}
         />
-        <CardContent sx={{ flexGrow: 1, backgroundColor: 'white' }}>
+            <CardContent sx={{ flexGrow: 1, backgroundColor: 'var(--secondary-main)' }}>
           <Typography
             gutterBottom
             variant="h5"

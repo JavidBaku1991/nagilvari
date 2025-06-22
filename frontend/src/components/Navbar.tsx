@@ -47,11 +47,26 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavigation = (path: string) => {
+    // Scroll to top when navigating
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
       setSearchQuery('');
+      // Scroll to top after search navigation
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -86,6 +101,7 @@ const Navbar: React.FC = () => {
             variant="h6"
             component={Link}
             to="/"
+            onClick={() => handleNavigation('/')}
             sx={{
               flexGrow: 1,
               color:   '#8B4513' ,
@@ -136,6 +152,7 @@ const Navbar: React.FC = () => {
                   key={item.path}
                   component={Link}
                   to={item.path}
+                  onClick={() => handleNavigation(item.path)}
                   sx={{
                     color: '#8B4513',
                     '&:hover': { backgroundColor: 'rgba(139, 69, 19, 0.1)' },

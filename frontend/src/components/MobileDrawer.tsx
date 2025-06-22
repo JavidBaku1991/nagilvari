@@ -9,7 +9,9 @@ import {
   Divider,
   Box,
   ListItemButton,
-  Collapse
+  Collapse,
+  TextField,
+  InputAdornment
 } from '@mui/material';
 import {
   Home as HomeIcon,
@@ -20,9 +22,10 @@ import {
   Close as CloseIcon,
   Help as HelpIcon,
   ExpandLess,
-  ExpandMore
+  ExpandMore,
+  Search as SearchIcon
 } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface MobileDrawerProps {
@@ -32,6 +35,8 @@ interface MobileDrawerProps {
 
 const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
   const [productsOpen, setProductsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const productCategories = [
     { text: 'Paintings', path: '/products/paintings' },
@@ -53,6 +58,31 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
     setProductsOpen(!productsOpen);
   };
 
+  const handleNavigation = (path: string) => {
+    onClose();
+    // Scroll to top when navigating
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      onClose();
+      // Scroll to top after search navigation
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <Drawer
       anchor="left"
@@ -69,13 +99,49 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
         </IconButton>
       </Box>
       <Divider />
+      
+      {/* Search Form */}
+      <Box sx={{ p: 2 }}>
+        <form onSubmit={handleSearch}>
+          <TextField
+            fullWidth
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton type="submit" edge="end">
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '20px',
+                backgroundColor: '#f5f5f5',
+                '&:hover': {
+                  backgroundColor: '#eeeeee',
+                },
+                '&.Mui-focused': {
+                  backgroundColor: 'white',
+                },
+              },
+            }}
+          />
+        </form>
+      </Box>
+      
+      <Divider />
+      
       <List>
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding>
             <ListItemButton
               component={Link}
               to={item.path}
-              onClick={onClose}
+              onClick={() => handleNavigation(item.path)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
@@ -96,7 +162,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
                 key={category.path}
                 component={Link}
                 to={category.path}
-                onClick={onClose}
+                onClick={() => handleNavigation(category.path)}
                 sx={{ pl: 4 }}
               >
                 <ListItemText primary={category.text} />

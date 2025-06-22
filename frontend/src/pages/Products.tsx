@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Pagination, Box } from '@mui/material';
 import { products, Product } from '../data/products';
 import { useNavigate } from 'react-router-dom';
-
+import all from '../images/all.jpg'
 const PRODUCTS_PER_PAGE = 12;
 
 const Products: React.FC = () => {
@@ -20,9 +20,33 @@ const Products: React.FC = () => {
   const pageCount = Math.ceil(products.length / PRODUCTS_PER_PAGE);
 
   return (
-    <Box sx={{ backgroundColor: 'white', minHeight: 'calc(100vh - 64px)', paddingTop: '100px', paddingBottom: '40px' }}>
-      <Container maxWidth="lg">
-        <Typography variant="h2" component="h1" align="center" gutterBottom>
+    <Box sx={{ 
+      position: 'relative',
+      minHeight: 'calc(100vh - 64px)', 
+      paddingTop: '100px', 
+      paddingBottom: '40px',
+      backgroundImage: `url(${all})`, 
+      backgroundSize: 'cover', 
+      backgroundPosition: 'center',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(43, 35, 35, 0.85)',
+        zIndex: 0,
+      }
+    }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <Typography variant="h2" component="h1" align="center" gutterBottom
+        sx={{
+        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+        color: '#8B4513',
+        fontWeight: 600
+        }}
+        >
           All Products
         </Typography>
         <Grid container spacing={4}>
@@ -61,7 +85,7 @@ const Products: React.FC = () => {
                     alt={product.title}
                     sx={{ objectFit: 'cover' }}
                   />
-                  <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: 'var(--secondary-main)' }}>
                     <Typography variant="h6" component="div" sx={{ mb: 1, fontWeight: 600 }}>
                       {product.title}
                     </Typography>
@@ -96,6 +120,22 @@ const Products: React.FC = () => {
             color="primary"
             shape="rounded"
             size="large"
+            sx={{
+              '& .MuiPaginationItem-root': {
+                backgroundColor: 'var(--secondary-main)',
+                color: '#8B4513',
+                '&:hover': {
+                  backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                },
+                '&.Mui-selected': {
+                  backgroundColor: '#8B4513',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#8B4513',
+                  },
+                },
+              },
+            }}
           />
         </Box>
       </Container>

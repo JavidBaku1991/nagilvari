@@ -38,25 +38,39 @@ const FAQ: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ 
-      backgroundColor: 'white',
+    <Box sx={{
+      position: 'relative',
       minHeight: 'calc(100vh - 64px)',
-      color: '#333',
       paddingTop: '100px',
       paddingBottom: '40px',
       backgroundImage: `url(${faq})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(24, 19, 19, 0.85)',
+        zIndex: 0,
+      }
     }}>
-      <Container maxWidth="md">
+      <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
           mb: 4,
-          color: '#333'
+          color: '#8B4513',
+          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+          fontWeight: 600
         }}>
           {t('faq.title')}
         </Typography>
-        <Typography variant="subtitle1" align="center" sx={{ mb: 6, color: '#666' }}>
+        <Typography variant="subtitle1" align="center" sx={{ 
+          mb: 6,
+          color: '#8B4513',
+          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
+        }}>
           {t('faq.description')}
         </Typography>
         <Box sx={{ maxWidth: 800, mx: 'auto' }}>
@@ -65,7 +79,6 @@ const FAQ: React.FC = () => {
               key={index} 
               sx={{ 
                 mb: 2,
-                color: '#333',
                 background: 'rgba(255, 255, 255, 0.1)',
                 borderRadius: '16px',
                 boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
@@ -76,13 +89,13 @@ const FAQ: React.FC = () => {
                   display: 'none'
                 },
                 '& .MuiAccordionSummary-root': {
-                  color: '#333',
+                  color: '#8B4513',
                   '&:hover': {
                     backgroundColor: 'rgba(139, 69, 19, 0.05)'
                   }
                 },
                 '& .MuiAccordionDetails-root': {
-                  color: '#666'
+                  color: '#8B4513'
                 },
                 '& .MuiSvgIcon-root': {
                   color: '#8B4513'
@@ -94,10 +107,14 @@ const FAQ: React.FC = () => {
                 aria-controls={`panel${index}-content`}
                 id={`panel${index}-header`}
               >
-                <Typography variant="h6">{item.question}</Typography>
+                <Typography variant="h6" sx={{ color: '#8B4513', fontWeight: 600 }}>
+                  {item.question}
+                </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Typography>{item.answer}</Typography>
+                <Typography sx={{ color: '#8B4513', lineHeight: 1.6 }}>
+                  {item.answer}
+                </Typography>
               </AccordionDetails>
             </Accordion>
           ))}

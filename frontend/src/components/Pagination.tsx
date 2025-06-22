@@ -23,6 +23,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
         <button
+
+        style={{
+          backgroundColor: 'var(--secondary-main)',
+          color: 'white',
+          fontWeight: 'bold',
+        }}
           key={i}
           onClick={() => onPageChange(i)}
           className={`px-4 py-2 mx-1 rounded-md ${
