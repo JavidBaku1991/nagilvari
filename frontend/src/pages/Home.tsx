@@ -34,18 +34,7 @@ const Home: React.FC = () => {
       images: [hero1Img, hero2Img, footerImg, heroImg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
       path: '/products/sculptures'
     },
-    {
-      title: t('categories.digitalArt.title'),
-      description: t('categories.digitalArt.description'),
-      images: [hero2Img, footerImg, heroImg, hero1Img].map((src, i) => ({ src, alt: `Digital Art ${i + 1}` })),
-      path: '/products/digital-art'
-    },
-    {
-      title: t('categories.photography.title'),
-      description: t('categories.photography.description'),
-      images: [footerImg, heroImg, hero1Img, hero2Img].map((src, i) => ({ src, alt: `Photography ${i + 1}` })),
-      path: '/products/photography'
-    },
+
     {
       title: t('categories.ceramics.title'),
       description: t('categories.ceramics.description'),
@@ -132,6 +121,7 @@ const Home: React.FC = () => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            borderRadius: '20px',
           }}
           className='hero-section'
         >

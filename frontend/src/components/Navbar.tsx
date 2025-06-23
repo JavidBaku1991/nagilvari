@@ -44,8 +44,7 @@ const Navbar: React.FC = () => {
     { label: 'All Products', path: '/products' },
     { label: 'Paintings', path: '/products/paintings' },
     { label: 'Sculptures', path: '/products/sculptures' },
-    { label: 'Digital Art', path: '/products/digital-art' },
-    { label: 'Photography', path: '/products/photography' },
+
     { label: 'Ceramics', path: '/products/ceramics' }
   ];
 

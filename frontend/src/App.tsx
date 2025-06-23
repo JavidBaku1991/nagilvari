@@ -12,8 +12,7 @@ import FAQ from './pages/FAQ';
 import Search from './pages/Search';
 import Paintings from './pages/products/Paintings';
 import Sculptures from './pages/products/Sculptures';
-import DigitalArt from './pages/products/DigitalArt';
-import Photography from './pages/products/Photography';
+
 import Ceramics from './pages/products/Ceramics';
 import './i18n/config';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -40,8 +39,7 @@ const AppContent: React.FC = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/products/paintings" element={<Paintings />} />
           <Route path="/products/sculptures" element={<Sculptures />} />
-          <Route path="/products/digital-art" element={<DigitalArt />} />
-          <Route path="/products/photography" element={<Photography />} />
+
           <Route path="/products/ceramics" element={<Ceramics />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/search" element={<Search />} />

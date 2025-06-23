@@ -23,7 +23,7 @@ interface LanguageSwitcherProps {
 
 const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled }) => {
   const { t } = useTranslation();
-  const mainColor = 'white';
+  const secondaryMain = '#D2B48C';
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -55,6 +55,13 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled }) => {
     borderRadius: '6px',
     textTransform: 'none',
     px: 1.5,
+    '&:hover': {
+      backgroundColor: `$20`,
+      borderColor: isScrolled ? 'white' : 'var(--secondary-main)',
+    },
+    '& .MuiSvgIcon-root': {
+      color: isScrolled ? 'white' : 'var(--secondary-main)',
+    },
   };
 
   return (
@@ -76,13 +83,33 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled }) => {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+        PaperProps={{
+          sx: {
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            backdropFilter: 'blur(10px)',
+            border: `1px solid ${secondaryMain}`,
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+          }
+        }}
       >
         {languages.map(({ code, label }) => (
           <MenuItem
             key={code}
             selected={i18n.language === code}
             onClick={() => changeLanguage(code)}
-            sx={{ color: mainColor }}
+            sx={{ 
+              color: 'var(--secondary-main)',
+              fontWeight: i18n.language === code ? 600 : 400,
+              '&:hover': {
+                backgroundColor: `${secondaryMain}15`,
+              },
+              '&.Mui-selected': {
+                backgroundColor: `${secondaryMain}20`,
+                '&:hover': {
+                  backgroundColor: `${secondaryMain}25`,
+                },
+              },
+            }}
           >
             {label}
           </MenuItem>

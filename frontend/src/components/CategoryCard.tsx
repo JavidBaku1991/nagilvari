@@ -114,7 +114,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             <Typography
               variant="body2"
               sx={{
-                color: 'black',
+                color: 'var(--secondary-main)',
                 fontWeight: 500,
                 '&:hover': {
                   textDecoration: 'underline'
