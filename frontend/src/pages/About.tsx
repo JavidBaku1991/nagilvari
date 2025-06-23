@@ -29,7 +29,7 @@ const About: React.FC = () => {
       }
     }}>
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <h2 className="about-title text-center mb-5" style={{ color: '#8B4513' }}>
+        <h2 className="about-title text-center mb-5" style={{ color: 'white' }}>
           {t('about.title')}
         </h2>
         <div
@@ -40,7 +40,7 @@ const About: React.FC = () => {
             height: '500px',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            color: '#8B4513',
+            color: 'white',
             textShadow: '2px 2px 4px rgba(203, 186, 186, 0.3)',
             background: 'rgba(255, 255, 255, 0.1)',
             borderRadius: '16px',

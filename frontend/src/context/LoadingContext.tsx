@@ -43,28 +43,16 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
             position: 'fixed',
             top: 0,
             left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 9999,
-            backdropFilter: 'blur(4px)',
-            WebkitBackdropFilter: 'blur(4px)',
-            transition: 'opacity 0.3s ease-in-out',
           }}
         >
-          <div
-            style={{
-              backgroundColor: 'white',
-              padding: '2rem',
-              borderRadius: '12px',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            <LoadingSpinner size={60} color="#8B4513" />
-          </div>
+          <LoadingSpinner size={60} color="white" />
         </div>
       )}
     </LoadingContext.Provider>

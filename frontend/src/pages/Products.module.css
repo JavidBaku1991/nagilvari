@@ -1,6 +1,6 @@
 .hero {
-  background-color: #8B4513;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 4rem 0;
   position: relative;
   overflow: hidden;
@@ -75,7 +75,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #8B4513;
+  color: white;
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -95,7 +95,7 @@
 .filterInput:focus,
 .filterSelect:focus {
   outline: none;
-  border-color: #8B4513;
+  border-color: white;
   background-color: white;
   box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
 }
@@ -103,7 +103,7 @@
 .filterSelect {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238B4513'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1.5em;
@@ -118,8 +118,8 @@
 .filterButton {
   width: 100%;
   padding: 0.75rem 1rem;
-  background-color: #8B4513;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   border-radius: 0.75rem;
   font-weight: 600;
@@ -129,7 +129,7 @@
 }
 
 .filterButton:hover {
-  background-color: #7D3C0C;
+  background-color: #F3F4F6;
   transform: translateY(-1px);
 }
 
@@ -141,7 +141,7 @@
   display: inline-block;
   padding: 0.25rem 0.5rem;
   background-color: #F3F4F6;
-  color: #8B4513;
+  color: white;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -195,14 +195,14 @@
   border: 1px solid #D1D5DB;
   border-radius: 0.5rem;
   background-color: white;
-  color: #374151;
+  color: black;
   transition: all 0.2s ease;
 }
 
 .paginationButton:hover:not(:disabled) {
   background-color: #F3F4F6;
-  border-color: #8B4513;
-  color: #8B4513;
+  border-color: white;
+  color: white;
 }
 
 .paginationButtonDisabled {
@@ -229,4 +229,61 @@
   .gridItem {
     max-width: 300px;
   }
+}
+
+.price-slider-thumb {
+  background-color: white;
+  border: 2px solid #ddd;
+}
+
+.price-slider-track-1 {
+  background-color: #ccc;
+}
+
+.search-input {
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: white;
+  outline: none;
+}
+
+.select-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  transition: border-color 0.3s ease;
+}
+
+.select-input:focus {
+  border-color: white;
+  outline: none;
+}
+
+.page-link.active .page-link-a {
+  color: white;
+  font-weight: bold;
+}
+
+.page-link-a:hover {
+  text-decoration: underline;
+}
+
+.disabled-link {
+  color: #aaa;
+  pointer-events: none;
+}
+
+.product-card-button {
+  border-color: white;
+  color: white;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.product-card-button:hover {
+  background-color: white;
+  color: black;
 }

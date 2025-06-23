@@ -23,18 +23,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
         <button
-
-        style={{
-          backgroundColor: 'var(--secondary-main)',
-          color: 'white',
-          fontWeight: 'bold',
-        }}
           key={i}
           onClick={() => onPageChange(i)}
           className={`px-4 py-2 mx-1 rounded-md ${
             currentPage === i
-              ? 'bg-[#8B4513] text-white'
-              : 'bg-white text-[#8B4513] hover:bg-gray-100'
+              ? 'bg-black text-white'
+              : 'bg-white text-black hover:bg-gray-100'
           }`}
           aria-current={currentPage === i ? 'page' : undefined}
         >
@@ -53,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         className={`px-4 py-2 rounded-md ${
           currentPage === 1
             ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white text-[#8B4513] hover:bg-gray-100'
+            : 'bg-white text-black hover:bg-gray-100'
         }`}
         aria-label={t('pagination.previous')}
       >
@@ -68,7 +62,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
         className={`px-4 py-2 rounded-md ${
           currentPage === totalPages
             ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            : 'bg-white text-[#8B4513] hover:bg-gray-100'
+            : 'bg-white text-black hover:bg-gray-100'
         }`}
         aria-label={t('pagination.next')}
       >

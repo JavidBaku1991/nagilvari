@@ -93,12 +93,23 @@ const Photography: React.FC = () => {
     <Box sx={{ 
       backgroundColor: 'white',
       minHeight: 'calc(100vh - 64px)',
-      color: '#8B4513',
+      color: 'white',
       paddingTop: '100px',
       paddingBottom: '40px'
     }}>
       <Container maxWidth="lg">
-        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
+        <Typography 
+          variant="h2" 
+          component="h1" 
+          gutterBottom 
+          sx={{ 
+            textAlign: 'center', 
+            mb: 6, 
+            fontWeight: 'bold', 
+            color: 'white',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)'
+          }}
+        >
           {t('categories.photography.title')}
         </Typography>
         <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: '#666' }}>
@@ -165,17 +176,17 @@ const Photography: React.FC = () => {
                       size="large"
                       sx={{
                         '& .MuiPaginationItem-root': {
-                          backgroundColor: 'var(--secondary-main)',
-                          color: '#8B4513',
+                          color: 'white',
+                          backgroundColor: 'rgba(255, 255, 255, 0.2)',
                           '&:hover': {
-                            backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
                           },
-                          '&.Mui-selected': {
-                            backgroundColor: '#8B4513',
-                            color: 'white',
-                            '&:hover': {
-                              backgroundColor: '#8B4513',
-                            },
+                        },
+                        '& .Mui-selected': {
+                          backgroundColor: 'white',
+                          color: 'black',
+                          '&:hover': {
+                            backgroundColor: 'white',
                           },
                         },
                       }}

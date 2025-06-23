@@ -40,12 +40,17 @@ const Products: React.FC = () => {
       }
     }}>
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <Typography variant="h2" component="h1" align="center" gutterBottom
-        sx={{
-        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-        color: '#8B4513',
-        fontWeight: 600
-        }}
+        <Typography 
+          variant="h2" 
+          component="h1" 
+          gutterBottom 
+          sx={{ 
+            textAlign: 'center', 
+            mb: 6, 
+            fontWeight: 'bold', 
+            color: 'var(--secondary-main)',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)'
+          }}
         >
           All Products
         </Typography>
@@ -55,13 +60,16 @@ const Products: React.FC = () => {
               <Box
                 onClick={() => navigate(`/product/${product.id}`)}
                 tabIndex={0}
-                sx={{ outline: 'none' }}
+                sx={{ outline: 'none',
+                  color:'white'
+                 }}
                 role="button"
                 aria-label={`View details for ${product.title}`}
               >
                 <Card
                   sx={{
                     height: 420,
+                    color:'white',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -89,20 +97,20 @@ const Products: React.FC = () => {
                     <Typography variant="h6" component="div" sx={{ mb: 1, fontWeight: 600 }}>
                       {product.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1, flexGrow: 1 }}>
+                    <Typography variant="body2"  sx={{ mb: 1, flexGrow: 1 }}>
                       {product.description}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" >
                       <b>Artist:</b> {product.artist}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" >
                       <b>Price:</b> ${product.price}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" >
                       <b>Year:</b> {product.year}
                     </Typography>
                     {product.dimensions && (
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body2" >
                         <b>Dimensions:</b> {product.dimensions}
                       </Typography>
                     )}
@@ -123,15 +131,15 @@ const Products: React.FC = () => {
             sx={{
               '& .MuiPaginationItem-root': {
                 backgroundColor: 'var(--secondary-main)',
-                color: '#8B4513',
+                color: 'white',
                 '&:hover': {
-                  backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 },
                 '&.Mui-selected': {
-                  backgroundColor: '#8B4513',
-                  color: 'white',
+                  backgroundColor: 'white',
+                  color: 'black',
                   '&:hover': {
-                    backgroundColor: '#8B4513',
+                    backgroundColor: 'white',
                   },
                 },
               },

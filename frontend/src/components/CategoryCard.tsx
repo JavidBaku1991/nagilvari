@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Typography, Box } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Box, CardActions, Button } from '@mui/material';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   };
 
   return (
-    <Link to={path} style={{ textDecoration: 'none' }} onClick={handleClick}>
+    <Link to={path} style={{ textDecoration: 'none', marginBottom: '20px', display: 'block' }} onClick={handleClick}>
       <Card
         sx={{
           height: cardHeight,
@@ -54,10 +54,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
           overflow: 'hidden',
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           transition: 'transform 0.3s ease-in-out',
-          backgroundColor: 'var(--secondary-main)',
+          backgroundColor: 'rgba(255, 255, 255, 0.25)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.18)',
           '&:hover': {
             transform: 'translateY(-5px)',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.2)'
+            boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
+            backgroundColor: 'rgba(255, 255, 255, 0.35)',
           }
         }}
       >
@@ -71,25 +74,32 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             borderBottom: '1px solid rgba(0,0,0,0.1)'
           }}
         />
-            <CardContent sx={{ flexGrow: 1, backgroundColor: 'var(--secondary-main)' }}>
+        <CardContent sx={{ 
+          flexGrow: 1, 
+          color: 'var(--secondary-main)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center'
+        }}>
           <Typography
             gutterBottom
             variant="h5"
             component="h2"
             sx={{
-              color: '#8B4513',
               fontWeight: 600,
-              marginBottom: '1rem'
+              marginBottom: '1rem',
+              color: 'var(--secondary-main)',
             }}
           >
             {title}
           </Typography>
           <Typography
             variant="body2"
-            color="text.secondary"
             sx={{
-              color: '#666',
-              lineHeight: 1.6
+              lineHeight: 1.6,
+              color: 'var(--secondary-main)',
             }}
           >
             {description}
@@ -104,7 +114,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             <Typography
               variant="body2"
               sx={{
-                color: '#8B4513',
+                color: 'black',
                 fontWeight: 500,
                 '&:hover': {
                   textDecoration: 'underline'

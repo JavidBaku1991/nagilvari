@@ -5,6 +5,9 @@ import LoadingSpinner from './LoadingSpinner';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useTranslation } from 'react-i18next';
 import '@splidejs/react-splide/css';
+import featured from '../images/featured.jpg'
+import { Box, Container, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const FeaturedProducts: React.FC = () => {
   const { t } = useTranslation();
@@ -54,20 +57,25 @@ const FeaturedProducts: React.FC = () => {
   }, []);
 
   return (
-    <div 
+    <Box 
       className="featured-products-section"
-      style={{
-        padding: '4rem 2rem',
+      sx={{
+        padding: '2rem 2rem',
         backgroundColor: '#f8f9fa',
         opacity: isVisible ? 1 : 0,
-        transition: 'opacity 0.5s ease-out'
+        transition: 'opacity 0.5s ease-out',
+        borderRadius: '20px',
+        backgroundImage: `url(${featured})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <Container maxWidth="lg">
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h3 style={{
             fontSize: '2.5rem',
-            color: '#8B4513',
+            color: 'var(--secondary-main)',
             marginBottom: '1rem',
             fontWeight: 600,
             position: 'relative',
@@ -81,12 +89,12 @@ const FeaturedProducts: React.FC = () => {
               transform: 'translateX(-50%)',
               width: '60px',
               height: '3px',
-              backgroundColor: '#8B4513',
+              backgroundColor: 'var(--secondary-main)',
               borderRadius: '2px'
             }} />
           </h3>
           <p style={{
-            color: '#666',
+            color: 'var(--secondary-main)',
             fontSize: '1.1rem',
             maxWidth: '600px',
             margin: '1rem auto 0',
@@ -131,8 +139,24 @@ const FeaturedProducts: React.FC = () => {
             ))}
           </Splide>
         )}
-      </div>
-    </div>
+        <Box sx={{ textAlign: 'center', mt: 4 }}>
+          <Button 
+            variant="contained" 
+            component={Link} 
+            to="/products"
+            sx={{
+              backgroundColor: 'white',
+              color: 'var(--secondary-main)',
+              '&:hover': {
+                backgroundColor: '#f0f0f0'
+              }
+            }}
+          >
+            {t('featuredProducts.viewAll')}
+          </Button>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

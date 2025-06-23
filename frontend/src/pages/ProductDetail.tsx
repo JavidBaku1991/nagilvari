@@ -58,7 +58,7 @@ const ProductDetail: React.FC = () => {
                         key={idx}
                         onClick={() => setSelectedImage(img)}
                         sx={{
-                          border: selectedImage === img ? '2px solid #8B4513' : '2px solid #eee',
+                          border: selectedImage === img ? '2px solid white' : '2px solid #eee',
                           borderRadius: 2,
                           p: 0.5,
                           width: 56,
@@ -82,18 +82,18 @@ const ProductDetail: React.FC = () => {
                 <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <Chip
                     label={product.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                    sx={{ background: '#8B4513', color: 'white', mb: 2, alignSelf: 'flex-start', fontWeight: 600 }}
+                    sx={{ background: 'white', color: 'black', mb: 2, alignSelf: 'flex-start', fontWeight: 600 }}
                   />
-                  <Typography variant="h4" fontWeight={700} gutterBottom color="#8B4513">
+                  <Typography variant="h4" fontWeight={700} gutterBottom color="white">
                     {product.title}
                   </Typography>
-                  <Typography variant="h5" color="#8B4513" fontWeight={600} gutterBottom>
+                  <Typography variant="h5" color="white" fontWeight={600} gutterBottom>
                     ${product.price.toLocaleString()}
                   </Typography>
                   <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
                     {product.description}
                   </Typography>
-                  <Divider sx={{ my: 2 }} />
+                  <Divider sx={{ my: 2, borderColor: 'rgba(255,255,255,0.2)' }} />
                   <Typography variant="body2" color="text.secondary">
                     <b>Artist:</b> {product.artist}
                   </Typography>
@@ -106,10 +106,10 @@ const ProductDetail: React.FC = () => {
                     </Typography>
                   )}
                   <Box sx={{ mt: 'auto', pt: 3, display: 'flex', gap: 2 }}>
-                    <Button variant="contained" color="primary" size="large" sx={{ borderRadius: 2, fontWeight: 600, background: '#8B4513', '&:hover': { background: '#6B3410' } }}>
+                    <Button variant="contained" color="primary" size="large" sx={{ borderRadius: 2, fontWeight: 600, background: 'white', color: 'black', '&:hover': { background: '#f0f0f0' } }}>
                       Add to Cart
                     </Button>
-                    <Button variant="outlined" color="primary" size="large" sx={{ borderRadius: 2, fontWeight: 600, color: '#8B4513', borderColor: '#8B4513', '&:hover': { background: '#8B4513', color: '#fff', borderColor: '#8B4513' } }}>
+                    <Button variant="outlined" color="primary" size="large" sx={{ borderRadius: 2, fontWeight: 600, color: 'white', borderColor: 'white', '&:hover': { background: 'white', color: 'black', borderColor: 'white' } }}>
                       Contact Seller
                     </Button>
                   </Box>

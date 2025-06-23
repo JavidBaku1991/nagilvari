@@ -92,7 +92,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             component="div"
             sx={{ 
               fontWeight: 600,
-              color: '#8B4513',
+              color: 'white',
               mb: 1,
               fontSize: '1.1rem',
               lineHeight: 1.4
@@ -102,7 +102,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </Typography>
           <Typography 
             variant="body2" 
-            color="text.secondary"
             sx={{ 
               mb: 2,
               fontSize: '0.9rem',
@@ -111,7 +110,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               overflow: 'hidden',
               display: '-webkit-box',
               WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical'
+              WebkitBoxOrient: 'vertical',
+              color: 'white',
             }}
           >
             {description}
@@ -124,10 +124,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           }}>
             <Typography 
               variant="h6" 
-              color="primary"
               sx={{ 
                 fontWeight: 600,
-                color: '#8B4513'
+                color: 'white',
               }}
             >
               ${price.toFixed(2)}

@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   padding: 3rem;
-  background: linear-gradient(135deg, var(--main), var(--secondary-main));
+  background: var(--secondary-main);
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   color: #fff;
@@ -64,7 +64,7 @@
 
 .investor-button.primary {
   background-color: #ffffff;
-  color: var(--main);
+  color: var(--secondary-main);
 }
 
 .investor-button.primary:hover {

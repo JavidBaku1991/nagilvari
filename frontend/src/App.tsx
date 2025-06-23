@@ -53,7 +53,7 @@ const AppContent: React.FC = () => {
       {/* Global SpeedDial */}
       <Box sx={{ position: 'fixed', bottom: 32, right: 32, zIndex: 1300 }}>
         <SpeedDial
-          icon={<WorkIcon sx={{ color: 'var(--main)' , backgroundColor: 'transparent'}} />}
+          icon={<WorkIcon sx={{ color: 'var(--secondary-main)' , backgroundColor: 'transparent'}} />}
           sx={{backgroundColor: 'transparent'}}
           ariaLabel="Share on social media"
           FabProps={{

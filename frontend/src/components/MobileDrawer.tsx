@@ -31,9 +31,10 @@ import LanguageSwitcher from './LanguageSwitcher';
 interface MobileDrawerProps {
   open: boolean;
   onClose: () => void;
+  isScrolled?: boolean;
 }
 
-const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
+const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled = false }) => {
   const [productsOpen, setProductsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
@@ -93,7 +94,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose }) => {
       }}
     >
       <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <LanguageSwitcher />
+        <LanguageSwitcher isScrolled={isScrolled} />
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>

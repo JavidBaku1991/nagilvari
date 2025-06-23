@@ -166,7 +166,7 @@ const CategoryProducts: React.FC = () => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         minHeight: 'calc(100vh - 64px)',
-        color: '#8B4513',
+        color: 'white',
         paddingTop: '100px',
         paddingBottom: '40px'
       }}>
@@ -201,7 +201,7 @@ const CategoryProducts: React.FC = () => {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
     minHeight: 'calc(100vh - 64px)',
-      color: '#8B4513',
+      color: 'white',
       paddingTop: '100px',
       paddingBottom: '40px'
     }}>
@@ -266,17 +266,17 @@ const CategoryProducts: React.FC = () => {
                       size="large"
                       sx={{
                         '& .MuiPaginationItem-root': {
-                          backgroundColor: 'var(--secondary-main)',
-                          color: '#8B4513',
+                          color: 'white',
+                          backgroundColor: 'rgba(255, 255, 255, 0.2)',
                           '&:hover': {
-                            backgroundColor: 'rgba(139, 69, 19, 0.1)',
+                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
                           },
-                          '&.Mui-selected': {
-                            backgroundColor: '#8B4513',
-                            color: 'white',
-                            '&:hover': {
-                              backgroundColor: '#8B4513',
-                            },
+                        },
+                        '& .Mui-selected': {
+                          backgroundColor: 'white',
+                          color: 'black',
+                          '&:hover': {
+                            backgroundColor: 'white',
                           },
                         },
                       }}

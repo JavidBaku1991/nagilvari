@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import i18n from '../i18n';
 
 function useCssVariable(varName: string, fallback: string) {
   if (typeof window !== 'undefined') {
@@ -16,9 +17,13 @@ function useCssVariable(varName: string, fallback: string) {
   return fallback;
 }
 
-const LanguageSwitcher: React.FC = () => {
-  const { i18n } = useTranslation();
-  const mainColor = useCssVariable('--main', '#8B4513');
+interface LanguageSwitcherProps {
+  isScrolled: boolean;
+}
+
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ isScrolled }) => {
+  const { t } = useTranslation();
+  const mainColor = 'white';
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -42,6 +47,16 @@ const LanguageSwitcher: React.FC = () => {
     { code: 'az', label: 'Azərbaycan' },
   ];
 
+  const buttonSx = {
+    color: isScrolled ? 'white' : 'var(--secondary-main)',
+    borderColor: isScrolled ? 'white' : 'var(--secondary-main)',
+    fontWeight: 600,
+    fontSize: '0.75rem',
+    borderRadius: '6px',
+    textTransform: 'none',
+    px: 1.5,
+  };
+
   return (
     <>
       <Button
@@ -50,15 +65,7 @@ const LanguageSwitcher: React.FC = () => {
         endIcon={<ArrowDropDownIcon />}
         variant="outlined"
         size="small"
-        sx={{
-          color: mainColor,
-          borderColor: mainColor,
-          fontWeight: 600,
-          fontSize: '0.75rem',
-          borderRadius: '6px',
-          textTransform: 'none',
-          px: 1.5,
-        }}
+        sx={buttonSx}
       >
         {i18n.language.toUpperCase()}
       </Button>
@@ -75,6 +82,7 @@ const LanguageSwitcher: React.FC = () => {
             key={code}
             selected={i18n.language === code}
             onClick={() => changeLanguage(code)}
+            sx={{ color: mainColor }}
           >
             {label}
           </MenuItem>

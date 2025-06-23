@@ -14,8 +14,8 @@ code {
 }
 
 :root {
-  --main: #8B4513;
-  --secondary-main: #e09057;
+  --main: #f7f7f7;
+  --secondary-main: rgb(255,194,43);
 }
 
 

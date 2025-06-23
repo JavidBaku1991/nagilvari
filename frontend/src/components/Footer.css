@@ -1,7 +1,9 @@
 .footer {
-  background: var(--secondary-main);
+  background-image: url('../images/footer.jpg');
+  background-size: cover;
+  background-position: center;
   background-blend-mode: overlay;
-  color: var(--main);
+  color: white;
   padding: 4rem 2rem 2rem;
   position: relative;
   overflow: hidden;
@@ -53,23 +55,21 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--main), var(--secondary-main));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: white;
 }
 
 .footer-description {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--main);
   opacity: 0.9;
+  color: white;
 }
 
 .footer-subtitle {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: var(--main);
+  color: white;
 }
 
 .footer-links {
@@ -83,7 +83,7 @@
 }
 
 .footer-links a {
-  color: var(--main);
+  color: white;
   text-decoration: none;
   transition: all 0.3s ease;
   opacity: 0.8;
@@ -98,7 +98,7 @@
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: var(--main);
+  background-color: white;
   transition: width 0.3s ease;
 }
 
@@ -118,10 +118,10 @@
 }
 
 .social-link {
-  color: var(--main);
   font-size: 1.5rem;
   transition: all 0.3s ease;
   opacity: 0.8;
+  color: white;
 }
 
 .social-link:hover {
@@ -144,6 +144,7 @@
 .footer-bottom p {
   margin: 0;
   opacity: 0.8;
+  color: white;
 }
 
 .footer-bottom-links {
@@ -152,10 +153,10 @@
 }
 
 .footer-bottom-links a {
-  color: var(--main);
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  color: white;
 }
 
 .footer-bottom-links a:hover {

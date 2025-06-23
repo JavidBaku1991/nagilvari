@@ -11,6 +11,7 @@ import hero2Img from '../images/hero2.png';
 import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
 import { Box, Container } from '@mui/material';
+import categoriesImg from '../images/categories.jpg';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -100,10 +101,12 @@ const Home: React.FC = () => {
     <Box sx={{ 
       position: 'relative',
       minHeight: '100vh',
+      paddingTop: '100px',
       backgroundImage: `url(${heroImg})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
+      paddingBottom: '20px',
       '&::before': {
         content: '""',
         position: 'absolute',
@@ -119,7 +122,7 @@ const Home: React.FC = () => {
         {/* HERO SECTION */}
         <section
           style={{
-            height: '100vh',
+            height: '80vh',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -161,7 +164,7 @@ const Home: React.FC = () => {
               style={{
                 fontSize: '3.5rem',
                 marginBottom: '1rem',
-                color: '#8B4513',
+                color: 'var(--secondary-main)',
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
                 transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
                 transition: 'transform 2s ease-in-out',
@@ -175,7 +178,7 @@ const Home: React.FC = () => {
               style={{
                 fontSize: '1.5rem',
                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
-                color: '#8B4513',
+                color: 'var(--secondary-main)',
                 transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
                 transition: 'transform 2s ease-in-out',
                 transitionDelay: '1.5s',
@@ -219,17 +222,25 @@ const Home: React.FC = () => {
         <div
           ref={categoriesRef}
           style={{
-            padding: '4rem 2rem',
+            padding: '2rem 2rem',
             opacity: isCategoriesVisible ? 1 : 0,
             transition: 'opacity 0.5s ease-out',
-            backgroundColor: 'white'
+            borderRadius: '20px',
+            marginTop: '20px',
+            backgroundImage: `url(${categoriesImg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            backgroundColor: 'rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' , marginBottom: '20px'}}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h3 style={{
                 fontSize: '2.5rem',
-                color: '#8B4513',
+                color: 'var(--secondary-main)',
                 marginBottom: '1rem',
                 fontWeight: 600,
                 position: 'relative',
@@ -243,12 +254,12 @@ const Home: React.FC = () => {
                   transform: 'translateX(-50%)',
                   width: '60px',
                   height: '3px',
-                  backgroundColor: '#8B4513',
+                  backgroundColor: 'var(--secondary-main)',
                   borderRadius: '2px'
                 }} />
               </h3>
               <p style={{
-                color: '#666',
+                color: 'var(--secondary-main)',
                 fontSize: '1.1rem',
                 maxWidth: '600px',
                 margin: '1rem auto 0',

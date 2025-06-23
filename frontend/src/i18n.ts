@@ -1,49 +1,25 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
-const resources = {
-  en: {
-    translation: {
-      // Common translations
-      'language': 'Language',
-      'english': 'English',
-      'russian': 'Russian',
-      'azerbaijani': 'Azerbaijani',
-      // Add more translations as needed
-    }
-  },
-  ru: {
-    translation: {
-      // Common translations
-      'language': 'Язык',
-      'english': 'Английский',
-      'russian': 'Русский',
-      'azerbaijani': 'Азербайджанский',
-      // Add more translations as needed
-    }
-  },
-  az: {
-    translation: {
-      // Common translations
-      'language': 'Dil',
-      'english': 'İngiliscə',
-      'russian': 'Rusca',
-      'azerbaijani': 'Azərbaycan',
-      // Add more translations as needed
-    }
-  }
-};
+// import HttpApi from 'i18next-http-backend';
 
 i18n
+  // .use(HttpApi)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources,
+    supportedLngs: ['en', 'ru', 'az'],
     fallbackLng: 'en',
+    detection: {
+      order: ['path', 'cookie', 'htmlTag', 'localStorage', 'subdomain'],
+      caches: ['cookie'],
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/translation.json',
+    },
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
 export default i18n; 

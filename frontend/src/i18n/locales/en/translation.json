@@ -16,6 +16,9 @@
     "categoriesDescription": "Explore our diverse collection of art and craft works across different categories",
     "featuredProducts": "Featured Products"
   },
+  "featuredProducts": {
+    "viewAll": "View All"
+  },
   "categories": {
     "all": "All Categories",
     "paintings": {

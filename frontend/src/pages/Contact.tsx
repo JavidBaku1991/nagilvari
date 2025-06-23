@@ -209,13 +209,14 @@ const Contact: React.FC = () => {
                     sx={{
                       '& .MuiOutlinedInput-root': {
                         borderRadius: '12px',
-                        '& fieldset': { borderColor: '#d3c2b4' },
-                        '&:hover fieldset': { borderColor: '#8B4513' },
-                        '&.Mui-focused fieldset': { borderColor: '#8B4513' }
+                        '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.5)' },
+                        '&:hover fieldset': { borderColor: 'white' },
+                        '&.Mui-focused fieldset': { borderColor: 'white' }
                       },
-                      '& .MuiInputLabel-root': { color: '#7a6651' },
-                      '& .MuiInputLabel-root.Mui-focused': { color: '#8B4513' }
+                      '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
+                      '& .MuiInputLabel-root.Mui-focused': { color: 'white' }
                     }}
+                    InputProps={{ style: { color: 'white' } }}
                   />
                 ))}
 
@@ -226,10 +227,12 @@ const Contact: React.FC = () => {
                   sx={{
                     mt: 2,
                     py: 1.5,
-                    backgroundColor: '#8B4513',
-                    borderRadius: '12px',
+                    backgroundColor: 'white',
+                    color: 'black',
                     fontWeight: 'bold',
-                    '&:hover': { backgroundColor: '#6B3410' }
+                    '&:hover': {
+                      backgroundColor: '#f0f0f0'
+                    }
                   }}
                 >
                   {t('contacts.send')}

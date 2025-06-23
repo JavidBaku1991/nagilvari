@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Typography, Paper, Grid, Box, Button, Container } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const Cart: React.FC = () => {
   // Dummy cart data - replace with actual cart state management later
@@ -22,126 +24,88 @@ const Cart: React.FC = () => {
 
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+  const { t } = useTranslation();
+
   return (
-    <div style={{ padding: '2rem', backgroundColor: 'white', minHeight: '100vh' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <h1 style={{ 
-          fontSize: '2rem', 
-          color: '#8B4513',
-          marginBottom: '2rem'
-        }}>
-          Shopping Cart
-        </h1>
+    <Box sx={{ p: 4, minHeight: '100vh' }}>
+      <Container maxWidth="lg">
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', color: 'text.primary' }}>
+          {t('cart.title')}
+        </Typography>
 
         {cartItems.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '3rem' }}>
-            <h2 style={{ color: '#666', marginBottom: '1rem' }}>Your cart is empty</h2>
-            <p style={{ color: '#666', marginBottom: '2rem' }}>
-              Browse our products and add items to your cart
-            </p>
-            <Link 
-              to="/products" 
-              style={{
-                display: 'inline-block',
-                padding: '0.8rem 2rem',
-                backgroundColor: '#8B4513',
-                color: 'white',
-                textDecoration: 'none',
-                borderRadius: '4px',
-                transition: 'background-color 0.3s'
-              }}
+          <Box sx={{ textAlign: 'center', py: 6 }}>
+            <Typography variant="h6" gutterBottom>
+              {t('cart.emptyMessage')}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 4, color: 'text.secondary' }}>
+              {t('cart.emptyDescription')}
+            </Typography>
+            <Button 
+              variant="outlined" 
+              component={Link} 
+              to="/products"
+              sx={{ mr: 2 }}
             >
-              Continue Shopping
-            </Link>
-          </div>
+              {t('cart.continueShopping')}
+            </Button>
+            <Button 
+              variant="contained" 
+              onClick={() => alert(t('cart.checkout'))}
+            >
+              {t('cart.checkout')}
+            </Button>
+          </Box>
         ) : (
-          <>
-            <div style={{ 
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '1rem',
-              marginBottom: '2rem'
-            }}>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={8}>
               {cartItems.map(item => (
-                <div key={item.id} style={{
-                  display: 'grid',
-                  gridTemplateColumns: '100px 1fr auto',
-                  gap: '1rem',
-                  padding: '1rem',
-                  border: '1px solid #eee',
-                  borderRadius: '4px',
-                  alignItems: 'center'
-                }}>
-                  <img 
-                    src={item.image} 
-                    alt={item.name}
-                    style={{
-                      width: '100px',
-                      height: '100px',
-                      objectFit: 'cover',
-                      borderRadius: '4px'
-                    }}
-                  />
-                  <div>
-                    <h3 style={{ margin: '0 0 0.5rem 0', color: '#333' }}>{item.name}</h3>
-                    <p style={{ margin: '0', color: '#666' }}>${item.price}</p>
-                  </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                      Quantity: {item.quantity}
-                    </div>
-                    <div style={{ fontWeight: 'bold', color: '#8B4513' }}>
-                      ${item.price * item.quantity}
-                    </div>
-                  </div>
-                </div>
+                <Paper key={item.id} sx={{ p: 2, mb: 2, display: 'flex', alignItems: 'center' }}>
+                  <img src={item.image} alt={item.name} style={{ width: 80, height: 80, marginRight: '1rem', borderRadius: '4px' }} />
+                  <Box sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6">{item.name}</Typography>
+                    <Typography variant="body2" color="text.secondary">Quantity: {item.quantity}</Typography>
+                  </Box>
+                  <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </Typography>
+                </Paper>
               ))}
-            </div>
-
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '1rem',
-              borderTop: '1px solid #eee'
-            }}>
-              <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>
-                Total: ${total}
-              </div>
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <Link 
-                  to="/products"
-                  style={{
-                    padding: '0.8rem 2rem',
-                    backgroundColor: 'white',
-                    color: '#8B4513',
-                    textDecoration: 'none',
-                    borderRadius: '4px',
-                    border: '1px solid #8B4513',
-                    transition: 'all 0.3s'
-                  }}
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Paper sx={{ p: 3 }}>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                  {t('cart.summary')}
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                  <Typography>{t('cart.subtotal')}</Typography>
+                  <Typography>${total.toFixed(2)}</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                  <Typography>{t('cart.shipping')}</Typography>
+                  <Typography>{t('cart.free')}</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem', pt: 2, borderTop: '1px solid #ddd' }}>
+                  <Typography variant="h6">{t('cart.total')}</Typography>
+                  <Typography variant="h6">${total.toFixed(2)}</Typography>
+                </Box>
+                <Button 
+                  variant="contained" 
+                  fullWidth 
+                  sx={{ mt: 3 }}
+                  onClick={() => alert(t('cart.checkout'))}
                 >
-                  Continue Shopping
-                </Link>
-                <button
-                  style={{
-                    padding: '0.8rem 2rem',
-                    backgroundColor: '#8B4513',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.3s'
-                  }}
-                >
-                  Proceed to Checkout
-                </button>
-              </div>
-            </div>
-          </>
+                  {t('cart.proceedToCheckout')}
+                </Button>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography sx={{ fontWeight: 'bold' }}>{t('cart.totalItems', { count: cartItems.length })}</Typography>
+            </Grid>
+          </Grid>
         )}
-      </div>
-    </div>
+      </Container>
+    </Box>
   );
 };
 
