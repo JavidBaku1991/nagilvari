@@ -90,16 +90,35 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
       open={open}
       onClose={onClose}
       PaperProps={{
-        sx: { width: 280 }
+        sx: { 
+          width: 280,
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          borderRight: '1px solid var(--secondary-main)',
+        }
       }}
     >
-      <Box sx={{ p: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Box sx={{ 
+        p: 2, 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        borderBottom: '1px solid var(--secondary-main)',
+      }}>
         <LanguageSwitcher isScrolled={isScrolled} />
-        <IconButton onClick={onClose}>
+        <IconButton 
+          onClick={onClose}
+          sx={{ 
+            color: 'var(--secondary-main)',
+            '&:hover': {
+              backgroundColor: 'rgba(210, 180, 140, 0.1)',
+            }
+          }}
+        >
           <CloseIcon />
         </IconButton>
       </Box>
-      <Divider />
+      <Divider sx={{ borderColor: 'var(--secondary-main)' }} />
       
       {/* Search Form */}
       <Box sx={{ p: 2 }}>
@@ -112,7 +131,16 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton type="submit" edge="end">
+                  <IconButton 
+                    type="submit" 
+                    edge="end"
+                    sx={{ 
+                      color: 'var(--secondary-main)',
+                      '&:hover': {
+                        backgroundColor: 'rgba(210, 180, 140, 0.1)',
+                      }
+                    }}
+                  >
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>
@@ -121,20 +149,40 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
             sx={{
               '& .MuiOutlinedInput-root': {
                 borderRadius: '20px',
-                backgroundColor: '#f5f5f5',
+                backgroundColor: 'rgba(210, 180, 140, 0.1)',
+                color: 'var(--secondary-main)',
+                '& fieldset': {
+                  borderColor: 'var(--secondary-main)',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'var(--secondary-main)',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'var(--secondary-main)',
+                },
                 '&:hover': {
-                  backgroundColor: '#eeeeee',
+                  backgroundColor: 'rgba(210, 180, 140, 0.15)',
                 },
                 '&.Mui-focused': {
-                  backgroundColor: 'white',
+                  backgroundColor: 'rgba(210, 180, 140, 0.2)',
                 },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'var(--secondary-main)',
+                '&.Mui-focused': {
+                  color: 'var(--secondary-main)',
+                },
+              },
+              '& .MuiInputBase-input::placeholder': {
+                color: 'var(--secondary-main)',
+                opacity: 0.7,
               },
             }}
           />
         </form>
       </Box>
       
-      <Divider />
+      <Divider sx={{ borderColor: 'var(--secondary-main)' }} />
       
       <List>
         {menuItems.map((item) => (
@@ -143,17 +191,60 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
               component={Link}
               to={item.path}
               onClick={() => handleNavigation(item.path)}
+              sx={{
+                color: 'var(--secondary-main)',
+                '&:hover': {
+                  backgroundColor: 'rgba(210, 180, 140, 0.1)',
+                },
+                '&.Mui-selected': {
+                  backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                  '&:hover': {
+                    backgroundColor: 'rgba(210, 180, 140, 0.25)',
+                  },
+                },
+              }}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemIcon sx={{ color: 'var(--secondary-main)' }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText 
+                primary={item.text} 
+                sx={{ 
+                  '& .MuiListItemText-primary': {
+                    color: 'var(--secondary-main)',
+                    fontWeight: 500,
+                  }
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
         <ListItem disablePadding>
-          <ListItemButton onClick={handleProductsClick}>
-            <ListItemIcon><ProductsIcon /></ListItemIcon>
-            <ListItemText primary="Products" />
-            {productsOpen ? <ExpandLess /> : <ExpandMore />}
+          <ListItemButton 
+            onClick={handleProductsClick}
+            sx={{
+              color: 'var(--secondary-main)',
+              '&:hover': {
+                backgroundColor: 'rgba(210, 180, 140, 0.1)',
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'var(--secondary-main)' }}>
+              <ProductsIcon />
+            </ListItemIcon>
+            <ListItemText 
+              primary="Products" 
+              sx={{ 
+                '& .MuiListItemText-primary': {
+                  color: 'var(--secondary-main)',
+                  fontWeight: 500,
+                }
+              }}
+            />
+            {productsOpen ? 
+              <ExpandLess sx={{ color: 'var(--secondary-main)' }} /> : 
+              <ExpandMore sx={{ color: 'var(--secondary-main)' }} />
+            }
           </ListItemButton>
         </ListItem>
         <Collapse in={productsOpen} timeout="auto" unmountOnExit>
@@ -164,9 +255,29 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
                 component={Link}
                 to={category.path}
                 onClick={() => handleNavigation(category.path)}
-                sx={{ pl: 4 }}
+                sx={{ 
+                  pl: 4,
+                  color: 'var(--secondary-main)',
+                  '&:hover': {
+                    backgroundColor: 'rgba(210, 180, 140, 0.1)',
+                  },
+                  '&.Mui-selected': {
+                    backgroundColor: 'rgba(210, 180, 140, 0.15)',
+                    '&:hover': {
+                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                    },
+                  },
+                }}
               >
-                <ListItemText primary={category.text} />
+                <ListItemText 
+                  primary={category.text} 
+                  sx={{ 
+                    '& .MuiListItemText-primary': {
+                      color: 'var(--secondary-main)',
+                      fontSize: '0.9rem',
+                    }
+                  }}
+                />
               </ListItemButton>
             ))}
           </List>

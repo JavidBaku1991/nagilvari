@@ -336,7 +336,7 @@ const Navbar: React.FC = () => {
               <IconButton
                 onClick={handleDrawerToggle}
                 sx={{
-                  color: 'var(--secondary-main)',
+                  color: isScrolled ? 'white' : 'var(--secondary-main)',
                   transition: 'all 0.3s ease-in-out',
                   '&:hover': { 
                     backgroundColor: 'rgba(210, 180, 140, 0.2)',

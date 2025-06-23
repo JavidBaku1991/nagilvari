@@ -10,7 +10,7 @@ import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import categoriesImg from '../images/categories.jpg';
 
 const Home: React.FC = () => {
@@ -109,9 +109,9 @@ const Home: React.FC = () => {
     }}>
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         {/* HERO SECTION */}
-        <section
-          style={{
-            height: '80vh',
+        <Box
+          sx={{
+            height: { xs: '50vh', sm: '60vh', md: '70vh', lg: '80vh' },
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -121,17 +121,20 @@ const Home: React.FC = () => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            borderRadius: '20px',
+            borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '20px' },
+            margin: { xs: '0.5rem', sm: '1rem', md: '1.5rem', lg: '2rem' },
+            minHeight: { xs: '300px', sm: '400px' },
           }}
           className='hero-section'
         >
-          <div
+          <Box
             className="hero-text"
-            style={{
+            sx={{
               position: 'absolute',
-              top: '20%',
-              left: '10%',
-              padding: '2rem',
+              top: { xs: '5%', sm: '10%', md: '15%', lg: '20%' },
+              left: { xs: '2%', sm: '5%', md: '8%', lg: '10%' },
+              right: { xs: '2%', sm: '5%', md: '15%', lg: '20%' },
+              padding: { xs: '0.75rem', sm: '1rem', md: '1.5rem', lg: '2rem' },
               backgroundColor: 'rgba(255, 255, 255, 0.25)',
               boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
               backdropFilter: 'blur(9.5px)',
@@ -139,66 +142,87 @@ const Home: React.FC = () => {
               border: '1px solid rgba(255, 255, 255, 0.18)',
               transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
               transition: 'transform 2s ease-in-out',
-              right: '20%',
-              height: '40%',
-              width: '50%',
+              height: { xs: '60%', sm: '55%', md: '50%', lg: '40%' },
+              width: { xs: '86%', sm: '70%', md: '70%', lg: '60%' },
               alignItems: 'center',
               justifyContent: 'center',
               display: 'flex',
               flexDirection: 'column',
               textAlign: 'center',
-              zIndex: 1000
+              zIndex: 1000,
+              borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '20px' },
+              minHeight: { xs: '180px', sm: '200px' },
             }}
           >
-            <h1
-              style={{
-                fontSize: '3.5rem',
-                marginBottom: '1rem',
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem', lg: '3rem', xl: '3.5rem' },
+                marginBottom: { xs: '0.25rem', sm: '0.5rem', md: '0.75rem', lg: '1rem' },
                 color: 'var(--secondary-main)',
                 textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
                 transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
                 transition: 'transform 2s ease-in-out',
                 transitionDelay: '1s',
-                opacity: heroLoaded ? 1 : 0
+                opacity: heroLoaded ? 1 : 0,
+                fontWeight: 'bold',
+                lineHeight: { xs: 1.1, sm: 1.2, md: 1.3, lg: 1.4 },
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
               }}
             >
               {t('home.welcome')}
-            </h1>
-            <p
-              style={{
-                fontSize: '1.5rem',
+            </Typography>
+            <Typography
+              variant="h2"
+              sx={{
+                fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem', lg: '1.3rem', xl: '1.5rem' },
                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
                 color: 'var(--secondary-main)',
                 transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
                 transition: 'transform 2s ease-in-out',
                 transitionDelay: '1.5s',
-                opacity: heroLoaded ? 1 : 0
+                opacity: heroLoaded ? 1 : 0,
+                lineHeight: { xs: 1.2, sm: 1.3, md: 1.4, lg: 1.5 },
+                wordWrap: 'break-word',
+                overflowWrap: 'break-word',
               }}
             >
               {t('home.discover')}
-            </p>
-          </div>
+            </Typography>
+          </Box>
 
-          <div
+          <Box
             className="hero-image"
-            style={{
+            sx={{
               position: 'absolute',
-              width: '70%',
-              height: '75%',
-              bottom: '10%',
-              left: '23%',
+              width: { xs: '90%', sm: '85%', md: '80%', lg: '70%' },
+              height: { xs: '50%', sm: '60%', md: '70%', lg: '75%' },
+              bottom: { xs: '2%', sm: '5%', md: '8%', lg: '10%' },
+              left: { xs: '5%', sm: '7.5%', md: '10%', lg: '23%' },
               transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
               transition: 'transform 2s ease-out',
               background: 'rgba(255, 255, 255, 0.25)',
               boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
               backdropFilter: 'blur(9.5px)',
               WebkitBackdropFilter: 'blur(8.5px)',
-              borderRadius: '30px',
+              borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '30px' },
+              display: { xs: 'none', sm: 'block' }, // Hide on very small screens
+              minHeight: { sm: '200px', md: '250px' },
             }}
           >
-            <img src={heroImg} alt="Hero" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '30px' }} />
-          </div>
-        </section>
+            <img 
+              src={heroImg} 
+              alt="Hero" 
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover', 
+                borderRadius: 'inherit' 
+              }} 
+            />
+          </Box>
+        </Box>
 
         {/* INVESTOR CALL TO ACTION */}
         <InvestorCallToAction />
@@ -209,14 +233,14 @@ const Home: React.FC = () => {
         </div>
 
         {/* CATEGORIES */}
-        <div
+        <Box
           ref={categoriesRef}
-          style={{
-            padding: '2rem 2rem',
+          sx={{
+            padding: { xs: '1rem', sm: '1.5rem', md: '2rem' },
             opacity: isCategoriesVisible ? 1 : 0,
             transition: 'opacity 0.5s ease-out',
-            borderRadius: '20px',
-            marginTop: '20px',
+            borderRadius: { xs: '10px', sm: '15px', md: '20px' },
+            marginTop: { xs: '1rem', sm: '1.5rem', md: '2rem' },
             backgroundImage: `url(${categoriesImg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -226,48 +250,58 @@ const Home: React.FC = () => {
             boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' , marginBottom: '20px'}}>
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h3 style={{
-                fontSize: '2.5rem',
-                color: 'var(--secondary-main)',
-                marginBottom: '1rem',
-                fontWeight: 600,
-                position: 'relative',
-                display: 'inline-block'
-              }}>
+          <Box sx={{ maxWidth: '1200px', margin: '0 auto', marginBottom: { xs: '1rem', sm: '1.5rem', md: '2rem' } }}>
+            <Box sx={{ textAlign: 'center', marginBottom: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
+                  color: 'var(--secondary-main)',
+                  marginBottom: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
+                  fontWeight: 600,
+                  position: 'relative',
+                  display: 'inline-block'
+                }}
+              >
                 {t('home.browseCategories')}
-                <div style={{
+                <Box sx={{
                   position: 'absolute',
                   bottom: '-10px',
                   left: '50%',
                   transform: 'translateX(-50%)',
-                  width: '60px',
+                  width: { xs: '40px', sm: '50px', md: '60px' },
                   height: '3px',
                   backgroundColor: 'var(--secondary-main)',
                   borderRadius: '2px'
                 }} />
-              </h3>
-              <p style={{
-                color: 'var(--secondary-main)',
-                fontSize: '1.1rem',
-                maxWidth: '600px',
-                margin: '1rem auto 0',
-                lineHeight: '1.6'
-              }}>
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: 'var(--secondary-main)',
+                  fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
+                  maxWidth: { xs: '100%', sm: '500px', md: '600px' },
+                  margin: { xs: '0.5rem auto 0', sm: '0.75rem auto 0', md: '1rem auto 0' },
+                  lineHeight: 1.6
+                }}
+              >
                 {t('home.categoriesDescription')}
-              </p>
-            </div>
+              </Typography>
+            </Box>
 
-            <div style={{
+            <Box sx={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '2rem'
+              gridTemplateColumns: { 
+                xs: '1fr', 
+                sm: 'repeat(2, 1fr)', 
+                md: 'repeat(3, 1fr)' 
+              },
+              gap: { xs: '1rem', sm: '1.5rem', md: '2rem' }
             }}>
               {categories.map((category, index) => (
-                <div
+                <Box
                   key={category.path}
-                  style={{
+                  sx={{
                     transform: isCategoriesVisible ? 'translateY(0)' : 'translateY(40px)',
                     opacity: isCategoriesVisible ? 1 : 0,
                     transition: `transform 0.5s ease-out ${index * 0.2}s, opacity 0.5s ease-out ${index * 0.2}s`
@@ -280,11 +314,11 @@ const Home: React.FC = () => {
                     path={category.path}
                     variant="products"
                   />
-                </div>
+                </Box>
               ))}
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );

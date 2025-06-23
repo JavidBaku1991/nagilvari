@@ -53,8 +53,8 @@ const Contact: React.FC = () => {
       sx={{
         position: 'relative',
         minHeight: 'calc(100vh - 64px)',
-        paddingTop: '100px',
-        paddingBottom: '40px',
+        paddingTop: { xs: '80px', sm: '90px', md: '100px' },
+        paddingBottom: { xs: '20px', sm: '30px', md: '40px' },
         backgroundImage: `url(${contactBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -71,66 +71,118 @@ const Contact: React.FC = () => {
       }}
     >
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <Grid container spacing={0} sx={{ position: 'relative', width: '100%', marginTop: '70px' }}>
+        <Grid 
+          container 
+          spacing={{ xs: 3, md: 4 }} 
+          sx={{ 
+            position: 'relative', 
+            width: '100%', 
+            marginTop: { xs: '20px', sm: '40px', md: '70px' },
+            alignItems: 'center',
+            minHeight: { xs: 'auto', md: '70vh' }
+          }}
+        >
+          {/* Contact Information Section */}
           <Fade in timeout={1600}>   
             <Grid
               item
               xs={12}
-              md={7}
+              md={6}
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                position: 'relative'
+                order: { xs: 2, md: 1 }
               }}
             > 
               <Box
                 sx={{
-                  width: '50%',
-                  height: '60vh',
-                  objectFit: 'cover',
-                  borderRadius: '16px',
-                  boxShadow: '0 12px 32px rgba(0,0,0,0.2)'
-                }}
-              />
-              <Box
-                sx={{
-                  width: '60%',
-                  height: '60vh',
-                  position: 'absolute',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
+                  width: '100%',
+                  maxWidth: { xs: '100%', sm: '500px', md: '100%' },
                   backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  padding: '15px 25px',
-                  borderRadius: '12px',
+                  padding: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
+                  borderRadius: { xs: '12px', sm: '16px', md: '20px' },
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '10px',
+                  gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
                   alignItems: 'center',
                   justifyContent: 'center',
-                  textShadow: '0 0 10px rgba(120, 112, 112, 0.5)'
+                  textShadow: '0 0 10px rgba(120, 112, 112, 0.5)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-main)' }}>
-                  <PhoneIcon />
-                  <Typography variant="h4" sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: { xs: '6px', sm: '8px', md: '10px' }, 
+                  color: 'var(--secondary-main)',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  textAlign: 'center'
+                }}>
+                  <PhoneIcon sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
+                  <Typography 
+                    variant="h4" 
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
+                      fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' },
+                      wordBreak: 'break-word'
+                    }}
+                  >
                     {t('contacts.phone')}
                   </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-main)' }}>
-                  <EmailIcon />
-                  <Typography variant="h4" sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: { xs: '6px', sm: '8px', md: '10px' }, 
+                  color: 'var(--secondary-main)',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                  textAlign: 'center'
+                }}>
+                  <EmailIcon sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }} />
+                  <Typography 
+                    variant="h4" 
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
+                      fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                      wordBreak: 'break-word'
+                    }}
+                  >
                     {t('contacts.emailAddress')}
                   </Typography>
                 </Box>
-                <Typography variant="h6" sx={{ color: 'var(--secondary-main)', mt: 2, textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    color: 'var(--secondary-main)', 
+                    mt: { xs: 1, sm: 1.5, md: 2 }, 
+                    textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
+                    fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
+                    textAlign: 'center'
+                  }}
+                >
                   {t('contacts.social.title')}
                 </Typography>
-                <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  gap: { xs: '8px', sm: '10px', md: '12px' }, 
+                  mt: { xs: 0.5, sm: 1 },
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
+                }}>
                   <IconButton 
                     href="https://facebook.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#1877F2' } }}
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      '&:hover': { color: '#1877F2' },
+                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
+                    }}
                     aria-label={t('contacts.social.facebook')}
                   >
                     <FacebookIcon />
@@ -138,7 +190,11 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://instagram.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#E4405F' } }}
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      '&:hover': { color: '#E4405F' },
+                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
+                    }}
                     aria-label={t('contacts.social.instagram')}
                   >
                     <InstagramIcon />
@@ -146,7 +202,11 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://twitter.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#1DA1F2' } }}
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      '&:hover': { color: '#1DA1F2' },
+                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
+                    }}
                     aria-label={t('contacts.social.twitter')}
                   >
                     <TwitterIcon />
@@ -154,7 +214,11 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://linkedin.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#0A66C2' } }}
+                    sx={{ 
+                      color: 'var(--secondary-main)', 
+                      '&:hover': { color: '#0A66C2' },
+                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
+                    }}
                     aria-label={t('contacts.social.linkedin')}
                   >
                     <LinkedInIcon />
@@ -163,17 +227,14 @@ const Contact: React.FC = () => {
               </Box>
             </Grid>
           </Fade>
+
+          {/* Contact Form Section */}
           <Grid
             item
             xs={12}
-            md={5}
+            md={6}
             sx={{
-              position: 'absolute',
-              right: { xs: '5%', md: '12%' },
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 2,
-              width: { xs: '90%', sm: '70%', md: '400px' }
+              order: { xs: 1, md: 2 }
             }}
           >
             <Fade in timeout={800}>
@@ -183,17 +244,39 @@ const Contact: React.FC = () => {
                 sx={{
                   backdropFilter: 'blur(14px)',
                   background: 'rgba(255, 255, 255, 0.3)',
-                  borderRadius: '20px',
+                  borderRadius: { xs: '12px', sm: '16px', md: '20px' },
                   boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
-                  p: 4,
+                  p: { xs: 2, sm: 3, md: 4 },
                   color: '#333',
-                  border: '1px solid rgba(255,255,255,0.3)'
+                  border: '1px solid rgba(255,255,255,0.3)',
+                  maxWidth: { xs: '100%', sm: '500px', md: '100%' },
+                  mx: 'auto'
                 }}
               >
-                <Typography variant="h5" gutterBottom sx={{ color: 'var(--secondary-main)', fontWeight: 'bold', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                <Typography 
+                  variant="h5" 
+                  gutterBottom 
+                  sx={{ 
+                    color: 'var(--secondary-main)', 
+                    fontWeight: 'bold', 
+                    textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
+                    fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' },
+                    textAlign: { xs: 'center', md: 'left' }
+                  }}
+                >
                   {t('contacts.title')}
                 </Typography>
-                <Typography variant="body2" paragraph sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                <Typography 
+                  variant="body2" 
+                  paragraph 
+                  sx={{ 
+                    color: 'var(--secondary-main)', 
+                    textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
+                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
+                    textAlign: { xs: 'center', md: 'left' },
+                    mb: { xs: 2, sm: 3 }
+                  }}
+                >
                   {t('contacts.description')}
                 </Typography>
 
@@ -229,11 +312,12 @@ const Contact: React.FC = () => {
                   variant="contained"
                   fullWidth
                   sx={{
-                    mt: 2,
-                    py: 1.5,
+                    mt: { xs: 2, sm: 3 },
+                    py: { xs: 1, sm: 1.5 },
                     backgroundColor: 'var(--secondary-main)',
                     color: 'black',
                     fontWeight: 'bold',
+                    fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
                     '&:hover': {
                       backgroundColor: '#DEB887'
                     }
