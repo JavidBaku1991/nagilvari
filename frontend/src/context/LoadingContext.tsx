@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 interface LoadingContextType {
@@ -24,15 +24,15 @@ interface LoadingProviderProps {
 export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const startLoading = () => {
+  const startLoading = useCallback(() => {
     console.log('Context: Starting loading...');
     setIsLoading(true);
-  };
+  }, []);
 
-  const stopLoading = () => {
+  const stopLoading = useCallback(() => {
     console.log('Context: Stopping loading...');
     setIsLoading(false);
-  };
+  }, []);
 
   return (
     <LoadingContext.Provider value={{ isLoading, startLoading, stopLoading }}>
@@ -52,7 +52,7 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({ children }) =>
             zIndex: 9999,
           }}
         >
-          <LoadingSpinner size={60} color="white" />
+          <LoadingSpinner size={60} color="var(--secondary-main)" />
         </div>
       )}
     </LoadingContext.Provider>

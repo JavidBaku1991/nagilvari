@@ -9,7 +9,7 @@ interface LoadingSpinnerProps {
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   size = 40,
-  color = 'white'
+  color = 'var(--secondary-main)'
 }) => {
   const { t } = useTranslation();
 

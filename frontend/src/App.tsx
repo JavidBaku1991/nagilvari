@@ -23,11 +23,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import WorkIcon from '@mui/icons-material/Work';
 import { Box } from '@mui/material';
 import { useScrollToTop } from './hooks/useScrollToTop';
+import { useLoadingNavigation } from './hooks/useLoadingNavigation';
 
 // Component that uses the scroll to top hook inside Router context
 const AppContent: React.FC = () => {
   // Scroll to top on route changes
   useScrollToTop();
+  // Enable loading during navigation
+  useLoadingNavigation();
 
   return (
     <div className="flex flex-col min-h-screen">
