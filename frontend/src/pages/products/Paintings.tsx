@@ -12,6 +12,7 @@ import { products } from '../../data/products';
 import ProductCard from '../../components/ProductCard';
 import ProductFilters from '../../components/ProductFilters';
 import { useTranslation } from 'react-i18next';
+import paintingsBg from '../../images/categories/paintings.jpg';
 
 const Paintings: React.FC = () => {
   const { t } = useTranslation();
@@ -91,13 +92,27 @@ const Paintings: React.FC = () => {
 
   return (
     <Box sx={{ 
-      backgroundColor: 'white',
+      position: 'relative',
       minHeight: 'calc(100vh - 64px)',
       color: 'white',
       paddingTop: '100px',
       paddingBottom: '40px',
+      backgroundImage: `url(${paintingsBg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        zIndex: 0,
+      }
     }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography 
           variant="h2" 
           component="h1" 
@@ -106,13 +121,13 @@ const Paintings: React.FC = () => {
             textAlign: 'center', 
             mb: 6, 
             fontWeight: 'bold', 
-            color: 'white',
-            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.6)'
+            color: 'var(--secondary-main)',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)'
           }}
         >
           {t('categories.paintings.title')}
         </Typography>
-        <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: '#666' }}>
+        <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
           {t('categories.paintings.description')}
         </Typography>
 

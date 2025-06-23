@@ -65,7 +65,7 @@ const Contact: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(23, 13, 13, 0.85)',
+          backgroundColor: 'rgba(49, 44, 44, 0.85)',
           zIndex: 0,
         }
       }}
@@ -111,22 +111,26 @@ const Contact: React.FC = () => {
                   textShadow: '0 0 10px rgba(120, 112, 112, 0.5)'
                 }}
               >
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-main)' }}>
                   <PhoneIcon />
-                  <Typography variant="h4">{t('contacts.phone')}</Typography>
+                  <Typography variant="h4" sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                    {t('contacts.phone')}
+                  </Typography>
                 </Box>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--main)' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--secondary-main)' }}>
                   <EmailIcon />
-                  <Typography variant="h4">{t('contacts.emailAddress')}</Typography>
+                  <Typography variant="h4" sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
+                    {t('contacts.emailAddress')}
+                  </Typography>
                 </Box>
-                <Typography variant="h6" sx={{ color: 'var(--main)', mt: 2 }}>
+                <Typography variant="h6" sx={{ color: 'var(--secondary-main)', mt: 2, textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
                   {t('contacts.social.title')}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '12px', mt: 1 }}>
                   <IconButton 
                     href="https://facebook.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--main)', '&:hover': { color: '#1877F2' } }}
+                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#1877F2' } }}
                     aria-label={t('contacts.social.facebook')}
                   >
                     <FacebookIcon />
@@ -134,7 +138,7 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://instagram.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--main)', '&:hover': { color: '#E4405F' } }}
+                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#E4405F' } }}
                     aria-label={t('contacts.social.instagram')}
                   >
                     <InstagramIcon />
@@ -142,7 +146,7 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://twitter.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--main)', '&:hover': { color: '#1DA1F2' } }}
+                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#1DA1F2' } }}
                     aria-label={t('contacts.social.twitter')}
                   >
                     <TwitterIcon />
@@ -150,7 +154,7 @@ const Contact: React.FC = () => {
                   <IconButton 
                     href="https://linkedin.com" 
                     target="_blank" 
-                    sx={{ color: 'var(--main)', '&:hover': { color: '#0A66C2' } }}
+                    sx={{ color: 'var(--secondary-main)', '&:hover': { color: '#0A66C2' } }}
                     aria-label={t('contacts.social.linkedin')}
                   >
                     <LinkedInIcon />
@@ -186,10 +190,10 @@ const Contact: React.FC = () => {
                   border: '1px solid rgba(255,255,255,0.3)'
                 }}
               >
-                <Typography variant="h5" gutterBottom sx={{ color: '#4B2E19' }}>
+                <Typography variant="h5" gutterBottom sx={{ color: 'var(--secondary-main)', fontWeight: 'bold', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
                   {t('contacts.title')}
                 </Typography>
-                <Typography variant="body2" paragraph sx={{ color: '#5c4b3b' }}>
+                <Typography variant="body2" paragraph sx={{ color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
                   {t('contacts.description')}
                 </Typography>
 
@@ -209,14 +213,14 @@ const Contact: React.FC = () => {
                     sx={{
                       '& .MuiOutlinedInput-root': {
                         borderRadius: '12px',
-                        '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.5)' },
-                        '&:hover fieldset': { borderColor: 'white' },
-                        '&.Mui-focused fieldset': { borderColor: 'white' }
+                        '& fieldset': { borderColor: 'rgba(210, 180, 140, 0.5)' },
+                        '&:hover fieldset': { borderColor: 'var(--secondary-main)' },
+                        '&.Mui-focused fieldset': { borderColor: 'var(--secondary-main)' }
                       },
-                      '& .MuiInputLabel-root': { color: 'rgba(255, 255, 255, 0.7)' },
-                      '& .MuiInputLabel-root.Mui-focused': { color: 'white' }
+                      '& .MuiInputLabel-root': { color: 'var(--secondary-main)' },
+                      '& .MuiInputLabel-root.Mui-focused': { color: 'var(--secondary-main)' }
                     }}
-                    InputProps={{ style: { color: 'white' } }}
+                    InputProps={{ style: { color: 'var(--secondary-main)' } }}
                   />
                 ))}
 
@@ -227,11 +231,11 @@ const Contact: React.FC = () => {
                   sx={{
                     mt: 2,
                     py: 1.5,
-                    backgroundColor: 'white',
+                    backgroundColor: 'var(--secondary-main)',
                     color: 'black',
                     fontWeight: 'bold',
                     '&:hover': {
-                      backgroundColor: '#f0f0f0'
+                      backgroundColor: '#DEB887'
                     }
                   }}
                 >

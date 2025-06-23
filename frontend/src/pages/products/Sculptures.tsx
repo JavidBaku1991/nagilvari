@@ -12,6 +12,7 @@ import { products } from '../../data/products';
 import ProductCard from '../../components/ProductCard';
 import ProductFilters from '../../components/ProductFilters';
 import { useTranslation } from 'react-i18next';
+import sculpturesBg from '../../images/categories/sculptures.jpg';
 
 const Sculptures: React.FC = () => {
   const { t } = useTranslation();
@@ -91,17 +92,42 @@ const Sculptures: React.FC = () => {
 
   return (
     <Box sx={{ 
-      backgroundColor: 'white',
+      position: 'relative',
       minHeight: 'calc(100vh - 64px)',
-      color: '#8B4513',
+      color: 'white',
       paddingTop: '100px',
-      paddingBottom: '40px'
+      paddingBottom: '40px',
+      backgroundImage: `url(${sculpturesBg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundAttachment: 'fixed',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        zIndex: 0,
+      }
     }}>
-      <Container maxWidth="lg">
-        <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ mb: 4 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <Typography 
+          variant="h2" 
+          component="h1" 
+          gutterBottom 
+          align="center" 
+          sx={{ 
+            mb: 4, 
+            color: 'var(--secondary-main)',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+            fontWeight: 'bold'
+          }}
+        >
           {t('categories.sculptures.title')}
         </Typography>
-        <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: '#666' }}>
+        <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: 'var(--secondary-main)', textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)' }}>
           {t('categories.sculptures.description')}
         </Typography>
 

@@ -29,7 +29,11 @@ const About: React.FC = () => {
       }
     }}>
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-        <h2 className="about-title text-center mb-5" style={{ color: 'white' }}>
+        <h2 className="about-title text-center mb-5" style={{ 
+          color: 'var(--secondary-main)',
+          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+          fontWeight: 'bold'
+        }}>
           {t('about.title')}
         </h2>
         <div
@@ -40,8 +44,8 @@ const About: React.FC = () => {
             height: '500px',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            color: 'white',
-            textShadow: '2px 2px 4px rgba(203, 186, 186, 0.3)',
+            color: 'var(--secondary-main)',
+            textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)',
             background: 'rgba(255, 255, 255, 0.1)',
             borderRadius: '16px',
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',

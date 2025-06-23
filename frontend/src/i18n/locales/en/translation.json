@@ -55,7 +55,8 @@
       "sortByName": "Name",
       "sortByPriceAsc": "Price: Low to High",
       "sortByPriceDesc": "Price: High to Low",
-      "priceRange": "Price Range"
+      "priceRange": "Price Range",
+      "reset": "Reset Filters"
     },
     "categories": {
       "paintings": "Paintings",

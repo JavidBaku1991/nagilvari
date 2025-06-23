@@ -1,3 +1,11 @@
+arteria, Artmonía , Melodarte, artmania
+
+Artura – (Arte + Altura = height)
+→ Suggests “elevated art” – classy and ambitious.
+
+Melarte – (Melodía + Arte)
+→ “Melody of art” – graceful and fluid.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

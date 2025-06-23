@@ -42,14 +42,17 @@
   "products": {
     "title": "Məhsullarımız",
     "filters": {
+      "title": "Filtrlər",
       "category": "Kateqoriya",
+      "allCategories": "Bütün kateqoriyalar",
       "sort": "Sırala",
       "sortByName": "Ada görə",
       "sortByPriceAsc": "Qiymət: Aşağıdan yuxarı",
       "sortByPriceDesc": "Qiymət: Yuxarıdan aşağı",
       "priceRange": "Qiymət Aralığı",
       "search": "Axtar",
-      "searchPlaceholder": "Məhsulları axtar..."
+      "searchPlaceholder": "Məhsulları axtar...",
+      "reset": "Filtrləri sıfırla"
     },
     "noProducts": "Axtarış kriteriyalarınıza uyğun məhsul tapılmadı",
     "featuredDescription": "Seçilmiş istisna sənət əsərlərimizin kolleksiyasını kəşf edin",

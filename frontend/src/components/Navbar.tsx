@@ -191,7 +191,11 @@ const Navbar: React.FC = () => {
                 onClose={handleMenuClose}
               >
                 {productCategories.map((category) => (
-                  <MenuItem key={category.path} onClick={() => handleCategoryNavigation(category.path)}>
+                  <MenuItem
+                  sx={{
+                    color:'var(--secondary-main)'
+                  }}
+                  key={category.path} onClick={() => handleCategoryNavigation(category.path)}>
                     {category.label}
                   </MenuItem>
                 ))}

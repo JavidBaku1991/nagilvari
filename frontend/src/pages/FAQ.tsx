@@ -53,23 +53,23 @@ const FAQ: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(24, 19, 19, 0.85)',
+        backgroundColor: 'rgba(33, 28, 28, 0.85)',
         zIndex: 0,
       }
     }}>
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 1 }}>
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
           mb: 4,
-          color: 'white',
-          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-          fontWeight: 600
+          color: 'var(--secondary-main)',
+          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+          fontWeight: 'bold'
         }}>
           {t('faq.title')}
         </Typography>
         <Typography variant="subtitle1" align="center" sx={{ 
           mb: 6,
-          color: 'white',
-          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)'
+          color: 'var(--secondary-main)',
+          textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)'
         }}>
           {t('faq.description')}
         </Typography>
@@ -84,12 +84,12 @@ const FAQ: React.FC = () => {
                 '&:before': {
                   display: 'none',
                 },
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                color: 'white'
+                backgroundColor: 'rgba(106, 101, 101, 0.9)',
+                color: 'var(--secondary-main)'
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}
+                expandIcon={<ExpandMoreIcon sx={{ color: 'var(--secondary-main)' }} />}
                 aria-controls={`panel${index}a-content`}
                 id={`panel${index}a-header`}
                 sx={{
@@ -100,12 +100,12 @@ const FAQ: React.FC = () => {
                   },
                 }}
               >
-                <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
+                <Typography variant="h6" sx={{ color: 'var(--secondary-main)', fontWeight: 600 }}>
                   {t(item.question)}
                 </Typography>
               </AccordionSummary>
               <AccordionDetails sx={{ pt: 2, pb: 3, px: 3 }}>
-                <Typography sx={{ color: 'white', lineHeight: 1.6 }}>
+                <Typography sx={{ color: 'var(--secondary-main)', lineHeight: 1.6 }}>
                   {t(item.answer)}
                 </Typography>
               </AccordionDetails>
