@@ -12,6 +12,22 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import telegramIcon from '../images/tele.jpg';
+
+// Add shimmer animation keyframes
+const shimmerKeyframes = `
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+`;
+
+// Inject the keyframes into the document
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = shimmerKeyframes;
+  document.head.appendChild(style);
+}
 
 interface FormData {
   name: string;
@@ -41,11 +57,18 @@ const Contact: React.FC = () => {
 
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('Sending email with service:', 'service_45rbyj7', 'template:', 'template_ixoxhlu');
     emailjs
-      .sendForm('service_ursknit', 'template_64qmekz', e.target as HTMLFormElement, 'RV22WzPhD0vnOR09L')
-      .then((res: EmailJSResponse) => console.log('Email sent successfully:', res))
-      .catch(err => console.error('Error sending email:', err));
-    navigate('/');
+      .sendForm('service_45rbyj7', 'template_ixoxhlu', e.target as HTMLFormElement, 'RV22WzPhD0vnOR09L')
+      .then((res: EmailJSResponse) => {
+        console.log('Email sent successfully:', res);
+        alert('Email sent successfully!');
+        navigate('/');
+      })
+      .catch(err => {
+        console.error('Error sending email:', err);
+        alert('Failed to send email. Please check the console for details.');
+      });
   };
 
   return (
@@ -98,18 +121,40 @@ const Contact: React.FC = () => {
               <Box
                 sx={{
                   width: '100%',
+                  height: '85vh',
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
                   maxWidth: { xs: '100%', sm: '500px', md: '100%' },
-                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                  padding: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
-                  borderRadius: { xs: '12px', sm: '16px', md: '20px' },
+                  backgroundImage: `linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(49, 44, 44, 0.8) 100%), url(${telegramIcon})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  padding: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                  borderRadius: { xs: '16px', sm: '20px', md: '24px' },
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: { xs: '1rem', sm: '1.5rem', md: '2rem' },
+                  gap: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
                   alignItems: 'center',
                   justifyContent: 'center',
-                  textShadow: '0 0 10px rgba(120, 112, 112, 0.5)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)',
+                  backdropFilter: 'blur(15px)',
+                  border: '2px solid rgba(210, 180, 140, 0.3)',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(45deg, transparent 30%, rgba(210, 180, 140, 0.1) 50%, transparent 70%)',
+                    animation: 'shimmer 3s ease-in-out infinite',
+                    zIndex: 0,
+                  },
+                  '& > *': {
+                    position: 'relative',
+                    zIndex: 1,
+                  }
                 }}
               >
                 <Box sx={{ 
