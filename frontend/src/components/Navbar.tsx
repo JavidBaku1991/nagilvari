@@ -327,12 +327,12 @@ const Navbar: React.FC = () => {
                 <TwitterIcon />
               </IconButton>
 
-              <LanguageSwitcher isScrolled={isScrolled} />
             </Box>
           )}
 
           {isMobile && (
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <LanguageSwitcher isScrolled={isScrolled} />
               <IconButton
                 onClick={handleDrawerToggle}
                 sx={{

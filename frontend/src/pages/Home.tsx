@@ -122,7 +122,7 @@ const Home: React.FC = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '20px' },
-            margin: { xs: '0.5rem', sm: '1rem', md: '1.5rem', lg: '2rem' },
+            margin: { xs: '0.5rem', sm: '1rem', md: '1.5rem', lg: '.5rem' },
             minHeight: { xs: '300px', sm: '400px' },
           }}
           className='hero-section'
