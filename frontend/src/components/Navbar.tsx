@@ -228,6 +228,7 @@ const Navbar: React.FC = () => {
                     mt: 1
                   }
                 }}
+                disableScrollLock={true}
               >
                 {productCategories.map((category) => (
                   <MenuItem
@@ -326,7 +327,7 @@ const Navbar: React.FC = () => {
               >
                 <TwitterIcon />
               </IconButton>
-
+              <LanguageSwitcher isScrolled={isScrolled} />
             </Box>
           )}
 

@@ -9,7 +9,8 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { products } from '../data/products';
+import { getProducts } from '../services/productService';
+import { Product } from '../types/product';
 import ProductCard from '../components/ProductCard';
 import ProductFilters from '../components/ProductFilters';
 import { useTranslation } from 'react-i18next';
@@ -23,6 +24,10 @@ const Search: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  // State for products and loading
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('title');
@@ -32,8 +37,25 @@ const Search: React.FC = () => {
 
   const productsPerPage = 12;
 
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const productsData = await getProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   // Calculate max price for the slider
-  const maxPrice = Math.max(...products.map(p => p.price));
+  const maxPrice = Math.max(...products.map(p => p.price), 6000);
 
   // Search and filter products
   const searchResults = useMemo(() => {
@@ -134,13 +156,18 @@ const Search: React.FC = () => {
         )}
 
         <Typography variant="subtitle1" align="center" sx={{ mb: 4, color: 'white' }}>
-          {searchResults.length > 0 
-            ? `Found ${searchResults.length} product${searchResults.length !== 1 ? 's' : ''}`
-            : 'No products found'
+          {loading ? 'Loading products...' : 
+            searchResults.length > 0 
+              ? `Found ${searchResults.length} product${searchResults.length !== 1 ? 's' : ''}`
+              : 'No products found'
           }
         </Typography>
 
-        {searchResults.length > 0 && (
+        {loading ? (
+          <Typography align="center" color="white" sx={{ py: 8 }}>
+            Loading products...
+          </Typography>
+        ) : searchResults.length > 0 && (
           <Grid container spacing={3}>
             {!isMobile && (
               <Grid item xs={12} md={3}>

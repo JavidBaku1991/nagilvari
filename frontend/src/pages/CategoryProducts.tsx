@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import paint from '../images/paint2.jpg'
@@ -25,7 +25,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { products as allProducts } from '../data/products';
+import { getProductsByCategory } from '../services/productService';
 import { Product } from '../types/product';
 import styles from './Products.module.css';
 
@@ -36,12 +36,9 @@ const CategoryProducts: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  // Filter products by category from static list
-  const products = allProducts.filter(product => {
-    const productCategory = product.category.toLowerCase();
-    const urlCategory = category?.toLowerCase();
-    return productCategory === urlCategory;
-  });
+  // State for products and loading
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const [sortBy, setSortBy] = useState('title');
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,6 +47,25 @@ const CategoryProducts: React.FC = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000]);
 
   const productsPerPage = 12;
+
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      if (!category) return;
+      
+      setLoading(true);
+      try {
+        const productsData = await getProductsByCategory(category);
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [category]);
 
   const handleSortChange = (event: any) => {
     setSortBy(event.target.value);
@@ -157,6 +173,29 @@ const CategoryProducts: React.FC = () => {
       </Button>
     </Box>
   );
+
+  if (loading) {
+    return (
+      <Box sx={{ 
+        backgroundImage: `url(${paint})`, 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: 'calc(100vh - 64px)',
+        color: 'white',
+        paddingTop: '100px',
+        paddingBottom: '40px'
+      }}>
+        <Container maxWidth="lg">
+          <Box sx={{ textAlign: 'center', py: 8 }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Loading...
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+    );
+  }
 
   if (products.length === 0) {
     return (

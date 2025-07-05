@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Box, 
   Container, 
@@ -8,7 +8,8 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { products } from '../../data/products';
+import { getProductsByCategory } from '../../services/productService';
+import { Product } from '../../types/product';
 import ProductCard from '../../components/ProductCard';
 import ProductFilters from '../../components/ProductFilters';
 import { useTranslation } from 'react-i18next';
@@ -19,8 +20,10 @@ const Sculptures: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const sculptures = products.filter(product => product.category === 'sculptures');
-  
+  // State for products and loading
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('title');
@@ -30,12 +33,29 @@ const Sculptures: React.FC = () => {
 
   const productsPerPage = 12;
 
+  // Fetch products from API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const productsData = await getProductsByCategory('sculptures');
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   // Calculate max price for the slider
-  const maxPrice = Math.max(...sculptures.map(p => p.price));
+  const maxPrice = Math.max(...products.map(p => p.price), 6000);
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    return sculptures
+    return products
       .filter(product => 
         product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
         product.price >= priceRange[0] &&
@@ -53,7 +73,7 @@ const Sculptures: React.FC = () => {
             return 0;
         }
       });
-  }, [sculptures, searchQuery, sortBy, priceRange]);
+  }, [products, searchQuery, sortBy, priceRange]);
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);

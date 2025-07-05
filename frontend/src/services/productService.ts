@@ -78,15 +78,96 @@ const generateProducts = (): Product[] => {
   return products;
 };
 
-// Simulate API calls
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+
+// Real API calls
 export const getProducts = async (): Promise<Product[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return generateProducts();
+  try {
+    const response = await fetch(`${API_URL}/api/products`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const products = await response.json();
+    
+    // Transform backend data to match frontend Product interface
+    return products.map((product: any) => ({
+      id: product._id,
+      title: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category || 'paintings',
+      imageUrl: product.imageUrl ? `${API_URL}${product.imageUrl}` : '',
+      featured: product.featured || false,
+      artist: product.artist || '',
+      dimensions: product.dimensions || '',
+      year: product.year || 2023,
+      images: product.imageUrl ? [`${API_URL}${product.imageUrl}`] : []
+    }));
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
+  }
 };
 
 export const getProductsByCategory = async (category: string): Promise<Product[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return generateProducts().filter(product => product.category === category);
+  try {
+    const response = await fetch(`${API_URL}/api/products`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const products = await response.json();
+    
+    // Transform backend data to match frontend Product interface
+    const transformedProducts = products.map((product: any) => ({
+      id: product._id,
+      title: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category || 'paintings',
+      imageUrl: product.imageUrl ? `${API_URL}${product.imageUrl}` : '',
+      featured: product.featured || false,
+      artist: product.artist || '',
+      dimensions: product.dimensions || '',
+      year: product.year || 2023,
+      images: product.imageUrl ? [`${API_URL}${product.imageUrl}`] : []
+    }));
+    
+    // Filter by category
+    return transformedProducts.filter((product: Product) => product.category === category);
+  } catch (error) {
+    console.error('Error fetching products by category:', error);
+    return [];
+  }
+};
+
+export const getFeaturedProducts = async (): Promise<Product[]> => {
+  try {
+    const response = await fetch(`${API_URL}/api/products`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const products = await response.json();
+    
+    // Transform backend data to match frontend Product interface
+    const transformedProducts = products.map((product: any) => ({
+      id: product._id,
+      title: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category || 'paintings',
+      imageUrl: product.imageUrl ? `${API_URL}${product.imageUrl}` : '',
+      featured: product.featured || false,
+      artist: product.artist || '',
+      dimensions: product.dimensions || '',
+      year: product.year || 2023,
+      images: product.imageUrl ? [`${API_URL}${product.imageUrl}`] : []
+    }));
+    
+    // Return featured products or first 6 if no featured products
+    const featuredProducts = transformedProducts.filter((product: Product) => product.featured);
+    return featuredProducts.length > 0 ? featuredProducts : transformedProducts.slice(0, 6);
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    return [];
+  }
 }; 

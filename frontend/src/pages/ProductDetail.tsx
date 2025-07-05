@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { products, Product } from '../data/products';
+import { getProducts } from '../services/productService';
+import { Product } from '../types/product';
 import { Box, Container, Grid, Typography, Button, Card, CardMedia, Chip, Divider, IconButton, Paper } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const product = products.find((p) => p.id === id);
-  const [selectedImage, setSelectedImage] = useState<string>(product?.imageUrl || '');
+  const [product, setProduct] = useState<Product | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>('');
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const products = await getProducts();
+        const foundProduct = products.find((p) => p.id === id);
+        if (foundProduct) {
+          setProduct(foundProduct);
+          setSelectedImage(foundProduct.imageUrl);
+        }
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
 
   if (!product) {
     return (
@@ -81,7 +99,7 @@ const ProductDetail: React.FC = () => {
               <Grid item xs={12} md={6}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <Chip
-                    label={product.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                    label={product.category.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
                     sx={{ background: 'white', color: 'black', mb: 2, alignSelf: 'flex-start', fontWeight: 600 }}
                   />
                   <Typography variant="h4" fontWeight={700} gutterBottom color="white">

@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Pagination, Box } from '@mui/material';
-import { products, Product } from '../data/products';
+import { getProducts } from '../services/productService';
+import { Product } from '../types/product';
 import { useNavigate } from 'react-router-dom';
 import all from '../images/all.jpg'
 const PRODUCTS_PER_PAGE = 12;
 
 const Products: React.FC = () => {
   const [page, setPage] = useState(1);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const productsData = await getProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
@@ -54,6 +73,15 @@ const Products: React.FC = () => {
         >
           All Products
         </Typography>
+        {loading ? (
+          <Typography variant="h6" sx={{ textAlign: 'center', color: 'var(--secondary-main)' }}>
+            Loading products...
+          </Typography>
+        ) : products.length === 0 ? (
+          <Typography variant="h6" sx={{ textAlign: 'center', color: 'var(--secondary-main)' }}>
+            No products found
+          </Typography>
+        ) : (
         <Grid container spacing={4}>
           {paginatedProducts.map((product: Product) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
@@ -120,32 +148,35 @@ const Products: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
-          <Pagination
-            count={pageCount}
-            page={page}
-            onChange={handleChange}
-            color="primary"
-            shape="rounded"
-            size="large"
-            sx={{
-              '& .MuiPaginationItem-root': {
-                backgroundColor: 'var(--secondary-main)',
-                color: 'white',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                },
-                '&.Mui-selected': {
-                  backgroundColor: 'white',
-                  color: 'black',
+        )}
+        {!loading && products.length > 0 && (
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
+            <Pagination
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+              color="primary"
+              shape="rounded"
+              size="large"
+              sx={{
+                '& .MuiPaginationItem-root': {
+                  backgroundColor: 'var(--secondary-main)',
+                  color: 'white',
                   '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                  '&.Mui-selected': {
                     backgroundColor: 'white',
+                    color: 'black',
+                    '&:hover': {
+                      backgroundColor: 'white',
+                    },
                   },
                 },
-              },
-            }}
-          />
-        </Box>
+              }}
+            />
+          </Box>
+        )}
       </Container>
     </Box>
   );

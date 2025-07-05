@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getFeaturedProducts, Product } from '../data/products';
+import { getFeaturedProducts } from '../services/productService';
+import { Product } from '../types/product';
 import ProductCard from './ProductCard';
 import LoadingSpinner from './LoadingSpinner';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
@@ -16,13 +17,10 @@ const FeaturedProducts: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Simulate loading time for demonstration
     const loadProducts = async () => {
       try {
-        const products = getFeaturedProducts().slice(0, 10);
+        const products = await getFeaturedProducts();
         setFeaturedProducts(products);
-        // Add a small delay to show the loading spinner
-        await new Promise(resolve => setTimeout(resolve, 1000));
         setIsLoading(false);
       } catch (error) {
         console.error('Error loading featured products:', error);

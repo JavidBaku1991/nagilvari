@@ -53,7 +53,6 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ open, onClose, isScrolled =
     { text: 'About', icon: <AboutIcon />, path: '/about' },
     { text: 'Contact', icon: <ContactIcon />, path: '/contact' },
     { text: 'FAQ', icon: <HelpIcon />, path: '/faq' },
-    { text: 'Admin', icon: <AdminIcon />, path: '/admin' }
   ];
 
   const handleProductsClick = () => {

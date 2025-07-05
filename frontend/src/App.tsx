@@ -12,7 +12,6 @@ import FAQ from './pages/FAQ';
 import Search from './pages/Search';
 import Paintings from './pages/products/Paintings';
 import Sculptures from './pages/products/Sculptures';
-
 import Ceramics from './pages/products/Ceramics';
 import './i18n/config';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -24,6 +23,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import { Box } from '@mui/material';
 import { useScrollToTop } from './hooks/useScrollToTop';
 import { useLoadingNavigation } from './hooks/useLoadingNavigation';
+import Admin from './pages/Admin';
 
 // Component that uses the scroll to top hook inside Router context
 const AppContent: React.FC = () => {
@@ -42,12 +42,12 @@ const AppContent: React.FC = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/products/paintings" element={<Paintings />} />
           <Route path="/products/sculptures" element={<Sculptures />} />
-
           <Route path="/products/ceramics" element={<Ceramics />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/search" element={<Search />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
       <Footer />
