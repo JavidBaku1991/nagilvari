@@ -10,6 +10,8 @@ import featured from '../images/featured.jpg'
 import { Box, Container, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+
 const FeaturedProducts: React.FC = () => {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
@@ -19,8 +21,24 @@ const FeaturedProducts: React.FC = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        // const products = await getFeaturedProducts();
-        // setFeaturedProducts(products);
+        const response = await fetch(`${API_URL}/api/products`);
+        const data = await response.json();
+        // Map backend fields to frontend Product type
+        const mapped = data.map((product: any) => ({
+          id: product._id || product.id,
+          title: product.name || product.title,
+          description: product.description || '',
+          price: product.price || 0,
+          category: product.category || 'paintings',
+          imageUrl: product.imageUrl && product.imageUrl.startsWith('/uploads/')
+            ? `${API_URL}${product.imageUrl}`
+            : (product.imageUrl || ''),
+          featured: product.featured || false,
+          artist: product.artist || '',
+          dimensions: product.dimensions || '',
+          year: product.year || 2023,
+        })).filter((product: Product) => product.featured);
+        setFeaturedProducts(mapped);
         setIsLoading(false);
       } catch (error) {
         console.error('Error loading featured products:', error);

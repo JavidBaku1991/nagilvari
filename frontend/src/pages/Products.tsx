@@ -16,8 +16,24 @@ const Products: React.FC = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        // const productsData = await getProducts();
-        // setProducts(productsData);
+        const response = await fetch('http://localhost:4000/api/products');
+        const data = await response.json();
+        // Map backend fields to frontend Product type
+        const mapped = data.map((product: any) => ({
+          id: product._id || product.id,
+          title: product.name || product.title,
+          description: product.description || '',
+          price: product.price || 0,
+          category: product.category || 'paintings',
+          imageUrl: product.imageUrl && product.imageUrl.startsWith('/uploads/')
+            ? `http://localhost:4000${product.imageUrl}`
+            : (product.imageUrl || ''),
+          featured: product.featured || false,
+          artist: product.artist || '',
+          dimensions: product.dimensions || '',
+          year: product.year || 2023,
+        }));
+        setProducts(mapped);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

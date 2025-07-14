@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
     <footer className="footer" ref={footerRef}>
       <div className="footer-content">
         <div className="footer-section">
-          <h3 className="footer-title">Nagilvari</h3>
+          <h3 className="footer-title">Naghilvari</h3>
           <p className="footer-description">
             {t('footer.company.description')}
           </p>
@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Nagilvari. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Naghilvari. All rights reserved.</p>
         <div className="footer-bottom-links">
           <Link to="/privacy" onClick={() => handleNavigation('/privacy')}>Privacy Policy</Link>
           <Link to="/terms" onClick={() => handleNavigation('/terms')}>Terms of Service</Link>

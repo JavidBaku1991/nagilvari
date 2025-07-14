@@ -5,12 +5,13 @@ import CategoryCard from '../components/CategoryCard';
 import InvestorCallToAction from '../components/InvestorCallToAction';
 import FeaturedProducts from '../components/FeaturedProducts';
 import footerImg from '../images/footer.jpg';
-import heroImg from '../images/hero14.png';
+import homeBg from '../images/hero.jpg';
+import heroRight from '../images/hero14.png';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
 import bghero from '../images/hero13.png';
 import { Box, Container, Typography } from '@mui/material';
-import categoriesImg from '../images/categories.jpg';
+import categoriesImg from '../images/hero.jpg';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const Home: React.FC = () => {
@@ -21,41 +22,35 @@ const Home: React.FC = () => {
   const featuredRef = useRef<HTMLDivElement>(null);
   const categoriesRef = useRef<HTMLDivElement>(null);
   const [preloading, setPreloading] = useState(true);
+  const [heroImgLoaded, setHeroImgLoaded] = useState(false);
 
   const categories = [
     {
       title: t('categories.paintings.title'),
       description: t('categories.paintings.description'),
-      images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Painting ${i + 1}` })),
+      images: [homeBg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Painting ${i + 1}` })),
       path: '/products/paintings'
     },
     {
       title: t('categories.sculptures.title'),
       description: t('categories.sculptures.description'),
-      images: [hero1Img, hero2Img, footerImg, heroImg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
+      images: [hero1Img, hero2Img, footerImg, homeBg].map((src, i) => ({ src, alt: `Sculpture ${i + 1}` })),
       path: '/products/sculptures'
     },
 
     {
       title: t('categories.ceramics.title'),
       description: t('categories.ceramics.description'),
-      images: [heroImg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Ceramics ${i + 1}` })),
+      images: [homeBg, hero1Img, hero2Img, footerImg].map((src, i) => ({ src, alt: `Ceramics ${i + 1}` })),
       path: '/products/ceramics'
     }
   ];
 
-  const dummyProducts = Array.from({ length: 10 }, (_, i) => ({
-    id: (i + 1).toString(),
-    name: `${t('common.product')} ${i + 1}`,
-    price: (i + 1) * 10,
-    description: `${t('common.productDescription')} ${i + 1}.`,
-   
-    category: categories[i % categories.length].title
-  }));
+
 
   // List all images to preload
   const imagesToPreload = [
-    heroImg, hero1Img, hero2Img, footerImg, bghero, categoriesImg
+    homeBg, hero1Img, hero2Img, footerImg, bghero, categoriesImg
   ];
   categories.forEach(cat => cat.images.forEach(img => imagesToPreload.push(img.src)));
 
@@ -82,10 +77,13 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setHeroLoaded(true);
-    }, 100);
+    if (!preloading && heroImgLoaded) {
+      setHeroLoaded(false);
+      setTimeout(() => setHeroLoaded(true), 100);
+    }
+  }, [preloading, heroImgLoaded]);
 
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -117,7 +115,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {preloading && (
+      {(preloading || !heroImgLoaded) && (
         <Box sx={{
           position: 'fixed',
           top: 0,
@@ -137,7 +135,7 @@ const Home: React.FC = () => {
         position: 'relative',
         minHeight: '100vh',
         paddingTop: '100px',
-        backgroundImage: `url(${heroImg})`,
+        backgroundImage: `url(${homeBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
@@ -149,7 +147,6 @@ const Home: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(43, 35, 35, 0.85)',
           zIndex: 0,
         }
       }}>
@@ -238,36 +235,48 @@ const Home: React.FC = () => {
               </Typography>
             </Box>
 
-            <Box
-              className="hero-image"
-              sx={{
-                position: 'absolute',
-                width: { xs: '90%', sm: '85%', md: '80%', lg: '70%' },
-                height: { xs: '50%', sm: '60%', md: '70%', lg: '75%' },
-                bottom: { xs: '2%', sm: '5%', md: '8%', lg: '10%' },
-                left: { xs: '5%', sm: '7.5%', md: '10%', lg: '23%' },
-                transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
-                transition: 'transform 2s ease-out',
-                background: 'rgba(255, 255, 255, 0.25)',
-                boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
-                backdropFilter: 'blur(9.5px)',
-                WebkitBackdropFilter: 'blur(8.5px)',
-                borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '30px' },
-                display: { xs: 'none', sm: 'block' }, // Hide on very small screens
-                minHeight: { sm: '200px', md: '250px' },
-              }}
-            >
-              <img 
-                src={heroImg} 
-                alt="Hero" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'cover', 
-                  borderRadius: 'inherit' 
-                }} 
-              />
-            </Box>
+            {/* HERO IMAGE TRANSITION */}
+            {/* Always render the img, but hide it until ready to animate */}
+            <img
+              src={homeBg}
+              alt="Hero"
+              style={{ display: 'none' }}
+              onLoad={() => setHeroImgLoaded(true)}
+              draggable={false}
+            />
+            {heroLoaded && (
+              <Box
+                className="hero-image"
+                sx={{
+                  position: 'absolute',
+                  width: { xs: '90%', sm: '85%', md: '80%', lg: '70%' },
+                  height: { xs: '50%', sm: '60%', md: '70%', lg: '75%' },
+                  bottom: { xs: '2%', sm: '5%', md: '8%', lg: '10%' },
+                  left: { xs: '5%', sm: '7.5%', md: '10%', lg: '23%' },
+                  transform: heroLoaded ? 'translateX(0)' : 'translateX(100%)',
+                  transition: 'transform 2s ease-in-out',
+                  background: 'rgba(255, 255, 255, 0.25)',
+                  boxShadow: '0 8px 32px 0 rgba(246, 246, 246, 0.37)',
+                  backdropFilter: 'blur(9.5px)',
+                  WebkitBackdropFilter: 'blur(8.5px)',
+                  borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '30px' },
+                  display: { xs: 'none', sm: 'block' }, // Hide on very small screens
+                  minHeight: { sm: '200px', md: '250px' },
+                }}
+              >
+                <img 
+                  src={heroRight} 
+                  alt="Hero" 
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover', 
+                    borderRadius: 'inherit' 
+                  }} 
+                  draggable={false}
+                />
+              </Box>
+            )}
           </Box>
 
           {/* INVESTOR CALL TO ACTION */}

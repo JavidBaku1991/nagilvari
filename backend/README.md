@@ -1,4 +1,4 @@
-# Nagilvari Backend
+# Naghilvari Backend
 
 ## Development Setup
 
@@ -10,7 +10,7 @@ npm install
 2. Create `.env` file:
 ```env
 PORT=4000
-MONGO_URI=mongodb://localhost:27017/nagilvari
+MONGO_URI=mongodb://localhost:27017/naghilvari
 JWT_SECRET=your-super-secure-secret-key-change-this-in-production
 ADMIN_USER=adminos
 ADMIN_PASS=1357
@@ -33,7 +33,7 @@ npm run build
 ```env
 PORT=4000
 NODE_ENV=production
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/nagilvari
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/naghilvari
 JWT_SECRET=your-super-secure-secret-key-at-least-32-characters-long
 ADMIN_USER=adminos
 ADMIN_PASS=1357

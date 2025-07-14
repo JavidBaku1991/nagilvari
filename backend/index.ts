@@ -45,16 +45,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Placeholder products
-const products = [
-  { id: 1, title: 'Product 1', price: 10, description: 'Description 1', image: '' },
-  { id: 2, title: 'Product 2', price: 20, description: 'Description 2', image: '' },
-];
-
-app.get('/products', (req: Request, res: Response) => {
-  res.json(products);
-});
-
 app.post('/admin/login', (req: Request, res: Response) => {
   const { username, password } = req.body;
   if (username === ADMIN_USER && password === ADMIN_PASS) {
@@ -94,7 +84,7 @@ app.use('*', (req: Request, res: Response) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/nagilvari', {
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/naghilvari', {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
 } as any)

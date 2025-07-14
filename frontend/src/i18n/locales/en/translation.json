@@ -10,7 +10,7 @@
     "cart": "Cart"
   },
   "home": {
-    "welcome": "Welcome to Nagilvari",
+    "welcome": "Welcome to Naghilvari",
     "discover": "Discover amazing products",
     "browseCategories": "Browse Categories",
     "categoriesDescription": "Explore our diverse collection of art and craft works across different categories",
@@ -201,7 +201,7 @@
     "connect": {
       "title": "Connect With Us"
     },
-    "copyright": "© {{year}} Nagilvari. All rights reserved.",
+    "copyright": "© {{year}} Naghilvari. All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
   },
@@ -223,11 +223,11 @@
     }
   },
   "about": {
-    "title": "About Nagilvari",
+    "title": "About Naghilvari",
     "description": {
-      "part1": "Nagilvari is a unique platform that brings together artisans and art enthusiasts. From handmade jewelry to paintings, from carpets to small sculptures, we present many types of art in this space. Our goal is to both provide artisans with access to a wide audience and present citizens with original and valuable works of art.",
-      "part2": "Each handmade piece carries a story, and we play the role of a bridge to ensure these stories are passed on to future generations without being lost. Nagilvari unites both creative individuals and buyers interested in art around the same value.",
-      "part3": "With this project born from the combination of innovative technology and traditional art, we open a new path for the preservation and spread of our culture. We believe that art should find its place not only in exhibitions but also in our daily lives. Nagilvari — art for every home, support for every artist!"
+      "part1": "Naghilvari is a unique platform that brings together artisans and art enthusiasts. From handmade jewelry to paintings, from carpets to small sculptures, we present many types of art in this space. Our goal is to both provide artisans with access to a wide audience and present citizens with original and valuable works of art.",
+      "part2": "Each handmade piece carries a story, and we play the role of a bridge to ensure these stories are passed on to future generations without being lost. Naghilvari unites both creative individuals and buyers interested in art around the same value.",
+      "part3": "With this project born from the combination of innovative technology and traditional art, we open a new path for the preservation and spread of our culture. We believe that art should find its place not only in exhibitions but also in our daily lives. Naghilvari — art for every home, support for every artist!"
     }
   },
   "pagination": {

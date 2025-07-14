@@ -10,7 +10,7 @@
     "cart": "Səbət"
   },
   "home": {
-    "welcome": "Nagilvari-yə xoş gəlmisiniz",
+    "welcome": "Naghilvari-yə xoş gəlmisiniz",
     "discover": "Heyranedici məhsulları kəşf edin",
     "browseCategories": "Kateqoriyalara baxın",
     "categoriesDescription": "Müxtəlif kateqoriyalar üzrə sənət və sənətkarlıq əsərlərimizin müxtəlif kolleksiyasını araşdırın",
@@ -194,7 +194,7 @@
     "connect": {
       "title": "Bizimlə Əlaqə"
     },
-    "copyright": "© {{year}} Nagilvari. Bütün hüquqlar qorunur.",
+    "copyright": "© {{year}} Naghilvari. Bütün hüquqlar qorunur.",
     "privacy": "Məxfilik Siyasəti",
     "terms": "İstifadə Şərtləri"
   },
@@ -216,9 +216,9 @@
     }
   },
   "about": {
-    "title": "Nagilvari Haqqında",
+    "title": "Naghilvari Haqqında",
     "description": {
-      "part1": "Nagilvari — sənətkarlarla sənətsevərləri bir araya gətirən unikal bir platformadır. Əl işi zinət əşyalarından tutmuş rəsm əsərlərinə, xalçalardan kiçik heykəltəraşlıq nümunələrinə qədər bir çox sənət növünü bu məkanda təqdim edirik. Məqsədimiz həm sənətkarlara geniş auditoriyaya çıxış imkanı yaratmaq, həm də vətəndaşlara orijinal və dəyərli sənət əsərləri təqdim etməkdir.",
+      "part1": "Naghilvari — sənətkarlarla sənətsevərləri bir araya gətirən unikal bir platformadır. Əl işi zinət əşyalarından tutmuş rəsm əsərlərinə, xalçalardan kiçik heykəltəraşlıq nümunələrinə qədər bir çox sənət növünü bu məkanda təqdim edirik. Məqsədimiz həm sənətkarlara geniş auditoriyaya çıxış imkanı yaratmaq, həm də vətəndaşlara orijinal və dəyərli sənət əsərləri təqdim etməkdir.",
       "part2": "Hər bir əl işi bir hekayə daşıyır və biz bu hekayələrin itmədən gələcək nəsillərə ötürülməsi üçün körpü rolunu oynayırıq. Nağılvari, həm yaradıcı fərdləri, həm də sənətə marağı olan alıcıları eyni dəyər ətrafında birləşdirir.",
       "part3": "İnnovativ texnologiya və ənənəvi sənət birləşməsindən doğan bu layihə ilə biz mədəniyyətimizin qorunması və yayılması üçün yeni bir yol açırıq. İnanırıq ki, sənət yalnız sərgilərdə deyil, gündəlik həyatımızda da öz yerini tapmalıdır. Nağılvari — hər evə sənət, hər sənətkara dəstək!"
     }

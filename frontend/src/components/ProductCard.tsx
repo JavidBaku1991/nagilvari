@@ -19,7 +19,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { id, title, description, price, imageUrl, category } = product;
+  const { id, title, description, price, imageUrl, category, artist, year, dimensions } = product;
   const navigate = useNavigate();
 
   // Function to handle image loading errors
@@ -103,19 +103,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <Typography 
             variant="body2" 
             sx={{ 
-              mb: 2,
+              mb: 1,
               fontSize: '0.9rem',
               lineHeight: 1.5,
-              height: '2.7em',
-              overflow: 'hidden',
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
               color: 'white',
             }}
           >
             {description}
           </Typography>
+          <Typography variant="body2" sx={{ color: 'white', mb: 0.5 }}>
+            <b>Artist:</b> {artist}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'white', mb: 0.5 }}>
+            <b>Price:</b> ${price}
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'white', mb: 0.5 }}>
+            <b>Year:</b> {year}
+          </Typography>
+          {dimensions && (
+            <Typography variant="body2" sx={{ color: 'white', mb: 0.5 }}>
+              <b>Dimensions:</b> {dimensions}
+            </Typography>
+          )}
           <Box sx={{ 
             display: 'flex', 
             justifyContent: 'flex-end', 

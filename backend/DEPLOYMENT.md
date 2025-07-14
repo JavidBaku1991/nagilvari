@@ -7,7 +7,7 @@ Create a `.env.production` file with:
 ```env
 PORT=4000
 NODE_ENV=production
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/nagilvari
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/naghilvari
 JWT_SECRET=your-super-secure-secret-key-at-least-32-characters-long
 ADMIN_USER=your-admin-username
 ADMIN_PASS=your-secure-admin-password

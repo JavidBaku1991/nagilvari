@@ -55,7 +55,7 @@ const About: React.FC = () => {
           }}
         >
           <p>
-            <strong>Nagilvari </strong>
+            <strong>Naghilvari </strong>
             {t('about.description.part1')}
           </p>
           <p>

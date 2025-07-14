@@ -3,6 +3,8 @@ import { Box, Typography, Paper, TextField, Button, Alert, Table, TableBody, Tab
 import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 
@@ -206,6 +208,36 @@ const Admin: React.FC = () => {
     }
   };
 
+  const handleToggleFeatured = async (product: Product) => {
+    const token = localStorage.getItem('admin_token');
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_URL}/api/products/${product._id}`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${token}` },
+        body: (() => {
+          const formData = new FormData();
+          formData.append('name', product.name);
+          formData.append('description', product.description);
+          formData.append('price', String(product.price));
+          formData.append('artist', product.artist || '');
+          formData.append('dimensions', product.dimensions || '');
+          formData.append('year', product.year ? String(product.year) : '');
+          formData.append('category', product.category || 'paintings');
+          formData.append('featured', String(!product.featured));
+          return formData;
+        })()
+      });
+      if (!res.ok) {
+        alert('Failed to update featured status');
+        return;
+      }
+      fetchProducts();
+    } catch {
+      alert('Network error');
+    }
+  };
+
   if (!loggedIn) {
     return (
       <Box sx={{ minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: 'background.default' }}>
@@ -263,6 +295,8 @@ const Admin: React.FC = () => {
                   <TableCell>Dimensions</TableCell>
                   <TableCell>Year</TableCell>
                   <TableCell>Price</TableCell>
+                  <TableCell>Category</TableCell>
+                  <TableCell>Featured</TableCell>
                   <TableCell>Image</TableCell>
                   <TableCell align="right">Actions</TableCell>
                 </TableRow>
@@ -276,6 +310,12 @@ const Admin: React.FC = () => {
                     <TableCell>{product.dimensions || '-'}</TableCell>
                     <TableCell>{product.year || '-'}</TableCell>
                     <TableCell>${product.price}</TableCell>
+                    <TableCell>{product.category || '-'}</TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => handleToggleFeatured(product)} color={product.featured ? 'warning' : 'default'}>
+                        {product.featured ? <StarIcon /> : <StarBorderIcon />}
+                      </IconButton>
+                    </TableCell>
                     <TableCell>
                       {product.imageUrl && (
                         <img src={`${API_URL}${product.imageUrl}`} alt={product.name} style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 4 }} />
@@ -305,8 +345,7 @@ const Admin: React.FC = () => {
               <TextField label="Category" name="category" value={form.category} onChange={handleFormChange} select fullWidth required margin="normal">
                 <MenuItem value="paintings">Paintings</MenuItem>
                 <MenuItem value="sculptures">Sculptures</MenuItem>
-                <MenuItem value="digital-art">Digital Art</MenuItem>
-                <MenuItem value="photography">Photography</MenuItem>
+        
                 <MenuItem value="ceramics">Ceramics</MenuItem>
               </TextField>
               <FormControlLabel

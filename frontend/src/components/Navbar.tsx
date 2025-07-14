@@ -142,7 +142,7 @@ const Navbar: React.FC = () => {
               }
             }}
           >
-            Nagilvari
+            Naghilvari
           </Typography>
 
           {!isMobile && (
