@@ -8,7 +8,6 @@ import footerImg from '../images/footer.jpg';
 import heroImg from '../images/hero14.png';
 import hero1Img from '../images/hero1.jpg';
 import hero2Img from '../images/hero2.png';
-import image from '../images/selin.jpg';
 import bghero from '../images/hero13.png';
 import { Box, Container, Typography } from '@mui/material';
 import categoriesImg from '../images/categories.jpg';
@@ -50,13 +49,13 @@ const Home: React.FC = () => {
     name: `${t('common.product')} ${i + 1}`,
     price: (i + 1) * 10,
     description: `${t('common.productDescription')} ${i + 1}.`,
-    image: image,
+   
     category: categories[i % categories.length].title
   }));
 
   // List all images to preload
   const imagesToPreload = [
-    heroImg, hero1Img, hero2Img, footerImg, bghero, categoriesImg, image
+    heroImg, hero1Img, hero2Img, footerImg, bghero, categoriesImg
   ];
   categories.forEach(cat => cat.images.forEach(img => imagesToPreload.push(img.src)));
 
@@ -169,8 +168,8 @@ const Home: React.FC = () => {
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               borderRadius: { xs: '8px', sm: '12px', md: '16px', lg: '20px' },
-              margin: { xs: '0.5rem', sm: '1rem', md: '1.5rem', lg: '.5rem' },
               minHeight: { xs: '300px', sm: '400px' },
+              marginBottom: { xs: '1.5rem', sm: '2rem', md: '3rem' },
             }}
             className='hero-section'
           >
@@ -303,7 +302,7 @@ const Home: React.FC = () => {
                   variant="h3"
                   sx={{
                     fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.5rem' },
-                    color: 'var(--secondary-main)',
+                    color: 'white',
                     marginBottom: { xs: '0.5rem', sm: '0.75rem', md: '1rem' },
                     fontWeight: 600,
                     position: 'relative',
@@ -319,13 +318,14 @@ const Home: React.FC = () => {
                     width: { xs: '40px', sm: '50px', md: '60px' },
                     height: '3px',
                     backgroundColor: 'var(--secondary-main)',
-                    borderRadius: '2px'
+                    borderRadius: '2px',
+                    color:'white'
                   }} />
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{
-                    color: 'var(--secondary-main)',
+                    color: 'white',
                     fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
                     maxWidth: { xs: '100%', sm: '500px', md: '600px' },
                     margin: { xs: '0.5rem auto 0', sm: '0.75rem auto 0', md: '1rem auto 0' },

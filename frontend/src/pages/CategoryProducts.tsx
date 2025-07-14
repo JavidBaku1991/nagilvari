@@ -25,7 +25,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 import ProductCard from '../components/ProductCard';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { getProductsByCategory } from '../services/productService';
+// import { getProductsByCategory } from '../services/productService';
 import { Product } from '../types/product';
 import styles from './Products.module.css';
 
@@ -55,8 +55,8 @@ const CategoryProducts: React.FC = () => {
       
       setLoading(true);
       try {
-        const productsData = await getProductsByCategory(category);
-        setProducts(productsData);
+        // const productsData = await getProductsByCategory(category);
+        // setProducts(productsData);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

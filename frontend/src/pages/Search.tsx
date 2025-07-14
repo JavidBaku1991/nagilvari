@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { getProducts } from '../services/productService';
+// import { getProducts } from '../services/productService';
 import { Product } from '../types/product';
 import ProductCard from '../components/ProductCard';
 import ProductFilters from '../components/ProductFilters';
@@ -42,8 +42,8 @@ const Search: React.FC = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const productsData = await getProducts();
-        setProducts(productsData);
+        // const productsData = await getProducts();
+        // setProducts(productsData);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

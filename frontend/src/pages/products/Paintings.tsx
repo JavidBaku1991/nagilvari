@@ -8,7 +8,7 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { getProductsByCategory } from '../../services/productService';
+// import { getProductsByCategory } from '../../services/productService';
 import { Product } from '../../types/product';
 import ProductCard from '../../components/ProductCard';
 import ProductFilters from '../../components/ProductFilters';
@@ -38,8 +38,8 @@ const Paintings: React.FC = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const productsData = await getProductsByCategory('paintings');
-        setProducts(productsData);
+        // const productsData = await getProductsByCategory('paintings');
+        // setProducts(productsData);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {

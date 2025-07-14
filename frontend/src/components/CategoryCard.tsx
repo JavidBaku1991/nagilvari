@@ -76,7 +76,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         />
         <CardContent sx={{ 
           flexGrow: 1, 
-          color: 'var(--secondary-main)',
+          color: 'white',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -90,7 +90,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             sx={{
               fontWeight: 600,
               marginBottom: '1rem',
-              color: 'var(--secondary-main)',
+              color: 'white',
             }}
           >
             {title}
@@ -99,7 +99,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             variant="body2"
             sx={{
               lineHeight: 1.6,
-              color: 'var(--secondary-main)',
+              color: 'white',
             }}
           >
             {description}
@@ -114,7 +114,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             <Typography
               variant="body2"
               sx={{
-                color: 'var(--secondary-main)',
+                color: 'white',
                 fontWeight: 500,
                 '&:hover': {
                   textDecoration: 'underline'

@@ -15,12 +15,18 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const ADMIN_USER = process.env.ADMIN_USER || 'adminos';
 const ADMIN_PASS = process.env.ADMIN_PASS || '1357';
-const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
+const JWT_SECRET = process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? undefined : 'supersecretkey');
+
+// Validate JWT secret in production
+if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
+  console.error('❌ JWT_SECRET environment variable is required in production');
+  process.exit(1);
+}
 
 // Security middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com'] // Replace with your frontend domain
+    ? [process.env.FRONTEND_URL || 'https://yourdomain.com'] // Use environment variable
     : ['http://localhost:3000'],
   credentials: true
 }));

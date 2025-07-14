@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFeaturedProducts } from '../services/productService';
+// import { getFeaturedProducts } from '../services/productService';
 import { Product } from '../types/product';
 import ProductCard from './ProductCard';
 import LoadingSpinner from './LoadingSpinner';
@@ -19,8 +19,8 @@ const FeaturedProducts: React.FC = () => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const products = await getFeaturedProducts();
-        setFeaturedProducts(products);
+        // const products = await getFeaturedProducts();
+        // setFeaturedProducts(products);
         setIsLoading(false);
       } catch (error) {
         console.error('Error loading featured products:', error);
@@ -70,10 +70,10 @@ const FeaturedProducts: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3rem', color: 'white' }}>
           <h3 style={{
             fontSize: '2.5rem',
-            color: 'var(--secondary-main)',
+            color: 'white',
             marginBottom: '1rem',
             fontWeight: 600,
             position: 'relative',
@@ -87,12 +87,12 @@ const FeaturedProducts: React.FC = () => {
               transform: 'translateX(-50%)',
               width: '60px',
               height: '3px',
-              backgroundColor: 'var(--secondary-main)',
+              backgroundColor: 'white',
               borderRadius: '2px'
             }} />
           </h3>
           <p style={{
-            color: 'var(--secondary-main)',
+            color: 'white',
             fontSize: '1.1rem',
             maxWidth: '600px',
             margin: '1rem auto 0',
@@ -144,10 +144,17 @@ const FeaturedProducts: React.FC = () => {
             to="/products"
             sx={{
               backgroundColor: 'white',
-              color: 'var(--secondary-main)',
               '&:hover': {
-                backgroundColor: '#f0f0f0'
-              }
+                backgroundColor: '#f0f0f0',
+                color: 'var(--secondary-main)'
+              },
+              // Make button text white
+              '& .MuiButton-label': {
+                color: 'white',
+              },
+              color: 'white',
+              background: 'rgba(255,255,255,0.15)',
+              border: '1px solid white',
             }}
           >
             {t('featuredProducts.viewAll')}

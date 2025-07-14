@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link as RouterLink } from 'react-router-dom';
-import { getProducts } from '../services/productService';
+// import { getProducts } from '../services/productService';
 import { Product } from '../types/product';
 import { Box, Container, Grid, Typography, Button, Card, CardMedia, Chip, Divider, IconButton, Paper } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -14,12 +14,12 @@ const ProductDetail: React.FC = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const products = await getProducts();
-        const foundProduct = products.find((p) => p.id === id);
-        if (foundProduct) {
-          setProduct(foundProduct);
-          setSelectedImage(foundProduct.imageUrl);
-        }
+        // const products = await getProducts();
+        // const foundProduct = products.find((p) => p.id === id);
+        // if (foundProduct) {
+        //   setProduct(foundProduct);
+        //   setSelectedImage(foundProduct.imageUrl);
+        // }
       } catch (error) {
         console.error('Error fetching product:', error);
       }

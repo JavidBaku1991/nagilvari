@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Card, CardContent, CardMedia, Typography, Pagination, Box } from '@mui/material';
-import { getProducts } from '../services/productService';
+// import { getProducts } from '../services/productService';
 import { Product } from '../types/product';
 import { useNavigate } from 'react-router-dom';
 import all from '../images/all.jpg'
@@ -16,8 +16,8 @@ const Products: React.FC = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        const productsData = await getProducts();
-        setProducts(productsData);
+        // const productsData = await getProducts();
+        // setProducts(productsData);
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
