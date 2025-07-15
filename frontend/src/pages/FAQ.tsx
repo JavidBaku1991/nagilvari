@@ -53,7 +53,6 @@ const FAQ: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(33, 28, 28, 0.85)',
         zIndex: 0,
       }
     }}>
@@ -61,7 +60,7 @@ const FAQ: React.FC = () => {
         <Typography variant="h2" component="h1" gutterBottom align="center" sx={{ 
           mb: 4,
           color: 'var(--secondary-main)',
-          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8)',
+          textShadow: '2px 2px 8px rgba(0, 0, 0, 0.9)',
           fontWeight: 'bold'
         }}>
           {t('faq.title')}
@@ -69,7 +68,7 @@ const FAQ: React.FC = () => {
         <Typography variant="subtitle1" align="center" sx={{ 
           mb: 6,
           color: 'var(--secondary-main)',
-          textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)'
+          textShadow: '1px 1px 4px rgba(0, 0, 0, 0.9)'
         }}>
           {t('faq.description')}
         </Typography>

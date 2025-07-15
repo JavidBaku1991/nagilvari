@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import homeBg from '../images/hero.jpg';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000';
 
@@ -271,8 +272,38 @@ const Admin: React.FC = () => {
   }
 
   return (
-    <Box sx={{ minHeight: '70vh', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', bgcolor: 'background.default', py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4, maxWidth: 900, width: '100%' }}>
+    <Box sx={{
+      position: 'relative',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      paddingTop: 8,
+      paddingBottom: 8,
+      backgroundImage: `url(${homeBg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(30, 30, 30, 0.7)',
+        zIndex: 0,
+      },
+    }}>
+      <Paper elevation={6} sx={{
+        p: { xs: 2, sm: 4 },
+        maxWidth: 900,
+        width: '100%',
+        borderRadius: 5,
+        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)',
+        background: 'rgba(255,255,255,0.92)',
+        position: 'relative',
+        zIndex: 1,
+      }}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
           <Typography variant="h4">Admin Dashboard</Typography>
           <Button variant="outlined" color="secondary" onClick={handleLogout}>

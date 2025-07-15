@@ -24,6 +24,7 @@ import {
 } from '@mui/icons-material';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileDrawer from './MobileDrawer';
+import logo from '../images/logo.png';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -98,163 +99,118 @@ const Navbar: React.FC = () => {
     handleMenuClose();
   };
 
+  // Keyframes for logo scaling animation
+  const logoScaleKeyframes = `@keyframes logo-scale { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }`;
+
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        backgroundColor: isScrolled ? 'var(--secondary-main)' : 'transparent',
-        boxShadow: isScrolled ? 2 : 0,
-        transition: 'all 0.3s ease-in-out',
-        color: 'var(--secondary-main)',
-        backdropFilter: isScrolled ? 'blur(8px)' : 'none',
-        '&::after': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: -1,
-          height: '100%'
-        }
-      }}
-    >
-      <Container maxWidth="lg">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            component={Link}
-            to="/"
-            onClick={() => handleNavigation('/')}
-            sx={{
-              flexGrow: 1,
-              color:  isScrolled ? 'white' : 'var(--secondary-main)',
-              textDecoration: 'none',
-              fontWeight: 'bold',
-              display: 'flex',
-              alignItems: 'center',
-              transition: 'all 0.3s ease-in-out',
-              cursor:'pointer',
-              '&:hover': {
-                color: isScrolled ? '#f0f0f0' : '#DEB887',
-                transform: 'scale(1.05)',
-                textShadow: '0 0 8px rgba(210, 180, 140, 0.5)'
-              }
-            }}
-          >
-            Naghilvari
-          </Typography>
+    <>
+      <style>{logoScaleKeyframes}</style>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: isScrolled ? 'var(--secondary-main)' : 'transparent',
+          boxShadow: isScrolled ? 2 : 0,
+          transition: 'all 0.3s ease-in-out',
+          color: 'var(--secondary-main)',
+          backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: -1,
+            height: '100%'
+          }
+        }}
+      >
+        <Container maxWidth="lg">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              component={Link}
+              to="/"
+              onClick={() => handleNavigation('/')}
+              sx={{
+                flexGrow: 1,
+                color:  isScrolled ? 'white' : 'var(--secondary-main)',
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'all 0.3s ease-in-out',
+                cursor:'pointer',
+                '&:hover': {
+                  color: isScrolled ? '#f0f0f0' : '#DEB887',
+                  transform: 'scale(1.1)',
+                  textShadow: '0 0 8px rgba(210, 180, 140, 0.5)'
+                }
+              }}
+            >
+              <img 
+                src={logo} 
+                alt="Naghilvari Logo" 
+                style={{ 
+                  height: 50, 
+                  width: 'auto', 
+                  display: 'block', 
+                  animation: 'logo-scale 2.5s infinite ease-in-out',
+                }} 
+              />
+            </Typography>
 
-          {!isMobile && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', width: '250px'}}>
-                <InputBase
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  sx={{
-                    backgroundColor: isScrolled ? 'var(---main)' : 'rgba(255, 255, 255, 0.5)',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '20px',
-                    width: '300px',
-                    color: isScrolled ? 'white' : 'var(--secondary-main)',
-                    transition: 'all 0.3s ease-in-out',
-                    '&::placeholder': {
-                      color: isScrolled ? '#666' : 'rgba(255, 255, 255, 0.7)',
-                      transition: 'color 0.3s ease-in-out'
-                    },
-                    '&:hover': {
-                      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)',
-                      transform: 'scale(1.02)',
-                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-                    },
-                    '&:focus-within': {
-                      backgroundColor: isScrolled ? 'white' : 'rgba(255, 255, 255, 0.8)',
-                      transform: 'scale(1.02)',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-                    }
-                  }}
-                />
-                <IconButton
-                  type="submit"
-                  sx={{
-                    color: 'var(--secondary-main)',
-                    transition: 'all 0.3s ease-in-out',
-                    '&:hover': { 
-                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                      transform: 'scale(1.1) rotate(5deg)',
-                      color: '#DEB887',
-                      boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)'
-                    }
-                  }}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </form>
-
-              <Button
-                aria-controls="products-menu"
-                aria-haspopup="true"
-                onClick={handleMenuOpen}
-                sx={{
-                  color: isScrolled ? 'white' : 'var(--secondary-main)',
-                  transition: 'all 0.3s ease-in-out',
-                  borderRadius: '20px',
-                  padding: '8px 16px',
-                  '&:hover': { 
-                    backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                    transform: 'translateY(-2px)',
-                    color: isScrolled ? '#f0f0f0' : '#DEB887',
-                    boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)',
-                    border: '1px solid rgba(210, 180, 140, 0.3)'
-                  }
-                }}
-              >
-                Products
-              </Button>
-              <Menu
-                id="products-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                PaperProps={{
-                  sx: {
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(210, 180, 140, 0.3)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    borderRadius: '12px',
-                    mt: 1
-                  }
-                }}
-                disableScrollLock={true}
-              >
-                {productCategories.map((category) => (
-                  <MenuItem
+            {!isMobile && (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <form onSubmit={handleSearch} style={{ display: 'flex', alignItems: 'center', width: '250px'}}>
+                  <InputBase
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{
-                      color: 'var(--secondary-main)',
-                      transition: 'all 0.2s ease-in-out',
+                      backgroundColor: isScrolled ? 'var(---main)' : 'rgba(255, 255, 255, 0.5)',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '20px',
+                      width: '300px',
+                      color: isScrolled ? 'white' : 'var(--secondary-main)',
+                      transition: 'all 0.3s ease-in-out',
+                      '&::placeholder': {
+                        color: isScrolled ? '#666' : 'rgba(255, 255, 255, 0.7)',
+                        transition: 'color 0.3s ease-in-out'
+                      },
                       '&:hover': {
-                        backgroundColor: 'rgba(210, 180, 140, 0.15)',
-                        color: '#DEB887',
-                        transform: 'translateX(4px)'
+                        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)',
+                        transform: 'scale(1.02)',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
+                      },
+                      '&:focus-within': {
+                        backgroundColor: isScrolled ? 'white' : 'rgba(255, 255, 255, 0.8)',
+                        transform: 'scale(1.02)',
+                        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
                       }
                     }}
-                    key={category.path} 
-                    onClick={() => handleCategoryNavigation(category.path)}
+                  />
+                  <IconButton
+                    type="submit"
+                    sx={{
+                      color: 'var(--secondary-main)',
+                      transition: 'all 0.3s ease-in-out',
+                      '&:hover': { 
+                        backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                        transform: 'scale(1.1) rotate(5deg)',
+                        color: '#DEB887',
+                        boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)'
+                      }
+                    }}
                   >
-                    {category.label}
-                  </MenuItem>
-                ))}
-              </Menu>
+                    <SearchIcon />
+                  </IconButton>
+                </form>
 
-              {navItems.map((item) => (
                 <Button
-                  key={item.path}
-                  component={Link}
-                  to={item.path}
-                  onClick={() => handleNavigation(item.path)}
+                  aria-controls="products-menu"
+                  aria-haspopup="true"
+                  onClick={handleMenuOpen}
                   sx={{
                     color: isScrolled ? 'white' : 'var(--secondary-main)',
                     transition: 'all 0.3s ease-in-out',
@@ -269,92 +225,152 @@ const Navbar: React.FC = () => {
                     }
                   }}
                 >
-                  {item.label}
+                  Products
                 </Button>
-              ))}
+                <Menu
+                  id="products-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                  PaperProps={{
+                    sx: {
+                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(210, 180, 140, 0.3)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      borderRadius: '12px',
+                      mt: 1
+                    }
+                  }}
+                  disableScrollLock={true}
+                >
+                  {productCategories.map((category) => (
+                    <MenuItem
+                      sx={{
+                        color: 'var(--secondary-main)',
+                        transition: 'all 0.2s ease-in-out',
+                        '&:hover': {
+                          backgroundColor: 'rgba(210, 180, 140, 0.15)',
+                          color: '#DEB887',
+                          transform: 'translateX(4px)'
+                        }
+                      }}
+                      key={category.path} 
+                      onClick={() => handleCategoryNavigation(category.path)}
+                    >
+                      {category.label}
+                    </MenuItem>
+                  ))}
+                </Menu>
 
-              <IconButton
-                component="a"
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  color: isScrolled ? 'white' : 'var(--secondary-main)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': { 
-                    backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                    transform: 'scale(1.1) rotate(5deg)',
-                    color: '#1877F2',
-                    boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
-                  }
-                }}
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                component="a"
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  color: isScrolled ? 'white' : 'var(--secondary-main)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': { 
-                    backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                    transform: 'scale(1.1) rotate(5deg)',
-                    color: '#E4405F',
-                    boxShadow: '0 4px 12px rgba(228, 64, 95, 0.3)'
-                  }
-                }}
-              >
-                <InstagramIcon />
-              </IconButton>
-              <IconButton
-                component="a"
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  color: isScrolled ? 'white' : 'var(--secondary-main)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': { 
-                    backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                    transform: 'scale(1.1) rotate(5deg)',
-                    color: '#1DA1F2',
-                    boxShadow: '0 4px 12px rgba(29, 161, 242, 0.3)'
-                  }
-                }}
-              >
-                <TwitterIcon />
-              </IconButton>
-              <LanguageSwitcher isScrolled={isScrolled} />
-            </Box>
-          )}
+                {navItems.map((item) => (
+                  <Button
+                    key={item.path}
+                    component={Link}
+                    to={item.path}
+                    onClick={() => handleNavigation(item.path)}
+                    sx={{
+                      color: isScrolled ? 'white' : 'var(--secondary-main)',
+                      transition: 'all 0.3s ease-in-out',
+                      borderRadius: '20px',
+                      padding: '8px 16px',
+                      '&:hover': { 
+                        backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                        transform: 'translateY(-2px)',
+                        color: isScrolled ? '#f0f0f0' : '#DEB887',
+                        boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)',
+                        border: '1px solid rgba(210, 180, 140, 0.3)'
+                      }
+                    }}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
 
-          {isMobile && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <LanguageSwitcher isScrolled={isScrolled} />
-              <IconButton
-                onClick={handleDrawerToggle}
-                sx={{
-                  color: isScrolled ? 'white' : 'var(--secondary-main)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': { 
-                    backgroundColor: 'rgba(210, 180, 140, 0.2)',
-                    transform: 'scale(1.1) rotate(5deg)',
-                    color: '#DEB887',
-                    boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)'
-                  }
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <MobileDrawer open={isMenuOpen} onClose={handleDrawerToggle} isScrolled={isScrolled} />
-            </Box>
-          )}
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <IconButton
+                  component="a"
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    color: isScrolled ? 'white' : 'var(--secondary-main)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': { 
+                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                      transform: 'scale(1.1) rotate(5deg)',
+                      color: '#1877F2',
+                      boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)'
+                    }
+                  }}
+                >
+                  <FacebookIcon />
+                </IconButton>
+                <IconButton
+                  component="a"
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    color: isScrolled ? 'white' : 'var(--secondary-main)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': { 
+                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                      transform: 'scale(1.1) rotate(5deg)',
+                      color: '#E4405F',
+                      boxShadow: '0 4px 12px rgba(228, 64, 95, 0.3)'
+                    }
+                  }}
+                >
+                  <InstagramIcon />
+                </IconButton>
+                <IconButton
+                  component="a"
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ 
+                    color: isScrolled ? 'white' : 'var(--secondary-main)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': { 
+                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                      transform: 'scale(1.1) rotate(5deg)',
+                      color: '#1DA1F2',
+                      boxShadow: '0 4px 12px rgba(29, 161, 242, 0.3)'
+                    }
+                  }}
+                >
+                  <TwitterIcon />
+                </IconButton>
+                <LanguageSwitcher isScrolled={isScrolled} />
+              </Box>
+            )}
+
+            {isMobile && (
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <LanguageSwitcher isScrolled={isScrolled} />
+                <IconButton
+                  onClick={handleDrawerToggle}
+                  sx={{
+                    color: isScrolled ? 'white' : 'var(--secondary-main)',
+                    transition: 'all 0.3s ease-in-out',
+                    '&:hover': { 
+                      backgroundColor: 'rgba(210, 180, 140, 0.2)',
+                      transform: 'scale(1.1) rotate(5deg)',
+                      color: '#DEB887',
+                      boxShadow: '0 4px 12px rgba(210, 180, 140, 0.3)'
+                    }
+                  }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <MobileDrawer open={isMenuOpen} onClose={handleDrawerToggle} isScrolled={isScrolled} />
+              </Box>
+            )}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 };
 
