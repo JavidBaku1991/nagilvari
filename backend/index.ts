@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const ADMIN_USER = process.env.ADMIN_USER || 'adminos';
 const ADMIN_PASS = process.env.ADMIN_PASS || '1357';
-const JWT_SECRET = process.env.JWT_SECRET || (process.env.NODE_ENV === 'production' ? undefined : 'supersecretkey');
+const JWT_SECRET = process.env.JWT_SECRET || 'supersecretkey';
 
 // Validate JWT secret in production
 if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
