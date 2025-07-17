@@ -216,23 +216,12 @@ const Home: React.FC = () => {
               >
                 {t('home.welcome')}
               </Typography>
-              <Typography
-                variant="h2"
-                sx={{
-                  fontSize: { xs: '0.875rem', sm: '1rem', md: '1.2rem', lg: '1.3rem', xl: '1.5rem' },
-                  textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
-                  color: 'var(--secondary-main)',
-                  transform: heroLoaded ? 'translateX(0)' : 'translateX(-100%)',
-                  transition: 'transform 2s ease-in-out',
-                  transitionDelay: '1.5s',
-                  opacity: heroLoaded ? 1 : 0,
-                  lineHeight: { xs: 1.2, sm: 1.3, md: 1.4, lg: 1.5 },
-                  wordWrap: 'break-word',
-                  overflowWrap: 'break-word',
-                }}
-              >
-                {t('home.discover')}
-              </Typography>
+              <img 
+                src={require('../images/logo.png')} 
+                alt="Naghilvari Logo" 
+                style={{ height: 120, width: 'auto', marginTop: 12, marginBottom: 0 }} 
+                draggable={false}
+              />
             </Box>
 
             {/* HERO IMAGE TRANSITION */}

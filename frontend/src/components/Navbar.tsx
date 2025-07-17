@@ -148,16 +148,7 @@ const Navbar: React.FC = () => {
                 }
               }}
             >
-              <img 
-                src={logo} 
-                alt="Naghilvari Logo" 
-                style={{ 
-                  height: 50, 
-                  width: 'auto', 
-                  display: 'block', 
-                  animation: 'logo-scale 2.5s infinite ease-in-out',
-                }} 
-              />
+              Naghilvari
             </Typography>
 
             {!isMobile && (
