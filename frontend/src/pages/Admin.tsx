@@ -76,7 +76,7 @@ const Admin: React.FC = () => {
       localStorage.setItem('admin_token', data.token);
       setLoggedIn(true);
       setError('');
-      navigate('/admin/dashboard');
+      navigate('/admin');
     } catch (err) {
       setError('Network error');
     }
