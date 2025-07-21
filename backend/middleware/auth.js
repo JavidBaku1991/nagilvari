@@ -1,11 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-export interface AuthRequest extends Request {
-  user?: any;
-}
-
-export const authenticateJWT = (req: AuthRequest, res: Response, next: NextFunction) => {
+const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader && authHeader.startsWith('Bearer ')) {
     const token = authHeader.split(' ')[1];
@@ -17,4 +12,6 @@ export const authenticateJWT = (req: AuthRequest, res: Response, next: NextFunct
   } else {
     res.status(401).json({ message: 'No token provided' });
   }
-}; 
+};
+
+module.exports = { authenticateJWT }; 

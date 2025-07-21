@@ -1,13 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import path from 'path';
-import jwt from 'jsonwebtoken';
-import { Request, Response, NextFunction } from 'express';
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const path = require('path');
+const jwt = require('jsonwebtoken');
 
-import authRoutes from './routes/auth';
-import productRoutes from './routes/products';
+const authRoutes = require('./routes/auth.js');
+const productRoutes = require('./routes/products.js');
 
 dotenv.config();
 
@@ -33,14 +32,14 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Basic security headers
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
 });
 
-app.post('/admin/login', (req: Request, res: Response) => {
+app.post('/admin/login', (req, res) => {
   const { username, password } = req.body;
   if (username === ADMIN_USER && password === ADMIN_PASS) {
     const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '2h' });
@@ -49,7 +48,7 @@ app.post('/admin/login', (req: Request, res: Response) => {
   res.status(401).json({ error: 'Invalid credentials' });
 });
 
-app.post('/admin/verify', (req: Request, res: Response) => {
+app.post('/admin/verify', (req, res) => {
   const { token } = req.body;
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
@@ -60,7 +59,7 @@ app.post('/admin/verify', (req: Request, res: Response) => {
 });
 
 // Health check endpoint
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
@@ -69,20 +68,20 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 
 // Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // 404 handler
-app.use('*', (req: Request, res: Response) => {
+app.use('*', (req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/naghilvari', {
   // useNewUrlParser: true,
   // useUnifiedTopology: true,
-} as any)
+})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);

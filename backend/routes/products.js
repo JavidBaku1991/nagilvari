@@ -1,9 +1,9 @@
-import express from 'express';
-import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
-import Product from '../models/Product';
-import { authenticateJWT } from '../middleware/auth';
+const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+const Product = require('../models/Product.js');
+const { authenticateJWT } = require('../middleware/auth.js');
 
 const router = express.Router();
 
@@ -63,7 +63,7 @@ router.post('/', authenticateJWT, upload.single('image'), async (req, res) => {
 
     // Convert year to number if provided
     const yearNumber = year ? parseInt(year) : undefined;
-    if (year && isNaN(yearNumber!)) {
+    if (year && isNaN(yearNumber)) {
       console.log('Validation failed: invalid year');
       return res.status(400).json({ error: 'Year must be a valid number' });
     }
@@ -121,11 +121,11 @@ router.put('/:id', authenticateJWT, upload.single('image'), async (req, res) => 
 
     // Convert year to number if provided
     const yearNumber = year ? parseInt(year) : undefined;
-    if (year && isNaN(yearNumber!)) {
+    if (year && isNaN(yearNumber)) {
       return res.status(400).json({ error: 'Year must be a valid number' });
     }
 
-    let update: any = { 
+    let update = { 
       name, 
       description, 
       price: priceNumber, 
@@ -192,4 +192,4 @@ router.post('/test', async (req, res) => {
   }
 });
 
-export default router; 
+module.exports = router; 

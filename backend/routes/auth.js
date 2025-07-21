@@ -1,7 +1,7 @@
-import express from 'express';
-import Admin from '../models/Admin';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const express = require('express');
+const Admin = require('../models/Admin.js');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -28,4 +28,4 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 
-export default router; 
+module.exports = router; 
